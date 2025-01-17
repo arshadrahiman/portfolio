@@ -135,7 +135,7 @@ class AboutMeSection extends StatelessWidget {
                 ),
                 SizedBox(height: 15),
                 Text(
-                  'I am a passionate Flutter developer with 3+ years of experience in building mobile applications.',
+                  'I am a passionate Flutter developer with 6+ years of experience in building mobile applications.',
                   style: TextStyle(fontSize: 18, color: Colors.grey[700]),
                 ),
                 SizedBox(height: 20),
