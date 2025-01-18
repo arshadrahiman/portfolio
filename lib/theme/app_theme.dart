@@ -11,6 +11,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(6.0),
         ),
       )),
+      visualDensity: VisualDensity.adaptivePlatformDensity,
       appBarTheme: const AppBarTheme(
           backgroundColor: primaryColor,
           iconTheme: IconThemeData(color: Colors.white),
@@ -31,6 +32,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(6.0),
         ),
       )),
+      visualDensity: VisualDensity.adaptivePlatformDensity,
       appBarTheme: const AppBarTheme(
           backgroundColor: primaryColor,
           iconTheme: IconThemeData(color: Colors.white),
@@ -83,12 +85,10 @@ class AppTheme {
   static const Color semiBlue = Color(0xFF0A8AE0);
   static const Color cherryRed = Color(0xFFE1012D);
 
-
   //Button Colors
   static const Color primaryButtonColor = primaryColor;
   static const Color secondaryButtonColor = Color(0xFFEEF0F2);
   static const Color thirdButtonColor = Color(0xFFFCE6EA);
-
 
   //Text Colors
   static const Color primaryTextColor = Color(0xff17243E);

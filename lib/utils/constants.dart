@@ -1,13 +1,11 @@
 class Constants {
   // App-related constants
-  static String appName = "Helpion";
-  static String baseUrl = "https://leader-hstg.helpion.com/apirest.php/";
-  static String helpionUrl = "https://helpion.com";
+  static String appName = "Arshad Rahman";
+  // static String baseUrl = "https://leader-hstg.helpion.com/apirest.php/";
   static String updatePageTitle = "";
   static String updatePageDescription = "";
   static String updatePageAndroidLink = "";
   static String updatePageIOSLink = "";
-  static String faqUrl = "https://lelab.helpion.com/front/helpdesk.faq.php?id=";
   // Initial routing constant
   static const initialRouting = "INITIAL_ROUTING";
 

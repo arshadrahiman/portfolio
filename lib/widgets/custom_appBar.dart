@@ -1,14 +1,12 @@
+import 'package:arshad_dev/baseclass/basecontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 // CustomAppBar that accepts a callback to handle scrolling
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final Function(String) onActionPressed;
-
-  CustomAppBar({required this.onActionPressed});
-
   @override
-  Size get preferredSize => Size.fromHeight(60); // Set the height of the app bar
+  Size get preferredSize =>
+      Size.fromHeight(60); // Set the height of the app bar
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +17,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         // Navigation Menu (With Hover Effect for Web)
         Row(
           children: [
-            _buildMenuItem('About', onActionPressed),
+            _buildMenuItem('About', (v) {}),
             SizedBox(width: 20),
-            _buildMenuItem('Projects', onActionPressed),
+            _buildMenuItem('Projects', (v) {}),
             SizedBox(width: 20),
-            _buildMenuItem('Contact', onActionPressed),
+            _buildMenuItem('Contact', (v) {}),
             SizedBox(width: 20),
-            _buildMenuItem('Blog', onActionPressed), // You can add more sections here
+            _buildMenuItem('Blog', (v) {}), // You can add more sections here
             SizedBox(width: 20),
+            _buildMenuItem('E', (v) {
+              BaseController.changeLanguage();
+            }), // You can add more sections here
           ],
         ),
       ],
@@ -46,7 +47,8 @@ class _MenuItem extends StatefulWidget {
   final String title;
   final Function(String) onActionPressed;
 
-  const _MenuItem({Key? key, required this.title, required this.onActionPressed})
+  const _MenuItem(
+      {Key? key, required this.title, required this.onActionPressed})
       : super(key: key);
 
   @override
@@ -84,7 +86,9 @@ class _MenuItemState extends State<_MenuItem> {
               Text(
                 widget.title,
                 style: TextStyle(
-                  color: _isHovered ? Colors.blueAccent : Colors.white, // Change color on hover
+                  color: _isHovered
+                      ? Colors.blueAccent
+                      : Colors.white, // Change color on hover
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   letterSpacing: 1.5,

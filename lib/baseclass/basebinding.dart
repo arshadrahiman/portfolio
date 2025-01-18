@@ -24,7 +24,6 @@ class BaseBinding extends Bindings {
   void _initialRoutingDependencies() {
     Get.lazyPut<BaseController>(() => BaseController());
     Get.lazyPut<LocaleService>(() => LocaleService());
-    // Get.lazyPut<SplashController>(() => SplashController());
     Get.put(DioApi(), permanent: true);
   }
 }

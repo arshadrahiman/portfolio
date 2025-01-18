@@ -18,7 +18,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(onActionPressed: _onAppBarActionPressed),
+      appBar: CustomAppBar(),
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
         controller: _scrollController, // Attach the controller here
