@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+// CustomAppBar that accepts a callback to handle scrolling
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final Function(String) onActionPressed;
+
+  CustomAppBar({required this.onActionPressed});
+
   @override
-  Size get preferredSize =>
-      Size.fromHeight(60); // Set the height of the app bar
+  Size get preferredSize => Size.fromHeight(60); // Set the height of the app bar
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +19,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         // Navigation Menu (With Hover Effect for Web)
         Row(
           children: [
-            _buildMenuItem('About', ""),
+            _buildMenuItem('About', onActionPressed),
             SizedBox(width: 20),
-            _buildMenuItem('Projects', ""),
+            _buildMenuItem('Projects', onActionPressed),
             SizedBox(width: 20),
-            _buildMenuItem('Contact', ""),
+            _buildMenuItem('Contact', onActionPressed),
             SizedBox(width: 20),
-            _buildMenuItem('Blog', ""), // You can add more sections here
-            SizedBox(width: 20),
+            _buildMenuItem('Blog', onActionPressed), // You can add more sections here
             SizedBox(width: 20),
           ],
         ),
@@ -31,19 +34,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   // Method to create each menu item with hover effect (using StatefulWidget)
-  Widget _buildMenuItem(String title, String icon) {
+  Widget _buildMenuItem(String title, Function(String) onActionPressed) {
     return _MenuItem(
       title: title,
-      icon: icon,
+      onActionPressed: onActionPressed,
     );
   }
 }
 
 class _MenuItem extends StatefulWidget {
   final String title;
-  final String icon;
+  final Function(String) onActionPressed;
 
-  const _MenuItem({Key? key, required this.title, required this.icon})
+  const _MenuItem({Key? key, required this.title, required this.onActionPressed})
       : super(key: key);
 
   @override
@@ -69,20 +72,19 @@ class _MenuItemState extends State<_MenuItem> {
       child: GestureDetector(
         onTap: () {
           // Handle navigation on tap
-          print('Navigate to ${widget.title}');
+          widget.onActionPressed(widget.title.toLowerCase());
         },
         child: AnimatedScale(
           scale: _isHovered ? 1.2 : 1.0, // Scale up when hovered
           duration: Duration(milliseconds: 200),
           child: Row(
             children: [
-              SvgPicture.asset(widget.icon),
+              // You can optionally add icons here with `widget.icon`
+              // SvgPicture.asset(widget.icon),
               Text(
                 widget.title,
                 style: TextStyle(
-                  color: _isHovered
-                      ? Colors.blueAccent
-                      : Colors.white, // Change color on hover
+                  color: _isHovered ? Colors.blueAccent : Colors.white, // Change color on hover
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   letterSpacing: 1.5,
