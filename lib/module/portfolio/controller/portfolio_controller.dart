@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class PortfolioController extends GetxController {
   // Create an Rx ScrollController
   final scrollController = ScrollController().obs;
-
+  var isDrawer = false.obs;
   // Method to scroll to a specific position
   void scrollToPosition(double offset) {
     scrollController.value.animateTo(
