@@ -45,11 +45,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               children: [
                 buildMenuItem('About', onActionPressed),
                 SizedBox(width: 20),
+                buildMenuItem('Skills', onActionPressed),
+                SizedBox(width: 20),
                 buildMenuItem('Projects', onActionPressed),
                 SizedBox(width: 20),
-                buildMenuItem('Contact', onActionPressed),
-                SizedBox(width: 20),
                 buildMenuItem('Blog', onActionPressed),
+                SizedBox(width: 20),
+                buildMenuItem('Contact', onActionPressed),
                 SizedBox(width: 20),
               ],
             );

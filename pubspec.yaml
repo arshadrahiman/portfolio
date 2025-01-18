@@ -46,6 +46,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_social_button: ^1.1.6+1
+  visibility_detector: ^0.4.0+2
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:

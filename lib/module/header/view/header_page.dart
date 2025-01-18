@@ -18,13 +18,7 @@ class HeroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.black, Colors.black],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
+      decoration: BoxDecoration(color: Colors.black),
       child: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -50,7 +44,7 @@ class HeroSection extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: AppTheme.white,
                     ),
                     children: <TextSpan>[
                       TextSpan(
@@ -58,7 +52,7 @@ class HeroSection extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: AppTheme.white,
                         ),
                       ),
                       TextSpan(
@@ -66,7 +60,7 @@ class HeroSection extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: AppTheme.white,
                         ),
                       ),
                       TextSpan(
@@ -74,7 +68,7 @@ class HeroSection extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 80,
                           fontWeight: FontWeight.bold,
-                          color: Colors.greenAccent,
+                          color: AppTheme.primaryBorderColor,
                         ),
                       ),
                     ],
@@ -115,6 +109,7 @@ class HeroSection extends StatelessWidget {
               SizedBox(height: 30), // Added spacing before 'Let's Talk' button
 
               // 'Let's Talk' button
+
               ElevatedButton(
                 onPressed: () => openConsultationLink(),
                 child: Text('Let\'s Talk About Your Next Project'),
@@ -128,6 +123,35 @@ class HeroSection extends StatelessWidget {
                       TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
               ),
+              // SizedBox(height: 30),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // Handle the button press
+              //     print("Let's Talk About Your Next Project");
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: AppTheme
+              //         .black, // Background color (equivalent to backgroundColor in Chip)
+              //     padding: EdgeInsets.symmetric(
+              //         horizontal: 15, vertical: 8), // Padding
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(20), // Rounded corners
+              //       side: BorderSide(
+              //         color: Colors
+              //             .white, // Border color (like border color in Chip)
+              //         width: 1, // Border width
+              //       ),
+              //     ),
+              //     elevation: 0, // No shadow, like Chip
+              //   ),
+              //   child: Text(
+              //     "Let's Talk About Your Next Project",
+              //     style: TextStyle(
+              //       color: Colors.white, // Text color
+              //       fontSize: 14, // Font size
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),

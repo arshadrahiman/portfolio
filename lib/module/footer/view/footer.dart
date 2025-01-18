@@ -6,7 +6,7 @@ class FooterSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-      color: Colors.blueAccent,
+      decoration: BoxDecoration(color: Colors.black),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
