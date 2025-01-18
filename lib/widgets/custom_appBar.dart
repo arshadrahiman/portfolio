@@ -1,9 +1,10 @@
-import 'package:arshad_dev/baseclass/basecontroller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-// CustomAppBar that accepts a callback to handle scrolling
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final Function(String) onActionPressed;
+
+  CustomAppBar({required this.onActionPressed});
+
   @override
   Size get preferredSize =>
       Size.fromHeight(60); // Set the height of the app bar
@@ -17,17 +18,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         // Navigation Menu (With Hover Effect for Web)
         Row(
           children: [
-            _buildMenuItem('About', (v) {}),
+            _buildMenuItem('About', onActionPressed),
             SizedBox(width: 20),
-            _buildMenuItem('Projects', (v) {}),
+            _buildMenuItem('Projects', onActionPressed),
             SizedBox(width: 20),
-            _buildMenuItem('Contact', (v) {}),
+            _buildMenuItem('Contact', onActionPressed),
             SizedBox(width: 20),
-            _buildMenuItem('Blog', (v) {}), // You can add more sections here
+            _buildMenuItem(
+                'Blog', onActionPressed), // You can add more sections here
             SizedBox(width: 20),
-            _buildMenuItem('E', (v) {
-              BaseController.changeLanguage();
-            }), // You can add more sections here
           ],
         ),
       ],

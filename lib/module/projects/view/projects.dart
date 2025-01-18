@@ -73,25 +73,21 @@ class ProjectCard extends StatelessWidget {
                 width: double.infinity,
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      project.title,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      project.description,
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                  ],
-                ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    project.title,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    project.description,
+                    style: TextStyle(color: Colors.grey[700]),
+                  ),
+                ],
               ),
             ),
           ],

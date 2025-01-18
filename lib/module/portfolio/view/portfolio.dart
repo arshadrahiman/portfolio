@@ -2,41 +2,44 @@ import 'package:arshad_dev/module/about_me/view/aboutme_view.dart';
 import 'package:arshad_dev/module/contact/view/contacts.dart';
 import 'package:arshad_dev/module/footer/view/footer.dart';
 import 'package:arshad_dev/module/header/view/header_page.dart';
+import 'package:arshad_dev/module/portfolio/controller/portfolio_controller.dart';
 import 'package:arshad_dev/module/projects/view/projects.dart';
 import 'package:arshad_dev/module/skills/view/skills.dart';
 import 'package:arshad_dev/widgets/custom_appBar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class PortfolioPage extends StatefulWidget {
-  @override
-  _PortfolioPageState createState() => _PortfolioPageState();
-}
-
-class _PortfolioPageState extends State<PortfolioPage> {
-  final ScrollController _scrollController = ScrollController();
+class PortfolioPage extends StatelessWidget {
+  // Use GetX to bind the ScrollController
+  final PortfolioController scrollControllerX = Get.put(PortfolioController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: CustomAppBar(onActionPressed: _onAppBarActionPressed),
       extendBodyBehindAppBar: true,
-      body: SingleChildScrollView(
-        controller: _scrollController, // Attach the controller here
-        child: Column(
-          children: [
-            HeroSection(),
-            AboutMeSection(),
-            SkillsSection(),
-            ProjectsSection(),
-            ContactSection(),
-            FooterSection(),
-          ],
-        ),
+      body: Obx(
+        () {
+          return SingleChildScrollView(
+            controller: scrollControllerX
+                .scrollController.value, // Use the controller from GetX
+            child: Column(
+              children: [
+                HeroSection(),
+                AboutMeSection(),
+                SkillsSection(),
+                ProjectsSection(),
+                ContactSection(),
+                FooterSection(),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
 
-  // Method to scroll to the respective section
+  // Method to scroll to the respective section using GetX controller
   void _onAppBarActionPressed(String section) {
     double offset = 0;
 
@@ -57,11 +60,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
         break;
     }
 
-    // Animate to the selected section
-    _scrollController.animateTo(
-      offset,
-      duration: Duration(seconds: 1),
-      curve: Curves.easeInOut,
-    );
+    // Use the GetX controller to animate the scroll
+    scrollControllerX.scrollToPosition(offset);
   }
 }

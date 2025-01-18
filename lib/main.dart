@@ -38,24 +38,12 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('en'), Locale('ar')],
-      // theme: AppTheme.light,
+      theme: AppTheme.light,
       darkTheme: AppTheme.light,
       themeMode: ThemeMode.light,
 
       getPages: [],
 
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: TextTheme(
-          displayLarge: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.blueAccent),
-          bodyLarge: TextStyle(fontSize: 18, color: Colors.grey[800]),
-          bodyMedium: TextStyle(fontSize: 16, color: Colors.grey[600]),
-        ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
       home: PortfolioPage(),
     );
   }
