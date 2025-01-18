@@ -112,7 +112,7 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-// Helper method to build text fields with consistent styling
+  // Helper method to build text fields with consistent styling
   Widget _buildTextField({
     required String label,
     int maxLines = 1,
@@ -123,24 +123,51 @@ class _ContactSectionState extends State<ContactSection> {
       maxLines: maxLines,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.white), // White label text
+        labelStyle: TextStyle(
+          color: Colors.white
+              .withOpacity(0.8), // Slightly more refined label color
+          fontWeight: FontWeight.w500, // Semi-bold label for elegance
+        ),
         filled: true,
-        fillColor: Colors.grey[800], // Dark background for input fields
+        fillColor: Colors.grey[850], // Darker, more sophisticated background
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(
+              16), // Slightly more rounded for a soft feel
           borderSide: BorderSide.none,
         ),
-        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        contentPadding: EdgeInsets.symmetric(
+            vertical: 16, horizontal: 24), // More padding for luxury feel
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide(
-              color: AppTheme.moonRaker, width: 2), // Teal border on focus
+            color: AppTheme
+                .moonRaker, // Maintain the teal border on focus for elegance
+            width: 2.5, // Slightly thicker border on focus for emphasis
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(16),
+          borderSide: BorderSide(
+            color:
+                Colors.transparent, // Use transparent border when not focused
+            width: 1.5,
+          ),
         ),
         hintStyle: TextStyle(
-            color: Colors.white.withOpacity(0.6)), // Slightly faded hints
+          color: Colors.white.withOpacity(0.6),
+          fontSize: 16, // Slightly larger hint text for better readability
+        ),
+        errorStyle: TextStyle(
+          color: Colors.redAccent, // More vibrant error message
+          fontSize: 14,
+          fontWeight:
+              FontWeight.w500, // Bold error messages for better visibility
+        ),
       ),
       style: TextStyle(
-        color: Colors.white, // Set text color to white while typing
+        color: Colors.white, // White text color for a clean look
+        fontSize: 16, // Slightly larger text for better readability
+        fontWeight: FontWeight.w400, // Regular font weight for a premium look
       ),
       validator: validator,
       onChanged: onChanged,

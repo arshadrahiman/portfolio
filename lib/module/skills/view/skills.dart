@@ -63,9 +63,9 @@ class _SkillChipState extends State<SkillChip> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: _isHovered
-              ? [AppTheme.primaryBorderColor, AppTheme.black]
+              ? [AppTheme.grey, AppTheme.black]
               : [
-                  AppTheme.primaryBorderColor,
+                  AppTheme.grey,
                   AppTheme.black,
                 ],
           begin: Alignment.topLeft,
@@ -75,7 +75,7 @@ class _SkillChipState extends State<SkillChip> {
         boxShadow: _isHovered
             ? [
                 BoxShadow(
-                  color: AppTheme.greyLight,
+                  color: AppTheme.white,
                   spreadRadius: 4,
                   blurRadius: 15,
                   offset: Offset(0, 5),
