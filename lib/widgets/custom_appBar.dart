@@ -1,4 +1,6 @@
 import 'package:arshad_dev/module/portfolio/controller/portfolio_controller.dart';
+import 'package:arshad_dev/theme/app_theme.dart';
+import 'package:arshad_dev/widgets/hover%20button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,20 +42,38 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           } else {
             // If the screen width is greater than or equal to 600, show the menu items in a row
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                buildMenuItem('About', onActionPressed),
-                SizedBox(width: 20),
-                buildMenuItem('Skills', onActionPressed),
-                SizedBox(width: 20),
-                buildMenuItem('Projects', onActionPressed),
-                SizedBox(width: 20),
-                buildMenuItem('Blog', onActionPressed),
-                SizedBox(width: 20),
-                buildMenuItem('Contact', onActionPressed),
-                SizedBox(width: 20),
-              ],
+            return ClipRRect(
+              borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(20)), // Add rounded corners
+              child: Container(
+                height:
+                    kToolbarHeight, // Standard height for AppBar (adjust if needed)
+                width: MediaQuery.of(context).size.width - 300,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 44, 44, 44),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    buildMenuItem('Home', onActionPressed),
+                    buildMenuItem('About', onActionPressed),
+                    buildMenuItem('Services', onActionPressed),
+                    buildMenuItem('Projects', onActionPressed),
+                    buildMenuItem('Experiance', onActionPressed),
+                    buildMenuItem('Contact Me', onActionPressed),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
+                      ),
+                      child: HoverButton(
+                        fnBtn: () {},
+                        buttonText: 'Resume',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             );
           }
         },
@@ -117,7 +137,9 @@ class _MenuItemState extends State<_MenuItem> {
               Text(
                 widget.title,
                 style: TextStyle(
-                  color: _isHovered ? Colors.blueAccent : Colors.white,
+                  color: _isHovered
+                      ? AppTheme.primaryBorderColor
+                      : AppTheme.greyLight,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   letterSpacing: 1.5,

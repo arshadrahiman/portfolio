@@ -1,8 +1,11 @@
 import 'dart:async'; // For Timer
+import 'dart:developer';
 import 'package:arshad_dev/module/about_me/view/aboutme_view.dart';
 import 'package:arshad_dev/module/contact/view/contacts.dart';
 import 'package:arshad_dev/module/header/view/header_page.dart';
+import 'package:arshad_dev/module/projects/view/project_section.dart';
 import 'package:arshad_dev/module/projects/view/projects.dart';
+import 'package:arshad_dev/module/skills/view/service.dart';
 import 'package:arshad_dev/module/skills/view/skills.dart';
 import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -82,8 +85,10 @@ class _PortfolioPageState extends State<PortfolioPage> {
           children: [
             HeroSection(),
             AboutMeSection(),
-            SkillsSection(),
-            ProjectsSection(),
+            ServiceDesktopWidget(),
+            // SkillsSection(),
+            ProjectDesktopWidget(),
+            // ProjectsSection(),
             ContactSection(),
             // FooterSection(),
           ],

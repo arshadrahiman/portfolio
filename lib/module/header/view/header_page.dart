@@ -2,6 +2,7 @@ import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:arshad_dev/utils/icon_utils.dart';
 import 'package:arshad_dev/utils/image_utils.dart';
 import 'package:arshad_dev/widgets/animation.dart';
+import 'package:arshad_dev/widgets/hover%20button.dart';
 import 'package:arshad_dev/widgets/svg_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_social_button/flutter_social_button.dart';
@@ -56,7 +57,7 @@ class HeroSection extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: 'Arshadul Rahman',
+                        text: 'Arshad Rahman',
                         style: TextStyle(
                           fontSize: 40,
                           fontWeight: FontWeight.bold,
@@ -110,19 +111,12 @@ class HeroSection extends StatelessWidget {
 
               // 'Let's Talk' button
 
-              ElevatedButton(
-                onPressed: () => openConsultationLink(),
-                child: Text('Let\'s Talk About Your Next Project'),
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.grey.withOpacity(0.9),
-                  backgroundColor: Colors.grey.withOpacity(0.3),
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 14),
-                  shape: StadiumBorder(),
-                  elevation: 5,
-                  textStyle:
-                      TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-              ),
+              HoverButton(
+                fnBtn: () {
+                  openConsultationLink();
+                },
+                buttonText: 'Let\'s Talk About Your Next Project',
+              )
               // SizedBox(height: 30),
               // ElevatedButton(
               //   onPressed: () {
