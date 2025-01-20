@@ -2,6 +2,7 @@ import 'dart:async'; // For Timer
 import 'dart:developer';
 import 'package:arshad_dev/module/about_me/view/aboutme_view.dart';
 import 'package:arshad_dev/module/contact/view/contacts.dart';
+import 'package:arshad_dev/module/experaince/expriance.dart';
 import 'package:arshad_dev/module/header/view/header_page.dart';
 import 'package:arshad_dev/module/projects/view/project_section.dart';
 import 'package:arshad_dev/module/projects/view/projects.dart';
@@ -88,6 +89,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
             ServiceDesktopWidget(),
             // SkillsSection(),
             ProjectDesktopWidget(),
+            ExperienceStepperWidget(),
             // ProjectsSection(),
             ContactSection(),
             // FooterSection(),
@@ -181,11 +183,12 @@ class _PortfolioPageState extends State<PortfolioPage> {
             ),
           ),
           SizedBox(height: 30), // Space after the close button
+          buildDrawerItem(context, 'Home', Icons.info),
           buildDrawerItem(context, 'About', Icons.info),
-          buildDrawerItem(context, 'Skills', Icons.work),
+          buildDrawerItem(context, 'Services', Icons.work),
           buildDrawerItem(context, 'Projects', Icons.work),
+          buildDrawerItem(context, 'Experience', Icons.work),
           buildDrawerItem(context, 'Contact', Icons.contact_mail),
-          buildDrawerItem(context, 'Blog', Icons.article),
           SizedBox(height: 20), // Space at the bottom
         ],
       ),

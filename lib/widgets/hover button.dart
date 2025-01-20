@@ -1,4 +1,3 @@
-
 import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +13,10 @@ class HoverButton extends StatefulWidget {
 }
 
 class _HoverButtonState extends State<HoverButton> {
-  Color _buttonColor = Colors.grey.withOpacity(0.3); // Default color
-  Color _textColor = Colors.grey.withOpacity(0.3); // Default text color
+  Color _buttonColor = const Color.fromARGB(255, 123, 120, 120)
+      .withOpacity(0.3); // Default color
+  Color _textColor = const Color.fromARGB(255, 246, 242, 242)
+      .withOpacity(0.3); // Default text color
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +29,10 @@ class _HoverButtonState extends State<HoverButton> {
       },
       onExit: (_) {
         setState(() {
-          _buttonColor =
-              Colors.grey.withOpacity(0.3); // Revert to original button color
-          _textColor =
-              Colors.grey.withOpacity(0.9); // Revert to original text color
+          _buttonColor = const Color.fromARGB(255, 90, 87, 87)
+              .withOpacity(0.3); // Revert to original button color
+          _textColor = const Color.fromARGB(255, 251, 248, 248)
+              .withOpacity(0.9); // Revert to original text color
         });
       },
       child: ElevatedButton(

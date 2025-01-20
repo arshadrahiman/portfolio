@@ -54,13 +54,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     buildMenuItem('Home', onActionPressed),
                     buildMenuItem('About', onActionPressed),
                     buildMenuItem('Services', onActionPressed),
                     buildMenuItem('Projects', onActionPressed),
-                    buildMenuItem('Experiance', onActionPressed),
+                    buildMenuItem('Experience', onActionPressed),
                     buildMenuItem('Contact Me', onActionPressed),
                     Padding(
                       padding: const EdgeInsets.symmetric(
