@@ -76,16 +76,12 @@ class ProjectCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                ),
-                child:
-                    // HoverButton(
-                    //       fnBtn: () {},
-                    //       buttonText: 'GitHub',
-                    //     )
-                    ElevatedButton(
-                  onPressed: () {},
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Open GitHub link
+                    launchURL(githubUrl);
+                  },
                   child: Text('GitHub'),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.grey.withOpacity(0.9),
@@ -98,11 +94,39 @@ class ProjectCard extends StatelessWidget {
                   ),
                 ),
               ),
+              if (figmaUrl != null) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Open Figma link if available
+                      launchURL(figmaUrl!);
+                    },
+                    child: Text('Figma'),
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.grey.withOpacity(0.9),
+                      backgroundColor: Colors.grey.withOpacity(0.3),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 40, vertical: 14),
+                      shape: StadiumBorder(),
+                      elevation: 5,
+                      textStyle:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+              ],
             ],
           ),
         ),
       ],
     );
+  }
+
+  // Helper function to launch URLs
+  void launchURL(String url) {
+    // This can be enhanced with a package like url_launcher to open the link in a browser
+    // Example: launch(url);
   }
 }
 
@@ -248,27 +272,64 @@ class _ProjectDesktopWidgetState extends State<ProjectDesktopWidget> {
                   },
                   children: [
                     ProjectCard(
-                      title: "Road Radar",
+                      title: "ChityChat App",
                       description:
-                          "Full stack Mobile application built with flutter and node.js. Focuses on Road Safety and hazard monitoring and reporting system. The app uses modern technologies for reporting accidents, hazards, and road conditions.",
+                          "A real-time messaging app built with Firebase and GetX for state management. Includes features like push notifications and chat functionalities.",
                       imageUrl: "https://picsum.photos/200/300",
-                      githubUrl: "https://github.com/iamthejafar/RoadRadar",
+                      githubUrl: "https://github.com/yourusername/ChityChat",
                     ),
                     ProjectCard(
-                      title: "Monify",
+                      title: "Ecommerce App",
                       description:
-                          "An expense tracker app that helps you manage your finances effectively. The app allows users to track income, expenses, and categorize them for better financial insights.",
+                          "An e-commerce app with Firebase backend, RazorPay integration for payments, and GetX for state management. The app also includes local database storage for offline support.",
                       imageUrl: "https://picsum.photos/200/300",
-                      githubUrl: "https://github.com/iamthejafar/monify",
-                      figmaUrl:
-                          "https://www.figma.com/design/6RE8zrf0DAP7rXrVDzzD8z/Monify?node-id=2%3A117&t=jVPw98thbqBop4AT-1",
+                      githubUrl: "https://github.com/yourusername/EcommerceApp",
                     ),
                     ProjectCard(
-                      title: "Flash Chat",
+                      title: "Money Manager App",
                       description:
-                          "A simple chatting app built with Flutter and Firebase. It supports one-on-one and group chats, along with basic messaging features such as sending and receiving messages in real time.",
+                          "A money management app built with Firebase and GetX. Features include push notifications, localization, currency conversion, and a local database.",
                       imageUrl: "https://picsum.photos/200/300",
-                      githubUrl: "https://github.com/iamthejafar/FlashChat",
+                      githubUrl:
+                          "https://github.com/yourusername/MoneyManagerApp",
+                    ),
+                    ProjectCard(
+                      title: "Trivia Quiz App",
+                      description:
+                          "A trivia quiz app using a trivia API and GetX for state management. Includes different categories and real-time quiz functionalities.",
+                      imageUrl: "https://picsum.photos/200/300",
+                      githubUrl:
+                          "https://github.com/yourusername/TriviaQuizApp",
+                    ),
+                    ProjectCard(
+                      title: "Weather App",
+                      description:
+                          "A weather app using a weather API, location services, and connectivity management to show current weather conditions.",
+                      imageUrl: "https://picsum.photos/200/300",
+                      githubUrl: "https://github.com/yourusername/WeatherApp",
+                    ),
+                    ProjectCard(
+                      title: "Personal Portfolio",
+                      description:
+                          "My personal portfolio website showcasing my skills, projects, and experience. Built using HTML, CSS, and JavaScript.",
+                      imageUrl: "https://picsum.photos/200/300",
+                      githubUrl: "https://github.com/yourusername/Portfolio",
+                      figmaUrl: "https://www.figma.com/file/portfolio-link",
+                    ),
+                    ProjectCard(
+                      title: "Portfolio and Blog",
+                      description:
+                          "My portfolio and blog site where I share my thoughts and projects. Built using HTML, CSS, and JavaScript.",
+                      imageUrl: "https://picsum.photos/200/300",
+                      githubUrl:
+                          "https://github.com/yourusername/PortfolioBlog",
+                    ),
+                    ProjectCard(
+                      title: "JS Calculator",
+                      description:
+                          "A simple calculator built using JavaScript. Includes basic arithmetic operations and a user-friendly UI.",
+                      imageUrl: "https://picsum.photos/200/300",
+                      githubUrl: "https://github.com/yourusername/JsCalculator",
                     ),
                   ],
                 ),
@@ -281,7 +342,7 @@ class _ProjectDesktopWidgetState extends State<ProjectDesktopWidget> {
           Center(
             child: SmoothPageIndicator(
               controller: widget.pageController,
-              count: 3, // Number of pages
+              count: 7, // Updated to reflect the number of projects
               effect: WormEffect(
                 dotHeight: 8,
                 dotWidth: 8,

@@ -3,30 +3,104 @@ import 'package:stepper_list_view/stepper_list_view.dart';
 import 'dart:ui'; // Import for the BackdropFilter
 
 class ExperienceStepperWidget extends StatelessWidget {
-  final _stepperData = List.generate(
-    5,
-    (index) => StepperItemData(
-      id: '$index',
+  // Real experience data
+  final List<StepperItemData> _stepperData = [
+    StepperItemData(
+      id: '1',
       content: ({
         'designation': 'Flutter Developer',
-        'company': 'XYZ Corp',
-        'work_start_date': 'Jan 2020',
+        'company': 'Leader IT Private Limited',
+        'work_start_date': 'March 2023',
         'work_end_date': 'Present',
         'responsibilities': [
-          'Developing mobile apps using Flutter',
-          'Collaborating with cross-functional teams',
-          'Writing clean, maintainable code',
+          'Developed apps with Dynamic UI with Dynamic Backend Data',
+          'Integrated GIS Map and Google Map',
+          'Migrated Native Android and iOS Apps to Flutter',
+          'Worked on multiple projects, bug fixes, and releasing builds',
+          'Implemented features and developed responsive UI design',
+          'App deployed to App Store, Play Store, and App Center',
+          'Integrated Method Channel for iOS and Android (Swift, Kotlin)',
+          'Integrated SignalR and WebRTC in Axionic meeting app',
+          'Project Management and Leadership, handling daily stand-up calls',
+          'Research and Development: Developed innovative solutions as part of R&D',
+          'Maintained clean code, architecture, and handled data encryption',
+          'Worked with the team, reviewing code, and conflict handling',
+          'Handled backlog bug fixes and maintained projects',
         ],
       }),
       avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
     ),
-  ).toList();
+    StepperItemData(
+      id: '2',
+      content: ({
+        'designation': 'Flutter Developer',
+        'company': 'Hashcode IT Solutions',
+        'work_start_date': 'Nov 2022',
+        'work_end_date': 'Jan 2023',
+        'responsibilities': [
+          'Developed apps using GetX state-management',
+          'Developed prototype design using Figma and converted to Flutter responsive UI',
+          'Used Sqflite Database for local storage and Add to Cart functionality',
+          'Handled backend data using Odoo API and Firebase',
+          'Deployed the app to Play Store and fixed bugs',
+        ],
+      }),
+      avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
+    ),
+    StepperItemData(
+      id: '3',
+      content: ({
+        'designation': 'Flutter Developer',
+        'company': 'Hexeam Software Solutions',
+        'work_start_date': 'April 2022',
+        'work_end_date': 'Oct 2022',
+        'responsibilities': [
+          'Communicated technical risks and benefits to management and key stakeholders',
+          'Worked with Woocommerce API (WordPress)',
+          'Integrated Facebook login and Google sign-up',
+          'Used JWT Token method for authentication',
+          'Experienced in working across numerous devices and versions of Android & iOS',
+        ],
+      }),
+      avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
+    ),
+    StepperItemData(
+      id: '4',
+      content: ({
+        'designation': 'QA Engineer',
+        'company': 'Gritstone Technologies',
+        'work_start_date': 'July 2021',
+        'work_end_date': 'March 2022',
+        'responsibilities': [
+          'Followed Agile planning procedures for team',
+          'Coordinated with project management teams to understand client specifications',
+          'Performed both manual and automation testing for web, iOS, and Android applications',
+        ],
+      }),
+      avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
+    ),
+    StepperItemData(
+      id: '5',
+      content: ({
+        'designation': 'Software Developer',
+        'company': 'ISTP Digital',
+        'work_start_date': 'Jan 2019',
+        'work_end_date': 'June 2021',
+        'responsibilities': [
+          'Worked closely with analysts, designers, and staff to produce detailed specifications',
+          'Wrote program codes and tested the product in controlled environments before going live',
+          'Completed functional, end-to-end, regression, and verification tests on software applications',
+        ],
+      }),
+      avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(20.0),
-      height: 1250, // Set a static height for your widget (remove scrolling)
+      height: 1500, // Set a static height for your widget (remove scrolling)
       color: Colors.black,
       padding: const EdgeInsets.all(10.0), // Reduce overall padding
       child: Column(
@@ -80,13 +154,17 @@ class ExperienceStepperWidget extends StatelessWidget {
                 return PreferredSize(
                   preferredSize:
                       const Size.fromWidth(25), // Adjust size of step label
-                  child: Text(
-                    stepData.content['company'] ?? '', // Show company name here
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 13, // Smaller font size
+                  child: SizedBox(
+                    width: 100,
+                    height: 200,
+                    child: Text(
+                      stepData.content['company'] ?? '',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14, // Smaller font size
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 );
               },
