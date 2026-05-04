@@ -56,7 +56,8 @@ class HeroSection extends StatelessWidget {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: AppTheme.primaryBorderColor.withValues(alpha: 0.3),
+                          color: AppTheme.primaryBorderColor
+                              .withValues(alpha: 0.3),
                           blurRadius: 30,
                           spreadRadius: 5,
                         ),
@@ -138,23 +139,27 @@ class HeroSection extends StatelessWidget {
                       children: [
                         _SocialButton(
                           iconPath: IconsUtil.github,
-                          onTap: () => _launchSocial('https://github.com/arshadrahiman'),
+                          onTap: () =>
+                              _launchSocial('https://github.com/arshadrahiman'),
                         ),
                         const SizedBox(width: 16),
                         _SocialButton(
                           iconPath: IconsUtil.email,
-                          onTap: () => _launchSocial('mailto:arshadrahiman@gmail.com'),
+                          onTap: () =>
+                              _launchSocial('mailto:arshadrahiman@gmail.com'),
                         ),
                         const SizedBox(width: 16),
                         _SocialButton(
                           iconPath: IconsUtil.linkedin,
                           isSvg: false,
-                          onTap: () => _launchSocial('https://www.linkedin.com/in/arshadul-rahman'),
+                          onTap: () => _launchSocial(
+                              'https://www.linkedin.com/in/arshadul-rahman'),
                         ),
                         const SizedBox(width: 16),
                         _SocialButton(
                           iconPath: IconsUtil.insta,
-                          onTap: () => _launchSocial('https://instagram.com/arshadrahiman'),
+                          onTap: () => _launchSocial(
+                              'https://instagram.com/arshadrahiman'),
                         ),
                       ],
                     ),
@@ -291,16 +296,21 @@ class _SocialButton extends StatelessWidget {
             height: 44,
             width: 44,
             decoration: BoxDecoration(
-              color: isHovered.value ? Colors.white.withValues(alpha: 0.1) : Colors.transparent,
+              color: isHovered.value
+                  ? Colors.white.withValues(alpha: 0.1)
+                  : Colors.transparent,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: isHovered.value ? AppTheme.primaryBorderColor.withValues(alpha: 0.6) : Colors.grey.withValues(alpha: 0.3),
+                color: isHovered.value
+                    ? AppTheme.primaryBorderColor.withValues(alpha: 0.6)
+                    : Colors.grey.withValues(alpha: 0.3),
                 width: 1.5,
               ),
               boxShadow: isHovered.value
                   ? [
                       BoxShadow(
-                        color: AppTheme.primaryBorderColor.withValues(alpha: 0.25),
+                        color:
+                            AppTheme.primaryBorderColor.withValues(alpha: 0.25),
                         blurRadius: 12,
                         spreadRadius: 1,
                       ),

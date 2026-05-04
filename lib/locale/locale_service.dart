@@ -24,6 +24,8 @@ class LocaleService extends Translations {
   void changeLocale(String lang) {
     final locale = _getLocaleFromLanguage(lang);
     Get.updateLocale(locale);
+    Get.find<StorageService>().write(Constants.appLanguage, lang);
+    Get.find<StorageService>().write(Constants.langCode, locale.languageCode);
   }
 
   Locale _getLocaleFromLanguage(String lang) {
