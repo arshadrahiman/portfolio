@@ -1,70 +1,19 @@
-import 'dart:async'; // For Timer
-import 'dart:developer';
 import 'package:arshad_dev/module/about_me/view/aboutme_view.dart';
 import 'package:arshad_dev/module/contact/view/contacts.dart';
 import 'package:arshad_dev/module/experaince/expriance.dart';
+import 'package:arshad_dev/module/qualification/view/qualification_section.dart';
 import 'package:arshad_dev/module/header/view/header_page.dart';
 import 'package:arshad_dev/module/projects/view/project_section.dart';
-import 'package:arshad_dev/module/projects/view/projects.dart';
+import 'package:arshad_dev/module/certifications/view/certifications_section.dart';
 import 'package:arshad_dev/module/skills/view/service.dart';
-import 'package:arshad_dev/module/skills/view/skills.dart';
 import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:arshad_dev/module/portfolio/controller/portfolio_controller.dart';
 import 'package:arshad_dev/widgets/custom_appBar.dart';
-import 'dart:async'; // For Timer
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:arshad_dev/module/portfolio/controller/portfolio_controller.dart';
-import 'package:arshad_dev/widgets/custom_appBar.dart';
 
-class PortfolioPage extends StatefulWidget {
-  @override
-  _PortfolioPageState createState() => _PortfolioPageState();
-}
-
-class _PortfolioPageState extends State<PortfolioPage> {
-  final PortfolioController controller = Get.put(PortfolioController());
-  ScrollController _scrollController = ScrollController();
-  bool _isFABVisible = true; // Track FAB visibility
-  Timer? _hideTimer;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // Listen for scroll events
-    _scrollController.addListener(_onScroll);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.removeListener(_onScroll);
-    _scrollController.dispose();
-    _hideTimer?.cancel();
-    super.dispose();
-  }
-
-  // Called when scrolling happens
-  void _onScroll() {
-    // Cancel any previous timers when scrolling starts
-    if (_hideTimer != null) {
-      _hideTimer!.cancel();
-    }
-
-    // Show the FAB when user starts scrolling
-    setState(() {
-      _isFABVisible = true;
-    });
-
-    // Start a timer to hide the FAB after 2 seconds of no scrolling
-    _hideTimer = Timer(Duration(seconds: 2), () {
-      setState(() {
-        _isFABVisible = false;
-      });
-    });
-  }
+class PortfolioPage extends GetView<PortfolioController> {
+  const PortfolioPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -76,97 +25,64 @@ class _PortfolioPageState extends State<PortfolioPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: CustomAppBar(
-        onActionPressed: onAppBarActionPressed,
+        onActionPressed: (section) =>
+            controller.scrollToSection(section.toLowerCase()),
       ),
       extendBodyBehindAppBar: true,
-      endDrawer: (1 == 1) ? customDrawer(context) : null,
+      endDrawer: _customDrawer(context),
       body: SingleChildScrollView(
-        controller: _scrollController,
+        controller: controller.scrollController,
         child: Column(
           children: [
             HeroSection(),
             AboutMeSection(),
             ServiceDesktopWidget(),
-            // SkillsSection(),
             ProjectDesktopWidget(),
+            const CertificationsSection(),
+            const QualificationStepperWidget(),
             ExperienceStepperWidget(),
-            // ProjectsSection(),
             ContactSection(),
-            // FooterSection(),
           ],
         ),
       ),
-      // Add Special Plating FAB here with responsiveness
-      floatingActionButton: Visibility(
-        visible: _isFABVisible, // Show/Hide the FAB based on _isFABVisible
-        child: FloatingActionButton.extended(
-          onPressed: () {
-            print("FAB pressed"); // Debugging line to confirm FAB press
-            _showSpecialPlatingDialog(context);
-          },
-          backgroundColor: Colors.purple, // FAB background color
-          label: Text(
-            "Enroll the Online Courses", // Text on the FAB
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16 * scaleFactor,
+      // Reactive FAB visibility using Obx
+      floatingActionButton: Obx(
+        () => Visibility(
+          visible: controller.isFABVisible.value,
+          child: FloatingActionButton.extended(
+            onPressed: () => _showSpecialPlatingDialog(context),
+            backgroundColor: Colors.purple,
+            label: Text(
+              "Enroll the Online Courses",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16 * scaleFactor,
+              ),
             ),
-          ),
-          icon: Icon(
-            Icons.school,
-            color: Colors.white,
-            size: 24 * scaleFactor,
+            icon: Icon(
+              Icons.school,
+              color: Colors.white,
+              size: 24 * scaleFactor,
+            ),
           ),
         ),
       ),
     );
   }
 
-  void onAppBarActionPressed(String section) {
-    double offset = 0;
-    controller.isDrawer.value = false;
-
-    // Define offsets for each section
-    switch (section) {
-      case 'about':
-        offset = 550; // Offset for About Section
-        break;
-      case 'skills':
-        offset = 1000; // Offset for Projects Section
-      case 'projects':
-        offset = 1450; // Offset for Projects Section
-        break;
-      case 'contact':
-        offset = 2100; // Offset for Contact Section
-        break;
-      case 'blog':
-        offset = 0; // Offset for Blog Section
-        break;
-      default:
-        break;
-    }
-
-    // Animate to the calculated position with slower speed
-    _scrollController.animateTo(
-      offset,
-      duration:
-          Duration(milliseconds: 1000), // Increased duration to make it slower
-      curve: Curves.easeInOut, // Smooth animation curve
-    );
-  }
-
-  Widget buildDrawerItem(BuildContext context, String title, IconData icon) {
+  Widget _buildDrawerItem(
+      BuildContext context, String title, IconData icon) {
     return ListTile(
       leading: Icon(icon, color: Colors.black),
-      title: Text(title, style: TextStyle(color: Colors.white)),
+      title: Text(title, style: const TextStyle(color: Colors.white)),
       onTap: () {
-        onAppBarActionPressed(title.toLowerCase());
+        controller.scrollToSection(title.toLowerCase());
         Navigator.pop(context); // Close the drawer
       },
     );
   }
 
-  Widget customDrawer(context) {
+  Widget _customDrawer(BuildContext context) {
     return Drawer(
       backgroundColor: Colors.black87,
       child: ListView(
@@ -176,35 +92,34 @@ class _PortfolioPageState extends State<PortfolioPage> {
           Align(
             alignment: Alignment.topRight,
             child: IconButton(
-              icon: Icon(Icons.close, color: Colors.white),
+              icon: const Icon(Icons.close, color: Colors.white),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
           ),
-          SizedBox(height: 30), // Space after the close button
-          buildDrawerItem(context, 'Home', Icons.info),
-          buildDrawerItem(context, 'About', Icons.info),
-          buildDrawerItem(context, 'Services', Icons.work),
-          buildDrawerItem(context, 'Projects', Icons.work),
-          buildDrawerItem(context, 'Experience', Icons.work),
-          buildDrawerItem(context, 'Contact', Icons.contact_mail),
-          SizedBox(height: 20), // Space at the bottom
+          const SizedBox(height: 30),
+          _buildDrawerItem(context, 'Home', Icons.info),
+          _buildDrawerItem(context, 'About', Icons.info),
+          _buildDrawerItem(context, 'Services', Icons.work),
+          _buildDrawerItem(context, 'Projects', Icons.work),
+          _buildDrawerItem(context, 'Certifications', Icons.verified),
+          _buildDrawerItem(context, 'Qualifications', Icons.school),
+          _buildDrawerItem(context, 'Experience', Icons.work),
+          _buildDrawerItem(context, 'Contact', Icons.contact_mail),
+          const SizedBox(height: 20),
         ],
       ),
     );
   }
 
   void _showSpecialPlatingDialog(BuildContext context) {
-    print("Showing dialog"); // Debugging line to confirm dialog is triggered
-
-    // Show dialog using the correct context
     showDialog(
       context: context,
-      builder: (BuildContext context) {
+      builder: (BuildContext dialogContext) {
         return AlertDialog(
           backgroundColor: Colors.black87,
-          title: Text(
+          title: const Text(
             "Enroll in Course",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.white),
@@ -213,7 +128,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   "Select a Course",
                   style: TextStyle(
                     color: Colors.white,
@@ -221,10 +136,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 10),
-                CourseDropdown(), // Course selection dropdown
-                SizedBox(height: 20),
-                // Use the _buildTextField method for consistent styling
+                const SizedBox(height: 10),
+                CourseDropdown(),
+                const SizedBox(height: 20),
                 _buildTextField(
                   label: 'Name',
                   validator: (value) {
@@ -233,11 +147,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
                     }
                     return null;
                   },
-                  onChanged: (value) {
-                    // Handle name change
-                  },
+                  onChanged: (value) {},
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildTextField(
                   label: 'Phone',
                   validator: (value) {
@@ -246,11 +158,9 @@ class _PortfolioPageState extends State<PortfolioPage> {
                     }
                     return null;
                   },
-                  onChanged: (value) {
-                    // Handle phone number change
-                  },
+                  onChanged: (value) {},
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 _buildTextField(
                   label: 'Email',
                   validator: (value) {
@@ -259,17 +169,13 @@ class _PortfolioPageState extends State<PortfolioPage> {
                     }
                     return null;
                   },
-                  onChanged: (value) {
-                    // Handle email change
-                  },
+                  onChanged: (value) {},
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    print("Form Submitted"); // Debugging form submission
-                    Navigator.of(context).pop(); // Close the dialog
+                    Navigator.of(dialogContext).pop();
                   },
-                  child: Text("Submit Enrollment"),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: AppTheme.primaryBorderColor,
@@ -277,6 +183,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
+                  child: const Text("Submit Enrollment"),
                 ),
               ],
             ),
@@ -298,50 +205,45 @@ class _PortfolioPageState extends State<PortfolioPage> {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(
-          color: Colors.white
-              .withOpacity(0.8), // Slightly more refined label color
-          fontWeight: FontWeight.w500, // Semi-bold label for elegance
+          color: Colors.white.withValues(alpha: 0.8),
+          fontWeight: FontWeight.w500,
         ),
         filled: true,
-        fillColor: Colors.grey[850], // Darker, more sophisticated background
+        fillColor: Colors.grey[850],
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(
-              16), // Slightly more rounded for a soft feel
+          borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide.none,
         ),
-        contentPadding: EdgeInsets.symmetric(
-            vertical: 16, horizontal: 24), // More padding for luxury feel
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(
-            color: AppTheme
-                .moonRaker, // Maintain the teal border on focus for elegance
-            width: 2.5, // Slightly thicker border on focus for emphasis
+          borderSide: const BorderSide(
+            color: AppTheme.moonRaker,
+            width: 2.5,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(
-            color:
-                Colors.transparent, // Use transparent border when not focused
+          borderSide: const BorderSide(
+            color: Colors.transparent,
             width: 1.5,
           ),
         ),
         hintStyle: TextStyle(
-          color: Colors.white.withOpacity(0.6),
-          fontSize: 16, // Slightly larger hint text for better readability
+          color: Colors.white.withValues(alpha: 0.6),
+          fontSize: 16,
         ),
-        errorStyle: TextStyle(
-          color: Colors.redAccent, // More vibrant error message
+        errorStyle: const TextStyle(
+          color: Colors.redAccent,
           fontSize: 14,
-          fontWeight:
-              FontWeight.w500, // Bold error messages for better visibility
+          fontWeight: FontWeight.w500,
         ),
       ),
-      style: TextStyle(
-        color: Colors.white, // White text color for a clean look
-        fontSize: 16, // Slightly larger text for better readability
-        fontWeight: FontWeight.w400, // Regular font weight for a premium look
+      style: const TextStyle(
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
       ),
       validator: validator,
       onChanged: onChanged,
@@ -349,18 +251,13 @@ class _PortfolioPageState extends State<PortfolioPage> {
   }
 }
 
-// Dropdown Button Widget for selecting the course
-class CourseDropdown extends StatefulWidget {
-  @override
-  _CourseDropdownState createState() => _CourseDropdownState();
-}
+// Dropdown Button Widget for selecting the course — uses GetX reactive state
+class CourseDropdown extends StatelessWidget {
+  CourseDropdown({super.key});
 
-class _CourseDropdownState extends State<CourseDropdown> {
-  // Initially selected course
-  String? selectedCourse = 'Select Course';
+  final RxString selectedCourse = 'Select Course'.obs;
 
-  // List of courses
-  final List<String> courses = [
+  final List<String> courses = const [
     'Select Course',
     'Flutter Mastery',
     'Dart for Beginners',
@@ -370,23 +267,25 @@ class _CourseDropdownState extends State<CourseDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: selectedCourse,
-      dropdownColor: Colors.black87, // Background color of the dropdown
-      style: TextStyle(color: Colors.white), // Text color of dropdown items
-      iconEnabledColor: Colors.white, // Icon color
-      isExpanded: true, // Makes the dropdown take full width
-      onChanged: (String? newValue) {
-        setState(() {
-          selectedCourse = newValue;
-        });
-      },
-      items: courses.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
+    return Obx(
+      () => DropdownButton<String>(
+        value: selectedCourse.value,
+        dropdownColor: Colors.black87,
+        style: const TextStyle(color: Colors.white),
+        iconEnabledColor: Colors.white,
+        isExpanded: true,
+        onChanged: (String? newValue) {
+          if (newValue != null) {
+            selectedCourse.value = newValue;
+          }
+        },
+        items: courses.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        }).toList(),
+      ),
     );
   }
 }

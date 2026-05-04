@@ -5,6 +5,8 @@ class IconsUtil {
   static const email = "$_basePath/mail.svg";
   static const insta = "$_basePath/inst.svg";
   static const twitter = "$_basePath/twitter.svg";
+  static const linkedin = "$_basePath/linkedin.png";
+  static const x = "$_basePath/x.png";
 }
 
 List<String> logoUrls = [

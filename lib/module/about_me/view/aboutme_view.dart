@@ -1,139 +1,163 @@
+import 'package:arshad_dev/theme/app_theme.dart';
+import 'package:arshad_dev/widgets/scroll_reveal.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'dart:ui';
 
 class AboutMeSection extends StatelessWidget {
+  const AboutMeSection({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final isMobile = width < 800;
+
     return Container(
-      padding: EdgeInsets.all(40),
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.5),
-            blurRadius: 15,
-            offset: Offset(0, 10),
-          ),
-        ],
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 24 : 60,
+        vertical: 60,
       ),
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          bool isMobile = constraints.maxWidth < 800;
-
-          return AnimatedOpacity(
-            duration: Duration(seconds: 1),
-            opacity: 1,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.black, Color(0xFF0A0A0A)],
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Section title with accent line
+          ScrollReveal(
+            child: Row(
               children: [
-                // About Me Title
-                TweenAnimationBuilder(
-                  tween: Tween<double>(begin: 0.5, end: 1.0),
-                  duration: Duration(seconds: 1),
-                  builder: (context, double scale, child) {
-                    return Transform.scale(
-                      scale: scale,
-                      child: Text(
-                        'About Me',
-                        style: TextStyle(
-                          fontSize: isMobile ? 28 : 36,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                    );
-                  },
+                Container(
+                  width: 4,
+                  height: 36,
+                  decoration: BoxDecoration(
+                    color: AppTheme.primaryBorderColor,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(width: 12),
+                Text(
+                  'about_me'.tr,
+                  style: TextStyle(
+                    fontSize: isMobile ? 28 : 36,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 30),
 
-                // Introduction Text
-                TweenAnimationBuilder(
-                  tween: Tween<double>(begin: 0.5, end: 1.0),
-                  duration: Duration(seconds: 1),
-                  builder: (context, double scale, child) {
-                    return Transform.scale(
-                      scale: scale,
-                      child: Text(
-                        'I am a Senior Flutter Developer with over 6 years of experience in building high-quality, cross-platform mobile applications (Android/iOS) and web solutions.',
+          // Glassmorphism card
+          ScrollReveal(
+            delay: const Duration(milliseconds: 300),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                child: Container(
+                  padding: EdgeInsets.all(isMobile ? 20 : 32),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.05),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.08),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'about_desc'.tr,
                         style: TextStyle(
                           fontSize: isMobile ? 16 : 18,
                           color: Colors.grey[300],
                           fontWeight: FontWeight.w400,
-                          height: 1.5,
+                          height: 1.7,
                         ),
                       ),
-                    );
-                  },
-                ),
-                SizedBox(height: 20),
-
-                // Key Skills
-                TweenAnimationBuilder(
-                  tween: Tween<double>(begin: 0.5, end: 1.0),
-                  duration: Duration(seconds: 1),
-                  builder: (context, double scale, child) {
-                    return Transform.scale(
-                      scale: scale,
-                      child: Text(
-                        'My expertise includes:\n- Flutter/Dart, Java, PHP-MySQL, and Web Development (HTML, CSS, JS)\n- Strong understanding of UI/UX Design (Figma)\n- Automation Testing using Selenium, JMeter, and Postman',
+                      const SizedBox(height: 24),
+  
+                      // Skill tags row
+                      Wrap(
+                        spacing: 10,
+                        runSpacing: 10,
+                        children: const [
+                          _SkillTag('Flutter / Dart'),
+                          _SkillTag('Native Android (Kotlin)'),
+                          _SkillTag('iOS (Swift)'),
+                          _SkillTag('GetX / Bloc / Riverpod'),
+                          _SkillTag('Firebase Integration'),
+                          _SkillTag('REST APIs / JWT'),
+                          _SkillTag('WebRTC / SignalR'),
+                          _SkillTag('Method Channel'),
+                          _SkillTag('CI/CD Pipelines'),
+                          _SkillTag('QA & Automation Testing'),
+                        ],
+                      ),
+  
+                      const SizedBox(height: 24),
+                      Text(
+                        "about_sub_desc".tr,
                         style: TextStyle(
                           fontSize: isMobile ? 14 : 16,
-                          color: Colors.grey[200],
+                          color: Colors.grey[400],
                           fontWeight: FontWeight.w400,
-                          height: 1.5,
+                          height: 1.7,
                         ),
                       ),
-                    );
-                  },
-                ),
-                SizedBox(height: 20),
-
-                // Additional Information
-                TweenAnimationBuilder(
-                  tween: Tween<double>(begin: 0.5, end: 1.0),
-                  duration: Duration(seconds: 1),
-                  builder: (context, double scale, child) {
-                    return Transform.scale(
-                      scale: scale,
-                      child: Text(
-                        'I’m a Certified Software Tester with a solid background in Agile methodologies, ensuring efficient, high-quality development processes.\nWith an MBA in Project Management and Leadership, I bring a strategic approach to software development, excelling in both Project Management and leadership roles.',
+                      const SizedBox(height: 24),
+                      Text(
+                        "about_passion".tr,
                         style: TextStyle(
                           fontSize: isMobile ? 14 : 16,
-                          color: Colors.grey[200],
+                          color: Colors.grey[400],
                           fontWeight: FontWeight.w400,
-                          height: 1.5,
+                          height: 1.7,
                         ),
                       ),
-                    );
-                  },
+                    ],
+                  ),
                 ),
-                SizedBox(height: 20),
-
-                // Conclusion & Call to Action
-                TweenAnimationBuilder(
-                  tween: Tween<double>(begin: 0.5, end: 1.0),
-                  duration: Duration(seconds: 1),
-                  builder: (context, double scale, child) {
-                    return Transform.scale(
-                      scale: scale,
-                      child: Text(
-                        'Passionate about solving real-world problems through technology, I continuously stay updated with the latest trends to drive innovation.\n\nLet’s connect! You can view my projects on my Portfolio and GitHub.',
-                        style: TextStyle(
-                          fontSize: isMobile ? 14 : 16,
-                          color: Colors.grey[200],
-                          fontWeight: FontWeight.w400,
-                          height: 1.5,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                SizedBox(height: 40),
-              ],
+              ),
             ),
-          );
-        },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Small skill tag chip with subtle border
+class _SkillTag extends StatelessWidget {
+  final String label;
+
+  const _SkillTag(this.label);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+      decoration: BoxDecoration(
+        color: AppTheme.primaryBorderColor.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: AppTheme.primaryBorderColor.withValues(alpha: 0.3),
+        ),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 13,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

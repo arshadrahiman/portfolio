@@ -1,216 +1,307 @@
-import 'dart:async';
+import 'package:arshad_dev/module/skills/controller/service_controller.dart';
 import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:arshad_dev/widgets/service_flipcard.dart';
 import 'package:arshad_dev/widgets/techstack_widg.dart';
+import 'package:arshad_dev/widgets/scroll_reveal.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'dart:ui';
 
-class ServiceDesktopWidget extends StatefulWidget {
+class ServiceDesktopWidget extends GetView<ServiceController> {
   const ServiceDesktopWidget({super.key});
-
-  @override
-  State<ServiceDesktopWidget> createState() => _ServiceDesktopWidgetState();
-}
-
-class _ServiceDesktopWidgetState extends State<ServiceDesktopWidget> {
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
-  late Timer _timer;
-
-  @override
-  void initState() {
-    super.initState();
-    // Start the timer for auto-sliding every 3 seconds
-    _timer = Timer.periodic(Duration(seconds: 3), (timer) {
-      if (_currentPage < 2) {
-        _pageController.animateToPage(
-          _currentPage + 1,
-          duration: Duration(seconds: 1),
-          curve: Curves.easeInOut,
-        );
-      } else {
-        _pageController.animateToPage(
-          0,
-          duration: Duration(seconds: 1),
-          curve: Curves.easeInOut,
-        );
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    // Dispose the timer when the widget is disposed to prevent memory leaks
-    _timer.cancel();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final isMobile = width < 600; // Set mobile breakpoint
+    final isMobile = width < 600;
 
     return Container(
-      color: AppTheme.black,
-      height: height,
+      decoration: const BoxDecoration(
+        color: Color(0xFF0A0A0A), // Slight off-black for depth
+        image: DecorationImage(
+          image: AssetImage('assets/images/noise.png'), // If you have a noise texture, otherwise this safely fails or can be ignored. Actually, better to use gradients
+          fit: BoxFit.cover,
+          opacity: 0.05,
+        ),
+      ),
       width: width,
       child: Column(
         children: [
-          Text(
-            "What I can do ?",
-            style: TextStyle(
-              fontSize: 40,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
+          const Gap(60),
+          // Section Title
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: AppTheme.primaryBorderColor,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(width: 16),
+              Text(
+                "services".tr,
+                style: const TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              const SizedBox(width: 16),
+              Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: AppTheme.primaryBorderColor,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+            ],
           ),
-          const Gap(20),
+          const Gap(40),
           Padding(
-            padding: const EdgeInsets.all(40),
+            padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 60),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Handle Desktop Layout: Horizontal scroll
+                // Desktop Layout: Horizontal scroll
                 if (!isMobile)
                   SizedBox(
-                    height: height * 0.40,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          ServiceFlipCard(
+                    height: height * 0.45,
+                    child: Center(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ScrollReveal(
+                              delay: const Duration(milliseconds: 100),
+                              child: _buildServiceCardWrap(
+                                child: ServiceFlipCard(
+                                  cardHeight: height * 0.40,
+                                  cardWidth: 320,
+                                  technologies: const [
+                                    "Flutter",
+                                    "Dart",
+                                    "Kotlin",
+                                    "Swift",
+                                    "GetX / Bloc / Riverpod",
+                                    "Method Channel"
+                                  ],
+                                  title: 'service_mobile'.tr,
+                                  imageName: 'mobile.gif',
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: width * 0.04),
+                            ScrollReveal(
+                              delay: const Duration(milliseconds: 300),
+                              child: _buildServiceCardWrap(
+                                child: ServiceFlipCard(
+                                  cardHeight: height * 0.40,
+                                  cardWidth: 320,
+                                  technologies: const [
+                                    "Firebase / Firestore",
+                                    "REST APIs / JWT",
+                                    "Odoo API",
+                                    "SignalR / WebRTC",
+                                    "Data Encryption"
+                                  ],
+                                  title: 'service_backend'.tr,
+                                  imageName: 'backend.gif',
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: width * 0.04),
+                            ScrollReveal(
+                              delay: const Duration(milliseconds: 500),
+                              child: _buildServiceCardWrap(
+                                child: ServiceFlipCard(
+                                  cardHeight: height * 0.40,
+                                  cardWidth: 320,
+                                  technologies: const [
+                                    "React / Next.js",
+                                    "Flutter Web",
+                                    "Node.js / Express",
+                                    "Responsive Design",
+                                    "SEO & Performance",
+                                    "HTML5 / CSS3 / Tailwind"
+                                  ],
+                                  title: 'service_web'.tr,
+                                  imageName: 'web.gif',
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: width * 0.04),
+                            ScrollReveal(
+                              delay: const Duration(milliseconds: 700),
+                              child: _buildServiceCardWrap(
+                                child: ServiceFlipCard(
+                                  cardHeight: height * 0.40,
+                                  cardWidth: 320,
+                                  technologies: const [
+                                    "Selenium / Appium",
+                                    "JMeter / Postman",
+                                    "Robot Framework",
+                                    "CI/CD (Azure / App Center)",
+                                    "QA & Automation"
+                                  ],
+                                  title: 'service_testing'.tr,
+                                  imageName: 'backend.gif', // Using backend.gif or another relevant one
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                // Mobile Layout: PageView (Carousel)
+                if (isMobile)
+                  SizedBox(
+                    height: height * 0.45,
+                    child: PageView(
+                      controller: controller.pageController,
+                      onPageChanged: controller.onPageChanged,
+                      children: [
+                        _buildServiceCardWrap(
+                          child: ServiceFlipCard(
                             cardHeight: height * 0.40,
-                            cardWidth: 300,
+                            cardWidth: width * 0.85,
                             technologies: const [
                               "Flutter",
+                              "Dart",
                               "Kotlin",
-                              " Jetpack Compose"
+                              "Swift",
+                              "GetX / Bloc / Riverpod",
+                              "Method Channel"
                             ],
                             title: 'Mobile App Development',
                             imageName: 'mobile.gif',
                           ),
-                          SizedBox(width: width * 0.05),
-                          ServiceFlipCard(
+                        ),
+                        _buildServiceCardWrap(
+                          child: ServiceFlipCard(
                             cardHeight: height * 0.40,
-                            cardWidth: 300,
+                            cardWidth: width * 0.85,
                             technologies: const [
-                              "Node.js",
-                              "Spring Boot",
-                              "Firebase",
-                              "AWS",
-                              "GCP"
+                              "Firebase / Firestore",
+                              "REST APIs / JWT",
+                              "Odoo API",
+                              "SignalR / WebRTC",
+                              "Data Encryption"
                             ],
-                            title: 'Backend Development',
+                            title: 'Backend Integration',
                             imageName: 'backend.gif',
                           ),
-                          SizedBox(width: width * 0.05),
-                          ServiceFlipCard(
+                        ),
+                        _buildServiceCardWrap(
+                          child: ServiceFlipCard(
                             cardHeight: height * 0.40,
-                            cardWidth: 300,
+                            cardWidth: width * 0.85,
                             technologies: const [
-                              "Flutter",
-                              "Html",
-                              "Css",
-                              "Javascript",
-                              "Bootstrap",
-                              "React js"
+                              "React / Next.js",
+                              "Flutter Web",
+                              "Node.js / Express",
+                              "Responsive Design",
+                              "SEO & Performance",
+                              "HTML5 / CSS3 / Tailwind"
                             ],
                             title: 'Web Development',
                             imageName: 'web.gif',
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                // Handle Mobile Layout: PageView (Carousel)
-                if (isMobile)
-                  SizedBox(
-                    height: height * 0.40,
-                    child: PageView(
-                      controller: _pageController,
-                      onPageChanged: (page) {
-                        setState(() {
-                          _currentPage = page;
-                        });
-                      },
-                      children: [
-                        ServiceFlipCard(
-                          cardHeight: height * 0.40,
-                          cardWidth: width,
-                          technologies: const [
-                            "Flutter",
-                            "Kotlin",
-                            " Jetpack Compose"
-                          ],
-                          title: 'Mobile App Development',
-                          imageName: 'mobile.gif',
                         ),
-                        ServiceFlipCard(
-                          cardHeight: height * 0.40,
-                          cardWidth: width,
-                          technologies: const [
-                            "Node.js",
-                            "Spring Boot",
-                            "Firebase",
-                            "AWS",
-                            "GCP"
-                          ],
-                          title: 'Backend Development',
-                          imageName: 'backend.gif',
-                        ),
-                        ServiceFlipCard(
-                          cardHeight: height * 0.40,
-                          cardWidth: width,
-                          technologies: const [
-                            "Flutter",
-                            "Html",
-                            "Css",
-                            "Javascript",
-                            "Bootstrap",
-                            "React js"
-                          ],
-                          title: 'Web Development',
-                          imageName: 'web.gif',
+                        _buildServiceCardWrap(
+                          child: ServiceFlipCard(
+                            cardHeight: height * 0.40,
+                            cardWidth: width * 0.85,
+                            technologies: const [
+                              "Selenium / Appium",
+                              "JMeter / Postman",
+                              "Robot Framework",
+                              "CI/CD Pipelines",
+                              "QA & Automation"
+                            ],
+                            title: 'Software Testing',
+                            imageName: 'backend.gif',
+                          ),
                         ),
                       ],
                     ),
                   ),
-                // Display pagination for mobile (dots indicator)
+                // Pagination dots for mobile
                 if (isMobile)
                   Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(3, (index) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 4),
-                          width: 8,
-                          height: 8,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _currentPage == index
-                                ? Colors.white
-                                : Colors.grey,
-                          ),
-                        );
-                      }),
+                    padding: const EdgeInsets.only(top: 24.0),
+                    child: Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(4, (index) {
+                          final isActive = controller.currentPage.value == index;
+                          return AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            margin: const EdgeInsets.symmetric(horizontal: 4),
+                            width: isActive ? 24 : 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: isActive
+                                  ? AppTheme.primaryBorderColor
+                                  : Colors.grey.withValues(alpha: 0.3),
+                            ),
+                          );
+                        }),
+                      ),
                     ),
                   ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: TechStackAutoScrollWidget(
-              imageHeight: height * 0.1,
-              titleFontSize: 34,
-              scrollSeconds: 7,
+          const Gap(40),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 30),
+            decoration: BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.3),
+              border: Border(
+                top: BorderSide(color: Colors.white.withValues(alpha: 0.05)),
+                bottom: BorderSide(color: Colors.white.withValues(alpha: 0.05)),
+              ),
             ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 60),
+              child: TechStackAutoScrollWidget(
+                imageHeight: height * 0.08,
+                titleFontSize: 28,
+                scrollSeconds: 15,
+              ),
+            ),
+          ),
+          const Gap(40),
+        ],
+      ),
+    );
+  }
+
+  // Wrapper for the service card to add a glowing shadow effect
+  Widget _buildServiceCardWrap({required Widget child}) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: AppTheme.primaryBorderColor.withValues(alpha: 0.15),
+            blurRadius: 20,
+            spreadRadius: -5,
+            offset: const Offset(0, 10),
           ),
         ],
       ),
+      child: child,
     );
   }
 }

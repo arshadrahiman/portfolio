@@ -3,37 +3,35 @@ import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:arshad_dev/widgets/hover%20button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Function(String) onActionPressed;
 
-  CustomAppBar({
+  const CustomAppBar({
+    super.key,
     required this.onActionPressed,
   });
 
   @override
-  Size get preferredSize =>
-      Size.fromHeight(60); // Set the height of the app bar
+  Size get preferredSize => const Size.fromHeight(60);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false, // this will hide Drawer hamburger icon
-      actions: <Widget>[Container()], // this will hide endDrawer hamburger icon
-
+      automaticallyImplyLeading: false,
+      actions: <Widget>[Container()],
       backgroundColor: Colors.transparent,
       elevation: 0,
       title: LayoutBuilder(
         builder: (context, constraints) {
-          // If the screen width is less than 600, show the hamburger menu (IconButton)
           if (constraints.maxWidth < 600) {
             return Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.end, // Align to the left side
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                // Hamburger menu icon for mobile view
                 IconButton(
-                  icon: Icon(Icons.menu, color: Colors.white),
+                  icon: const Icon(Icons.menu, color: Colors.white),
                   onPressed: () {
                     _openDrawer(context);
                   },
@@ -41,32 +39,42 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ],
             );
           } else {
-            // If the screen width is greater than or equal to 600, show the menu items in a row
             return ClipRRect(
-              borderRadius: BorderRadius.vertical(
-                  bottom: Radius.circular(20)), // Add rounded corners
+              borderRadius: const BorderRadius.vertical(
+                  bottom: Radius.circular(20)),
               child: Container(
-                height:
-                    kToolbarHeight, // Standard height for AppBar (adjust if needed)
+                height: kToolbarHeight,
                 width: MediaQuery.of(context).size.width - 300,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 44, 44, 44),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 44, 44, 44),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    buildMenuItem('Home', onActionPressed),
-                    buildMenuItem('About', onActionPressed),
-                    buildMenuItem('Services', onActionPressed),
-                    buildMenuItem('Projects', onActionPressed),
-                    buildMenuItem('Experience', onActionPressed),
-                    buildMenuItem('Contact Me', onActionPressed),
+                    _MenuItem(
+                        title: 'Home',
+                        onActionPressed: onActionPressed),
+                    _MenuItem(
+                        title: 'About',
+                        onActionPressed: onActionPressed),
+                    _MenuItem(
+                        title: 'Services',
+                        onActionPressed: onActionPressed),
+                    _MenuItem(
+                        title: 'Projects',
+                        onActionPressed: onActionPressed),
+                    _MenuItem(
+                        title: 'Experience',
+                        onActionPressed: onActionPressed),
+                    _MenuItem(
+                        title: 'Contact Me',
+                        onActionPressed: onActionPressed),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20.0,
                       ),
                       child: HoverButton(
-                        fnBtn: () {},
+                        fnBtn: () => _openResume(),
                         buttonText: 'Resume',
                       ),
                     ),
@@ -80,71 +88,63 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  // Function to open the Drawer (for mobile view)
+  void _openResume() {
+    // Placeholder URL for Resume - User should update this
+    const url = 'https://arshadrahiman.github.io/about-me/assets/resume.pdf'; 
+    if (kIsWeb) {
+      // Use html.window.open if we can, or just launchUrl
+      launchUrl(Uri.parse(url));
+    } else {
+      launchUrl(Uri.parse(url));
+    }
+  }
+
   void _openDrawer(BuildContext context) {
     Scaffold.of(context).openEndDrawer();
-    final PortfolioController controller = Get.put(PortfolioController());
-    // controller.isDrawer.value = true;
+    Get.find<PortfolioController>().isDrawer.value = true;
   }
 }
 
-// Method to create each menu item
-Widget buildMenuItem(String title, Function(String) onActionPressed) {
-  return _MenuItem(
-    title: title,
-    onActionPressed: onActionPressed,
-  );
-}
-
-class _MenuItem extends StatefulWidget {
+/// Menu item widget using GetX reactive hover state instead of setState
+class _MenuItem extends StatelessWidget {
   final String title;
   final Function(String) onActionPressed;
 
-  const _MenuItem(
-      {Key? key, required this.title, required this.onActionPressed})
-      : super(key: key);
-
-  @override
-  _MenuItemState createState() => _MenuItemState();
-}
-
-class _MenuItemState extends State<_MenuItem> {
-  bool _isHovered = false;
+  const _MenuItem({
+    required this.title,
+    required this.onActionPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final RxBool isHovered = false.obs;
+
     return MouseRegion(
-      onEnter: (_) {
-        setState(() {
-          _isHovered = true;
-        });
-      },
-      onExit: (_) {
-        setState(() {
-          _isHovered = false;
-        });
-      },
+      onEnter: (_) => isHovered.value = true,
+      onExit: (_) => isHovered.value = false,
       child: GestureDetector(
         onTap: () {
-          widget.onActionPressed(widget.title.toLowerCase());
+          onActionPressed(title.toLowerCase());
         },
-        child: AnimatedScale(
-          scale: _isHovered ? 1.2 : 1.0,
-          duration: Duration(milliseconds: 200),
-          child: Row(
-            children: [
-              Text(
-                widget.title,
-                style: TextStyle(
-                  color: _isHovered
-                      ? AppTheme.primaryBorderColor
-                      : AppTheme.greyLight,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 1.5,
+        child: Obx(
+          () => AnimatedScale(
+            scale: isHovered.value ? 1.2 : 1.0,
+            duration: const Duration(milliseconds: 200),
+            child: Row(
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: isHovered.value
+                        ? AppTheme.primaryBorderColor
+                        : AppTheme.greyLight,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 1.5,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

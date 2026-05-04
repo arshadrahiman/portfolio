@@ -2,8 +2,48 @@ import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:arshad_dev/utils/icon_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
-class TechStackAutoScrollWidget extends StatefulWidget {
+class _TechStackController extends GetxController {
+  final ScrollController scrollController = ScrollController();
+  final RxBool scrollingDown = true.obs;
+  int scrollSeconds = 10;
+
+  void startAutoScroll() {
+    Future.delayed(const Duration(seconds: 1), _autoScroll);
+  }
+
+  void _autoScroll() {
+    if (isClosed) return;
+    if (!scrollController.hasClients) return;
+
+    double maxScroll = scrollController.position.maxScrollExtent;
+    double minScroll = scrollController.position.minScrollExtent;
+
+    final target = scrollingDown.value ? maxScroll : minScroll;
+
+    scrollController
+        .animateTo(
+      target,
+      duration: Duration(seconds: scrollSeconds),
+      curve: Curves.linear,
+    )
+        .then((_) {
+      if (!isClosed) {
+        scrollingDown.value = !scrollingDown.value;
+        startAutoScroll();
+      }
+    });
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
+  }
+}
+
+class TechStackAutoScrollWidget extends StatelessWidget {
   const TechStackAutoScrollWidget({
     super.key,
     required this.imageHeight,
@@ -16,77 +56,26 @@ class TechStackAutoScrollWidget extends StatefulWidget {
   final int scrollSeconds;
 
   @override
-  State<TechStackAutoScrollWidget> createState() =>
-      _TechStackAutoScrollWidgetState();
-}
-
-class _TechStackAutoScrollWidgetState extends State<TechStackAutoScrollWidget> {
-  final ScrollController _scrollController = ScrollController();
-  bool _scrollingDown = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _startAutoScroll();
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _startAutoScroll() {
-    Future.delayed(const Duration(seconds: 1), _autoScroll);
-  }
-
-  void _autoScroll() {
-    if (_scrollController.hasClients) {
-      double maxScroll = _scrollController.position.maxScrollExtent;
-      double minScroll = _scrollController.position.minScrollExtent;
-
-      if (_scrollingDown) {
-        _scrollController
-            .animateTo(
-          maxScroll,
-          duration: Duration(seconds: widget.scrollSeconds),
-          curve: Curves.linear,
-        )
-            .then((value) {
-          if (mounted) {
-            setState(() {
-              _scrollingDown = false;
-            });
-            _startAutoScroll();
-          }
-        });
-      } else {
-        _scrollController
-            .animateTo(
-          minScroll,
-          duration: Duration(seconds: widget.scrollSeconds),
-          curve: Curves.linear,
-        )
-            .then((value) {
-          if (mounted) {
-            setState(() {
-              _scrollingDown = true;
-            });
-            _startAutoScroll();
-          }
-        });
-      }
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // Use a unique tag so multiple instances don't conflict
+    final tag = 'techstack_$scrollSeconds';
+    final controller = Get.put(
+      _TechStackController(),
+      tag: tag,
+    );
+    controller.scrollSeconds = scrollSeconds;
+
+    // Start auto-scroll after the widget is built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.startAutoScroll();
+    });
+
     return Column(
-      crossAxisAlignment: widget.titleFontSize != 24
+      crossAxisAlignment: titleFontSize != 24
           ? CrossAxisAlignment.center
           : CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           "Tech Stack",
           style: TextStyle(
             fontSize: 24,
@@ -96,17 +85,17 @@ class _TechStackAutoScrollWidgetState extends State<TechStackAutoScrollWidget> {
         ),
         const Gap(30),
         SizedBox(
-          height: widget.imageHeight,
+          height: imageHeight,
           child: ListView.builder(
             itemCount: logoUrls.length,
-            controller: _scrollController,
+            controller: controller.scrollController,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal: widget.titleFontSize != 24 ? 20 : 10),
+                    horizontal: titleFontSize != 24 ? 20 : 10),
                 child: SizedBox(
-                  height: widget.imageHeight,
+                  height: imageHeight,
                   child: Image.asset(
                     "assets/icons/${logoUrls[index]}.png",
                     fit: BoxFit.fitHeight,

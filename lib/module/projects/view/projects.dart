@@ -1,14 +1,12 @@
 import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class ProjectsSection extends StatefulWidget {
-  @override
-  _ProjectsSectionState createState() => _ProjectsSectionState();
-}
+class ProjectsSection extends StatelessWidget {
+  ProjectsSection({super.key});
 
-class _ProjectsSectionState extends State<ProjectsSection> {
-  int _currentIndex = 0; // Track the current page index
+  final RxInt currentIndex = 0.obs;
 
   final List<Project> projects = [
     Project(
@@ -34,12 +32,12 @@ class _ProjectsSectionState extends State<ProjectsSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-      decoration: BoxDecoration(color: Colors.black),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      decoration: const BoxDecoration(color: Colors.black),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Projects',
             style: TextStyle(
               fontSize: 36,
@@ -47,14 +45,14 @@ class _ProjectsSectionState extends State<ProjectsSection> {
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           // Carousel with pagination
           CarouselSlider.builder(
             itemCount: projects.length,
             itemBuilder: (context, index, realIndex) {
               final project = projects[index];
               return Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: _buildProjectCard(context, project),
               );
             },
@@ -63,23 +61,23 @@ class _ProjectsSectionState extends State<ProjectsSection> {
               viewportFraction: 0.8,
               enlargeCenterPage: true,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayInterval: const Duration(seconds: 3),
+              autoPlayAnimationDuration: const Duration(milliseconds: 800),
               enlargeStrategy: CenterPageEnlargeStrategy.height,
               onPageChanged: (index, reason) {
-                setState(() {
-                  _currentIndex = index; // Update current index
-                });
+                currentIndex.value = index;
               },
             ),
           ),
-          SizedBox(height: 20),
-          // Custom Pagination
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(
-              projects.length,
-              (index) => _buildDot(index),
+          const SizedBox(height: 20),
+          // Reactive Pagination dots
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                projects.length,
+                (index) => _buildDot(index),
+              ),
             ),
           ),
         ],
@@ -95,8 +93,8 @@ class _ProjectsSectionState extends State<ProjectsSection> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Colors.black.withOpacity(0.6),
-              Colors.black.withOpacity(0.2)
+              Colors.black.withValues(alpha: 0.6),
+              Colors.black.withValues(alpha: 0.2),
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -104,50 +102,46 @@ class _ProjectsSectionState extends State<ProjectsSection> {
         ),
         child: Stack(
           children: [
-            // Project image
             Image.network(
               project.image,
               width: double.infinity,
               height: 400,
               fit: BoxFit.cover,
             ),
-            // Gradient overlay
             Container(
               width: double.infinity,
               height: 400,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Colors.black.withOpacity(0.4),
-                    Colors.black.withOpacity(0.1)
+                    Colors.black.withValues(alpha: 0.4),
+                    Colors.black.withValues(alpha: 0.1),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
               ),
             ),
-            // Transparent pink overlay beneath title and description
             Positioned(
-              bottom: 10, // Adjusted to position under the text content
+              bottom: 10,
               left: 20,
               right: 20,
               child: InkWell(
                 onTap: () {
-                  // Handle tap (e.g., show a snackbar or navigate to another screen)
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Project: ${project.title} tapped!'),
                     ),
                   );
                 },
-                splashColor: AppTheme.primaryBorderColor
-                    .withOpacity(0.5), // Splash color
-                highlightColor: Colors.transparent, // Disable highlight color
+                splashColor:
+                    AppTheme.primaryBorderColor.withValues(alpha: 0.5),
+                highlightColor: Colors.transparent,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20), // Curved corners
+                  borderRadius: BorderRadius.circular(20),
                   child: Container(
-                    height: 100, // A fixed height for the overlay
-                    color: AppTheme.greyLight, // Transparent pink
+                    height: 100,
+                    color: AppTheme.greyLight,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
@@ -155,22 +149,21 @@ class _ProjectsSectionState extends State<ProjectsSection> {
                         children: [
                           Text(
                             project.title,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: AppTheme.primaryBorderColor,
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 10),
-                          // Description with more padding
+                          const SizedBox(height: 10),
                           Text(
                             project.description,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: AppTheme.grey,
                               fontSize: 16,
                             ),
                             maxLines: 3,
-                            overflow: TextOverflow.ellipsis, // Prevent overflow
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ],
                       ),
@@ -185,18 +178,18 @@ class _ProjectsSectionState extends State<ProjectsSection> {
     );
   }
 
-  // Method to build each dot in the pagination
+  // Reactive dot indicator
   Widget _buildDot(int index) {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
-      margin: EdgeInsets.symmetric(horizontal: 5),
+      duration: const Duration(milliseconds: 300),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       height: 10,
       width: 10,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: _currentIndex == index
+        color: currentIndex.value == index
             ? AppTheme.primaryBorderColor
-            : AppTheme.grey.withOpacity(0.5),
+            : AppTheme.grey.withValues(alpha: 0.5),
       ),
     );
   }

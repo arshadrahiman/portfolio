@@ -1,304 +1,325 @@
+import 'package:arshad_dev/theme/app_theme.dart';
+import 'package:arshad_dev/widgets/scroll_reveal.dart';
 import 'package:flutter/material.dart';
-import 'package:stepper_list_view/stepper_list_view.dart';
-import 'dart:ui'; // Import for the BackdropFilter
+import 'package:get/get.dart';
+
+class _ExperienceItem {
+  final String designation;
+  final String company;
+  final String startDate;
+  final String endDate;
+
+  const _ExperienceItem({
+    required this.designation,
+    required this.company,
+    required this.startDate,
+    required this.endDate,
+  });
+}
 
 class ExperienceStepperWidget extends StatelessWidget {
-  // Real experience data
-  final List<StepperItemData> _stepperData = [
-    StepperItemData(
-      id: '1',
-      content: ({
-        'designation': 'Flutter Developer',
-        'company': 'Leader IT Private Limited',
-        'work_start_date': 'March 2023',
-        'work_end_date': 'Present',
-        'responsibilities': [
-          'Developed apps with Dynamic UI with Dynamic Backend Data',
-          'Integrated GIS Map and Google Map',
-          'Migrated Native Android and iOS Apps to Flutter',
-          'Worked on multiple projects, bug fixes, and releasing builds',
-          'Implemented features and developed responsive UI design',
-          'App deployed to App Store, Play Store, and App Center',
-          'Integrated Method Channel for iOS and Android (Swift, Kotlin)',
-          'Integrated SignalR and WebRTC in Axionic meeting app',
-          'Project Management and Leadership, handling daily stand-up calls',
-          'Research and Development: Developed innovative solutions as part of R&D',
-          'Maintained clean code, architecture, and handled data encryption',
-          'Worked with the team, reviewing code, and conflict handling',
-          'Handled backlog bug fixes and maintained projects',
-        ],
-      }),
-      avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
+  const ExperienceStepperWidget({super.key});
+
+  static const List<_ExperienceItem> _experiences = [
+    _ExperienceItem(
+      designation: 'Technical Lead (Flutter)',
+      company: 'Mobcoder (Tawuniya Insurance), Riyadh, SA',
+      startDate: 'July 2025',
+      endDate: 'Present',
     ),
-    StepperItemData(
-      id: '2',
-      content: ({
-        'designation': 'Flutter Developer',
-        'company': 'Hashcode IT Solutions',
-        'work_start_date': 'Nov 2022',
-        'work_end_date': 'Jan 2023',
-        'responsibilities': [
-          'Developed apps using GetX state-management',
-          'Developed prototype design using Figma and converted to Flutter responsive UI',
-          'Used Sqflite Database for local storage and Add to Cart functionality',
-          'Handled backend data using Odoo API and Firebase',
-          'Deployed the app to Play Store and fixed bugs',
-        ],
-      }),
-      avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
+    _ExperienceItem(
+      designation: 'Flutter Developer & Team Lead',
+      company: 'Leader IT Private Limited, Technopark, India',
+      startDate: 'March 2023',
+      endDate: 'July 2025',
     ),
-    StepperItemData(
-      id: '3',
-      content: ({
-        'designation': 'Flutter Developer',
-        'company': 'Hexeam Software Solutions',
-        'work_start_date': 'April 2022',
-        'work_end_date': 'Oct 2022',
-        'responsibilities': [
-          'Communicated technical risks and benefits to management and key stakeholders',
-          'Worked with Woocommerce API (WordPress)',
-          'Integrated Facebook login and Google sign-up',
-          'Used JWT Token method for authentication',
-          'Experienced in working across numerous devices and versions of Android & iOS',
-        ],
-      }),
-      avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
+    _ExperienceItem(
+      designation: 'Flutter Developer',
+      company: 'Hashcode IT Solutions, Dubai, UAE',
+      startDate: 'Nov 2022',
+      endDate: 'Jan 2023',
     ),
-    StepperItemData(
-      id: '4',
-      content: ({
-        'designation': 'QA Engineer',
-        'company': 'Gritstone Technologies',
-        'work_start_date': 'July 2021',
-        'work_end_date': 'March 2022',
-        'responsibilities': [
-          'Followed Agile planning procedures for team',
-          'Coordinated with project management teams to understand client specifications',
-          'Performed both manual and automation testing for web, iOS, and Android applications',
-        ],
-      }),
-      avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
+    _ExperienceItem(
+      designation: 'Flutter Developer',
+      company: 'Hexeam Software Solutions, Kerala, India',
+      startDate: 'April 2022',
+      endDate: 'Oct 2022',
     ),
-    StepperItemData(
-      id: '5',
-      content: ({
-        'designation': 'Software Developer',
-        'company': 'ISTP Digital',
-        'work_start_date': 'Jan 2019',
-        'work_end_date': 'June 2021',
-        'responsibilities': [
-          'Worked closely with analysts, designers, and staff to produce detailed specifications',
-          'Wrote program codes and tested the product in controlled environments before going live',
-          'Completed functional, end-to-end, regression, and verification tests on software applications',
-        ],
-      }),
-      avatar: 'https://avatars.githubusercontent.com/u/70679949?v=4',
+    _ExperienceItem(
+      designation: 'QA & Automation Engineer',
+      company: 'Gritstone Technologies, Kerala, India',
+      startDate: 'July 2021',
+      endDate: 'March 2022',
+    ),
+    _ExperienceItem(
+      designation: 'Software Developer',
+      company: 'ISTP Digital, Kerala, India',
+      startDate: 'Jan 2019',
+      endDate: 'June 2021',
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final isMobile = width < 800;
+
     return Container(
-      margin: EdgeInsets.all(20.0),
-      height: 1500, // Set a static height for your widget (remove scrolling)
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
       color: Colors.black,
-      padding: const EdgeInsets.all(10.0), // Reduce overall padding
       child: Column(
         children: [
-          // Header Text
-          const SizedBox(height: 20),
           Text(
-            "Experience",
-            style: TextStyle(
+            "experience".tr,
+            style: const TextStyle(
               fontSize: 40,
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
           ),
-          const SizedBox(
-              height: 5), // Add some space between the header and the stepper
+          const SizedBox(height: 50),
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: _experiences.length,
+            itemBuilder: (context, index) {
+              final item = _experiences[index];
+              final isLast = index == _experiences.length - 1;
+              final isCurrent = item.endDate == 'Present';
 
-          // Stepper List View
-          Expanded(
-            child: StepperListView(
-              showStepperInLast: true,
-              stepperData: _stepperData,
-              stepAvatar: (_, data) {
-                return PreferredSize(
-                  preferredSize:
-                      const Size.fromRadius(16), // Smaller avatar size
-                  child: CircleAvatar(
-                    backgroundColor: Colors.black, // Background color of circle
-                    child: CircleAvatar(
-                      radius: 12, // Smaller icon's circular background
-                      backgroundColor: Colors.black,
-                      child: CircleAvatar(
-                        radius: 10, // White circle around the icon
-                        backgroundColor: Colors.white,
-                        child: CircleAvatar(
-                          radius: 8, // Icon itself inside a white circle
-                          backgroundColor: Colors.transparent,
-                          child: Icon(
-                            Icons.work, // Example icon for work
-                            color: Colors.red, // Icon color as red
-                            size: 16, // Smaller icon size
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              stepWidget: (_, data) {
-                final stepData = data as StepperItemData;
-                return PreferredSize(
-                  preferredSize:
-                      const Size.fromWidth(25), // Adjust size of step label
-                  child: SizedBox(
-                    width: 100,
-                    height: 200,
-                    child: Text(
-                      stepData.content['company'] ?? '',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14, // Smaller font size
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                );
-              },
-              stepContentWidget: (_, data) {
-                final stepData = data as StepperItemData;
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 10), // Reduced margin
-                      padding: const EdgeInsets.all(8), // Reduced padding
-                      decoration: BoxDecoration(
-                        color:
-                            Colors.white.withOpacity(0.2), // Transparent effect
-                        borderRadius:
-                            BorderRadius.circular(12), // Smaller radius
-                      ),
-                      child: ListTile(
-                        contentPadding:
-                            const EdgeInsets.all(4), // Reduced padding
-                        visualDensity:
-                            const VisualDensity(vertical: -2, horizontal: -2),
-                        title: Text(
-                          stepData.content['designation'] ?? '',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white, // White for small text
-                          ),
-                        ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 6), // Reduced spacing
-                            _buildInfoRow(Icons.date_range,
-                                stepData.content['work_start_date'] ?? ''),
-                            const SizedBox(height: 6), // Reduced spacing
-                            _buildInfoRow(Icons.date_range,
-                                stepData.content['work_end_date'] ?? ''),
-                            const SizedBox(height: 12), // Reduced spacing
-                            Text(
-                              'Responsibilities',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red, // Red for headings
-                              ),
-                            ),
-                            const SizedBox(height: 4), // Reduced spacing
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 6), // Smaller padding
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: (stepData.content['responsibilities']
-                                        as List<String>)
-                                    .map((responsibility) =>
-                                        _buildResponsibilityRow(responsibility))
-                                    .toList(),
-                              ),
-                            ),
-                          ],
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(12), // Smaller radius
-                          side: BorderSide(color: Colors.grey, width: 0.8),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-              stepperThemeData: StepperThemeData(
-                lineColor: Colors.red, // Line color red
-                lineWidth: 4, // Slightly thinner line
-              ),
-              physics: const NeverScrollableScrollPhysics(),
-            ),
+              return _TimelineRow(
+                item: item,
+                isLast: isLast,
+                isCurrent: isCurrent,
+                isMobile: isMobile,
+                index: index,
+              );
+            },
           ),
         ],
       ),
     );
   }
+}
 
-  // Helper method for building information rows (Designation, Company, etc.)
-  Widget _buildInfoRow(IconData icon, String text) {
-    return Row(
-      children: [
-        CircleAvatar(
-          backgroundColor: Colors.black, // Circular background for icons
-          radius: 12, // Smaller avatar size
-          child: CircleAvatar(
-            radius: 10, // Inner circle for the icon
-            backgroundColor: Colors.black,
-            child: CircleAvatar(
-              radius: 8, // White background for the icon
-              backgroundColor: Colors.white,
-              child: Icon(
-                icon, // The icon itself
-                color: Colors.red, // Icon color as red
-                size: 14, // Smaller icon size
+class _TimelineRow extends StatelessWidget {
+  final _ExperienceItem item;
+  final bool isLast;
+  final bool isCurrent;
+  final bool isMobile;
+  final int index;
+
+  const _TimelineRow({
+    required this.item,
+    required this.isLast,
+    required this.isCurrent,
+    required this.isMobile,
+    required this.index,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final RxBool isHovered = false.obs;
+
+    return ScrollReveal(
+      delay: Duration(milliseconds: index * 200),
+      child: MouseRegion(
+        onEnter: (_) => isHovered.value = true,
+        onExit: (_) => isHovered.value = false,
+        child: Obx(
+          () => AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.easeOut,
+            transform: Matrix4.translationValues(
+              isHovered.value ? 8 : 0,
+              0,
+              0,
+            ),
+            child: IntrinsicHeight(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Timeline indicator column
+                  SizedBox(
+                    width: 60,
+                    child: Column(
+                      children: [
+                        // Dot
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          width: isHovered.value ? 20 : 16,
+                          height: isHovered.value ? 20 : 16,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: isCurrent
+                                ? AppTheme.primaryBorderColor
+                                : isHovered.value
+                                    ? AppTheme.primaryBorderColor
+                                    : Colors.white,
+                            border: Border.all(
+                              color: isCurrent
+                                  ? AppTheme.primaryBorderColor
+                                  : Colors.grey,
+                              width: 2,
+                            ),
+                            boxShadow: isCurrent || isHovered.value
+                                ? [
+                                    BoxShadow(
+                                      color: AppTheme.primaryBorderColor
+                                          .withValues(alpha: 0.5),
+                                      blurRadius: 10,
+                                      spreadRadius: 2,
+                                    ),
+                                  ]
+                                : [],
+                          ),
+                        ),
+                        // Vertical line
+                        if (!isLast)
+                          Expanded(
+                            child: Container(
+                              width: 2,
+                              color: Colors.grey.withValues(alpha: 0.3),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+  
+                  // Content card
+                  Expanded(
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      margin: const EdgeInsets.only(bottom: 30),
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: isHovered.value
+                            ? Colors.white.withValues(alpha: 0.08)
+                            : Colors.white.withValues(alpha: 0.04),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: isHovered.value
+                              ? AppTheme.primaryBorderColor.withValues(alpha: 0.4)
+                              : Colors.grey.withValues(alpha: 0.15),
+                          width: 1,
+                        ),
+                      ),
+                      child:
+                          isMobile ? _buildMobileLayout() : _buildDesktopLayout(),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
         ),
-        const SizedBox(width: 6), // Reduced spacing
+      ),
+    );
+  }
+
+  Widget _buildDesktopLayout() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        // Left: Designation & Company
         Expanded(
-            child: Text(
-          text,
-          style:
-              TextStyle(fontSize: 12, color: Colors.white), // Small white text
-        )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                item.designation,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 0.5,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                item.company,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.grey[400],
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        // Right: Date range
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: isCurrent
+                ? AppTheme.primaryBorderColor.withValues(alpha: 0.15)
+                : Colors.white.withValues(alpha: 0.05),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: isCurrent
+                  ? AppTheme.primaryBorderColor.withValues(alpha: 0.4)
+                  : Colors.grey.withValues(alpha: 0.2),
+            ),
+          ),
+          child: Text(
+            '${item.startDate} — ${item.endDate}',
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: isCurrent ? AppTheme.primaryBorderColor : Colors.grey[400],
+            ),
+          ),
+        ),
       ],
     );
   }
 
-  // Helper method for displaying each responsibility as a list item
-  Widget _buildResponsibilityRow(String responsibility) {
-    return Row(
+  Widget _buildMobileLayout() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(
-          Icons.check_circle,
-          color: Colors.red, // Icon color for responsibility (red)
-          size: 14, // Smaller icon size
+        Text(
+          item.designation,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            letterSpacing: 0.5,
+          ),
         ),
-        const SizedBox(width: 6), // Reduced spacing
-        Expanded(
-            child: Text(
-          responsibility,
-          style:
-              TextStyle(fontSize: 12, color: Colors.white), // Small white text
-        )),
+        const SizedBox(height: 6),
+        Text(
+          item.company,
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.grey[400],
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          decoration: BoxDecoration(
+            color: isCurrent
+                ? AppTheme.primaryBorderColor.withValues(alpha: 0.15)
+                : Colors.white.withValues(alpha: 0.05),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: isCurrent
+                  ? AppTheme.primaryBorderColor.withValues(alpha: 0.4)
+                  : Colors.grey.withValues(alpha: 0.2),
+            ),
+          ),
+          child: Text(
+            '${item.startDate} — ${item.endDate}',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: isCurrent ? AppTheme.primaryBorderColor : Colors.grey[400],
+            ),
+          ),
+        ),
       ],
     );
   }

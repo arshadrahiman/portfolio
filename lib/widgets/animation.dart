@@ -1,59 +1,59 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class AnimatedTextWidget extends StatefulWidget {
-  const AnimatedTextWidget({super.key});
-
-  @override
-  _AnimatedTextWidgetState createState() => _AnimatedTextWidgetState();
-}
-
-class _AnimatedTextWidgetState extends State<AnimatedTextWidget> {
+class _AnimatedTextController extends GetxController {
   final List<String> textList = [
-    'Tech Lead', // A leadership/management role in the tech field
-    'Senior Flutter Developer', // Specialized senior developer role
-    'Full Stack Developer', // Developer with expertise in both front-end and back-end
-    'Software Engineer', // Broad engineering role, including software development
-    'Mobile App Developer', // Developer focused on mobile app development
-    'Web Developer', // Developer focused on web development
-    'Project Manager', // Management role overseeing projects
-    'Entrepreneur', // Someone who starts and runs their own business
+    'tech_lead'.tr,
+    'senior_dev'.tr,
+    'fullstack_dev'.tr,
+    'software_eng'.tr,
+    'mobile_dev'.tr,
+    'web_dev'.tr,
+    'proj_mgr'.tr,
+    'entrepreneur'.tr,
   ];
-  late int currentIndex;
+
+  final RxInt currentIndex = 0.obs;
 
   @override
-  void initState() {
-    super.initState();
-    currentIndex = 0;
-
-    // Start looping through the text list
-    Future.delayed(Duration.zero, _startTextAnimation);
+  void onInit() {
+    super.onInit();
+    _startTextAnimation();
   }
 
   void _startTextAnimation() {
     Future.doWhile(() async {
-      await Future.delayed(const Duration(seconds: 2)); // Time for each text
-      setState(() {
-        currentIndex = (currentIndex + 1) % textList.length;
-      });
-      return true; // Continue looping
+      await Future.delayed(const Duration(seconds: 2));
+      if (isClosed) return false;
+      currentIndex.value = (currentIndex.value + 1) % textList.length;
+      return true;
     });
   }
+}
+
+class AnimatedTextWidget extends StatelessWidget {
+  const AnimatedTextWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedTextKit(
-      animatedTexts: [
-        TyperAnimatedText(
-          textList[currentIndex], // Text from array
-          textStyle: const TextStyle(
-            fontSize: 20,
-            color: Colors.white,
+    final controller = Get.put(_AnimatedTextController());
+
+    return Obx(
+      () => AnimatedTextKit(
+        key: ValueKey(controller.currentIndex.value),
+        animatedTexts: [
+          TyperAnimatedText(
+            controller.textList[controller.currentIndex.value],
+            textStyle: const TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+            ),
+            speed: const Duration(milliseconds: 100),
           ),
-          speed: const Duration(milliseconds: 100),
-        ),
-      ],
-      repeatForever: true, // Loop the animation
+        ],
+        repeatForever: true,
+      ),
     );
   }
 }

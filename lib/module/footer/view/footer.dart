@@ -1,5 +1,6 @@
 import 'package:arshad_dev/widgets/svg_icon_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FooterSection extends StatelessWidget {
   @override
@@ -11,8 +12,8 @@ class FooterSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Follow Me',
-            style: TextStyle(
+            'follow_me'.tr,
+            style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -31,8 +32,8 @@ class FooterSection extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            '© 2025 Arshadul Rahman. All Rights Reserved.',
-            style: TextStyle(fontSize: 14, color: Colors.white70),
+            'rights_reserved'.tr,
+            style: const TextStyle(fontSize: 14, color: Colors.white70),
           ),
         ],
       ),

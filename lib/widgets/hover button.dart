@@ -1,53 +1,66 @@
 import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class HoverButton extends StatefulWidget {
-  final VoidCallback fnBtn; // Function type for onPressed
-  final String buttonText; // String to hold the button text
+class HoverButton extends StatelessWidget {
+  final VoidCallback fnBtn;
+  final String buttonText;
 
-  HoverButton({required this.fnBtn, required this.buttonText, Key? key})
-      : super(key: key);
-
-  @override
-  _HoverButtonState createState() => _HoverButtonState();
-}
-
-class _HoverButtonState extends State<HoverButton> {
-  Color _buttonColor = const Color.fromARGB(255, 123, 120, 120)
-      .withOpacity(0.3); // Default color
-  Color _textColor = const Color.fromARGB(255, 246, 242, 242)
-      .withOpacity(0.3); // Default text color
+  const HoverButton({
+    super.key,
+    required this.fnBtn,
+    required this.buttonText,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final RxBool isHovered = false.obs;
+
     return MouseRegion(
-      onEnter: (_) {
-        setState(() {
-          _buttonColor = AppTheme.primaryBorderColor; // Change to hover color
-          _textColor = Colors.white; // Change text color on hover
-        });
-      },
-      onExit: (_) {
-        setState(() {
-          _buttonColor = const Color.fromARGB(255, 90, 87, 87)
-              .withOpacity(0.3); // Revert to original button color
-          _textColor = const Color.fromARGB(255, 251, 248, 248)
-              .withOpacity(0.9); // Revert to original text color
-        });
-      },
-      child: ElevatedButton(
-        onPressed: widget.fnBtn, // Correctly call the function
-        child: Text(
-          widget.buttonText, // Use the buttonText passed from the constructor
-          style: TextStyle(color: _textColor),
-        ),
-        style: ElevatedButton.styleFrom(
-          foregroundColor: Colors.grey.withOpacity(0.9),
-          backgroundColor: _buttonColor, // Use dynamic button color
-          padding: EdgeInsets.symmetric(horizontal: 40, vertical: 14),
-          shape: StadiumBorder(),
-          elevation: 5,
-          textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+      onEnter: (_) => isHovered.value = true,
+      onExit: (_) => isHovered.value = false,
+      child: Obx(
+        () => AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOut,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            boxShadow: isHovered.value
+                ? [
+                    BoxShadow(
+                      color: AppTheme.primaryBorderColor.withValues(alpha: 0.3),
+                      blurRadius: 15,
+                      spreadRadius: 2,
+                    ),
+                  ]
+                : [],
+          ),
+          child: ElevatedButton(
+            onPressed: fnBtn,
+            style: ElevatedButton.styleFrom(
+              foregroundColor: isHovered.value ? Colors.white : Colors.white70,
+              backgroundColor: isHovered.value
+                  ? AppTheme.primaryBorderColor
+                  : Colors.white.withValues(alpha: 0.05),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+                side: BorderSide(
+                  color: isHovered.value
+                      ? AppTheme.primaryBorderColor
+                      : Colors.white.withValues(alpha: 0.2),
+                  width: 1.5,
+                ),
+              ),
+              elevation: 0,
+              textStyle: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
+              ),
+            ),
+            child: Text(buttonText),
+          ),
         ),
       ),
     );
