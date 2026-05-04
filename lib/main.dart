@@ -1,5 +1,4 @@
 import 'package:arshad_dev/baseclass/basebinding.dart';
-import 'package:arshad_dev/locale/locale_service.dart';
 import 'package:arshad_dev/storage/storage_service.dart';
 import 'package:arshad_dev/theme/theme_service.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -26,10 +25,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: Constants.appName,
       debugShowCheckedModeBanner: false,
-      locale: LocaleService.getAppLocale(),
       initialBinding: BaseBinding(Constants.initialRouting),
-      fallbackLocale: LocaleService.fallbackLocale,
-      translations: LocaleService(),
+      locale: const Locale('en', 'US'),
       // initialRoute: Routes.splash,
       // builder: EasyLoading.init(),
       localizationsDelegates: const [
@@ -37,7 +34,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [Locale('en'), Locale('ar')],
+      supportedLocales: const [Locale('en')],
       theme: AppTheme.light,
       darkTheme: AppTheme.light,
       themeMode: ThemeMode.light,
@@ -51,7 +48,6 @@ class MyApp extends StatelessWidget {
 
 Future<void> initialConfig() async {
   await Get.putAsync(() => StorageService().init());
-  Get.put<LocaleService>(LocaleService());
   Get.put<ThemeService>(ThemeService());
 }
 

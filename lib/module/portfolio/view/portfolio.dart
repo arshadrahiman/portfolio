@@ -259,10 +259,17 @@ class CourseDropdown extends StatelessWidget {
 
   final List<String> courses = const [
     'Select Course',
-    'Flutter Mastery',
-    'Dart for Beginners',
-    'Advanced Flutter Development',
-    'UI/UX Design with Figma',
+    'Java & Spring Boot',
+    'Python & Django ',
+    'Mobile App Development (Flutter & Dart)',
+    'Advanced Flutter: State Management & Architecture',
+    'Modern Web Development (React & Next.js)',
+    'Backend Mastery: Node.js & Firebase',
+    'API Design & Real-time Integration (SignalR)',
+    'QA Automation: Selenium & Appium',
+    'DevOps for Mobile: CI/CD & Cloud Deployment',
+    'AI Tools for Developers: Boosting Productivity',
+    'Database Management: SQL & NoSQL Essentials',
   ];
 
   @override

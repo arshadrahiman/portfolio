@@ -40,8 +40,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           } else {
             return ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                  bottom: Radius.circular(20)),
+              borderRadius:
+                  const BorderRadius.vertical(bottom: Radius.circular(20)),
               child: Container(
                 height: kToolbarHeight,
                 width: MediaQuery.of(context).size.width - 300,
@@ -51,24 +51,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    _MenuItem(title: 'Home', onActionPressed: onActionPressed),
+                    _MenuItem(title: 'About', onActionPressed: onActionPressed),
                     _MenuItem(
-                        title: 'Home',
-                        onActionPressed: onActionPressed),
+                        title: 'Services', onActionPressed: onActionPressed),
                     _MenuItem(
-                        title: 'About',
-                        onActionPressed: onActionPressed),
+                        title: 'Projects', onActionPressed: onActionPressed),
                     _MenuItem(
-                        title: 'Services',
-                        onActionPressed: onActionPressed),
+                        title: 'Experience', onActionPressed: onActionPressed),
                     _MenuItem(
-                        title: 'Projects',
-                        onActionPressed: onActionPressed),
-                    _MenuItem(
-                        title: 'Experience',
-                        onActionPressed: onActionPressed),
-                    _MenuItem(
-                        title: 'Contact Me',
-                        onActionPressed: onActionPressed),
+                        title: 'Contact Me', onActionPressed: onActionPressed),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20.0,
@@ -90,7 +82,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   void _openResume() {
     // Placeholder URL for Resume - User should update this
-    const url = 'https://arshadrahiman.github.io/about-me/assets/resume.pdf'; 
+    const url =
+        'https://drive.google.com/file/d/1g8Nwdk0f7Kc_M4VIYhcoMtNLDw-iLdXV/view?usp=share_link';
     if (kIsWeb) {
       // Use html.window.open if we can, or just launchUrl
       launchUrl(Uri.parse(url));

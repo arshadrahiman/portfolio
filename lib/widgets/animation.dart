@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 
 class _AnimatedTextController extends GetxController {
   final List<String> textList = [
-    'tech_lead'.tr,
-    'senior_dev'.tr,
-    'fullstack_dev'.tr,
-    'software_eng'.tr,
-    'mobile_dev'.tr,
-    'web_dev'.tr,
-    'proj_mgr'.tr,
-    'entrepreneur'.tr,
+    'Tech Lead',
+    'Senior Flutter Developer',
+    'Full Stack Developer',
+    'Software Engineer',
+    'Mobile App Developer',
+    'Web Developer',
+    'Project Manager',
+    'Entrepreneur',
   ];
 
   final RxInt currentIndex = 0.obs;

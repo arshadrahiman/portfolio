@@ -12,7 +12,7 @@ class FooterSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'follow_me'.tr,
+            'Follow Me',
             style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
@@ -32,7 +32,7 @@ class FooterSection extends StatelessWidget {
           ),
           SizedBox(height: 20),
           Text(
-            'rights_reserved'.tr,
+            '© 2025 Arshadul Rahman. All Rights Reserved.',
             style: const TextStyle(fontSize: 14, color: Colors.white70),
           ),
         ],

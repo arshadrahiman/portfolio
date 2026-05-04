@@ -52,7 +52,7 @@ class QualificationStepperWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "qualification".tr,
+            "Qualification",
             style: const TextStyle(
               fontSize: 40,
               fontWeight: FontWeight.bold,

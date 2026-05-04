@@ -561,7 +561,7 @@ class ProjectDesktopWidget extends GetView<ProjectSectionController> {
               ),
               const SizedBox(height: 16),
               Text(
-                'projects'.tr,
+                'Featured Projects',
                 style: TextStyle(
                   fontSize: isMobile ? 32 : 48,
                   fontWeight: FontWeight.w800,

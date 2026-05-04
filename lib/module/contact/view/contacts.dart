@@ -50,7 +50,7 @@ class ContactSection extends GetView<ContactController> {
               ),
               const SizedBox(height: 24),
               Text(
-                'get_in_touch'.tr,
+                'Get In Touch',
                 style: const TextStyle(
                   fontSize: 48,
                   fontWeight: FontWeight.bold,
@@ -60,7 +60,7 @@ class ContactSection extends GetView<ContactController> {
               ),
               const SizedBox(height: 16),
               Text(
-                'contact_desc'.tr,
+                'Whether it\'s for collaboration, job opportunities, or just to say hi,\nmy inbox is always open.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 18,
@@ -93,20 +93,20 @@ class ContactSection extends GetView<ContactController> {
                               children: [
                                 Expanded(
                                   child: _buildTextField(
-                                    label: 'label_name'.tr,
+                                    label: 'Full Name',
                                     icon: Icons.person_outline,
                                     validator: (value) =>
-                                        value!.isEmpty ? 'err_name'.tr : null,
+                                        value!.isEmpty ? 'Please enter your name' : null,
                                     onChanged: (value) => controller.name.value = value,
                                   ),
                                 ),
                                 const SizedBox(width: 20),
                                 Expanded(
                                   child: _buildTextField(
-                                    label: 'label_phone'.tr,
+                                    label: 'Phone Number',
                                     icon: Icons.phone_outlined,
                                     validator: (value) => value!.isEmpty
-                                        ? 'err_phone'.tr
+                                        ? 'Please enter your Phone Number'
                                         : null,
                                     onChanged: (value) => controller.phone.value = value,
                                   ),
@@ -115,40 +115,40 @@ class ContactSection extends GetView<ContactController> {
                             )
                           else ...[
                             _buildTextField(
-                              label: 'label_name'.tr,
+                              label: 'Full Name',
                               icon: Icons.person_outline,
                               validator: (value) =>
-                                  value!.isEmpty ? 'err_name'.tr : null,
+                                  value!.isEmpty ? 'Please enter your name' : null,
                               onChanged: (value) => controller.name.value = value,
                             ),
                             const SizedBox(height: 20),
                             _buildTextField(
-                              label: 'label_phone'.tr,
+                              label: 'Phone Number',
                               icon: Icons.phone_outlined,
                               validator: (value) => value!.isEmpty
-                                  ? 'err_phone'.tr
+                                  ? 'Please enter your Phone Number'
                                   : null,
                               onChanged: (value) => controller.phone.value = value,
                             ),
                           ],
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'label_email'.tr,
+                            label: 'Email Address',
                             icon: Icons.email_outlined,
                             validator: (value) => value!.isEmpty ||
                                     !RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
                                         .hasMatch(value)
-                                ? 'err_email'.tr
+                                ? 'Please enter a valid email address'
                                 : null,
                             onChanged: (value) => controller.email.value = value,
                           ),
                           const SizedBox(height: 20),
                           _buildTextField(
-                            label: 'label_message'.tr,
+                            label: 'Your Message',
                             icon: Icons.message_outlined,
                             maxLines: 5,
                             validator: (value) =>
-                                value!.isEmpty ? 'err_message'.tr : null,
+                                value!.isEmpty ? 'Please enter your message' : null,
                             onChanged: (value) => controller.message.value = value,
                           ),
                           const SizedBox(height: 40),
@@ -264,7 +264,7 @@ class _SubmitButton extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'btn_send'.tr,
+                  'Send Message',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,

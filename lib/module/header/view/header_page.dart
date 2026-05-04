@@ -1,4 +1,3 @@
-import 'package:arshad_dev/locale/locale_service.dart';
 import 'package:arshad_dev/utils/constants.dart';
 import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:arshad_dev/utils/icon_utils.dart';
@@ -38,12 +37,6 @@ class HeroSection extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          // Language Toggle
-          Positioned(
-            top: 40,
-            right: isMobile ? 20 : 40,
-            child: _LanguageToggle(),
-          ),
           Center(
             child: SingleChildScrollView(
               child: Column(
@@ -80,7 +73,7 @@ class HeroSection extends StatelessWidget {
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        text: 'hi'.tr,
+                        text: 'Hi, I\'m ',
                         style: TextStyle(
                           fontSize: isMobile ? 28 : 40,
                           fontWeight: FontWeight.bold,
@@ -88,15 +81,7 @@ class HeroSection extends StatelessWidget {
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: "I'm ",
-                            style: TextStyle(
-                              fontSize: isMobile ? 28 : 40,
-                              fontWeight: FontWeight.bold,
-                              color: AppTheme.white,
-                            ),
-                          ),
-                          TextSpan(
-                            text: 'name'.tr,
+                            text: 'Arshad Rahman',
                             style: TextStyle(
                               fontSize: isMobile ? 28 : 40,
                               fontWeight: FontWeight.bold,
@@ -117,7 +102,7 @@ class HeroSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'title'.tr,
+                    'Fullstack Software Developer | 7+ Years Experience',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: isMobile ? 16 : 24,
@@ -145,8 +130,8 @@ class HeroSection extends StatelessWidget {
                         const SizedBox(width: 16),
                         _SocialButton(
                           iconPath: IconsUtil.email,
-                          onTap: () =>
-                              _launchSocial('mailto:arshadrahiman@gmail.com'),
+                          onTap: () => _launchSocial(
+                              'mailto:arshadrahman.dev@gmail.com'),
                         ),
                         const SizedBox(width: 16),
                         _SocialButton(
@@ -158,8 +143,9 @@ class HeroSection extends StatelessWidget {
                         const SizedBox(width: 16),
                         _SocialButton(
                           iconPath: IconsUtil.insta,
+                          iconColor: const Color(0xFFE1306C), // Instagram Brand Color
                           onTap: () => _launchSocial(
-                              'https://instagram.com/arshadrahiman'),
+                              'https://instagram.com/arshad_rahiman'),
                         ),
                       ],
                     ),
@@ -170,7 +156,7 @@ class HeroSection extends StatelessWidget {
                   // CTA Button
                   HoverButton(
                     fnBtn: () => openConsultationLink(),
-                    buttonText: "contact".tr,
+                    buttonText: "Contact Me",
                   ),
                 ],
               ),
@@ -206,79 +192,17 @@ class HeroSection extends StatelessWidget {
   }
 }
 
-class _LanguageToggle extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final localeService = Get.find<LocaleService>();
-    final currentLocale = Get.locale ?? const Locale('en', 'US');
-    final isArabic = currentLocale.languageCode == 'ar';
-
-    return GestureDetector(
-      onTap: () {
-        if (isArabic) {
-          localeService.changeLocale(Constants.english);
-        } else {
-          localeService.changeLocale(Constants.arabic);
-        }
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: AppTheme.primaryBorderColor.withValues(alpha: 0.4),
-            width: 1.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: AppTheme.primaryBorderColor.withValues(alpha: 0.1),
-              blurRadius: 10,
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "EN",
-              style: TextStyle(
-                color: !isArabic ? Colors.white : Colors.white54,
-                fontWeight: !isArabic ? FontWeight.bold : FontWeight.normal,
-                fontSize: 14,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8),
-              width: 1,
-              height: 14,
-              color: Colors.white24,
-            ),
-            Text(
-              "AR",
-              style: TextStyle(
-                color: isArabic ? Colors.white : Colors.white54,
-                fontWeight: isArabic ? FontWeight.bold : FontWeight.normal,
-                fontSize: 14,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class _SocialButton extends StatelessWidget {
   final String iconPath;
   final VoidCallback onTap;
   final bool isSvg;
+  final Color? iconColor;
 
   const _SocialButton({
     required this.iconPath,
     required this.onTap,
     this.isSvg = true,
+    this.iconColor,
   });
 
   @override
@@ -318,10 +242,20 @@ class _SocialButton extends StatelessWidget {
                   : [],
             ),
             child: isSvg
-                ? SvgIcon(iconPath)
+                ? Center(
+                    child: SvgIcon(
+                      iconPath,
+                      color: iconColor ?? Colors.white,
+                      size: 22,
+                    ),
+                  )
                 : Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Image.asset(iconPath, fit: BoxFit.contain),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      iconPath,
+                      fit: BoxFit.contain,
+                      color: iconColor,
+                    ),
                   ),
           ),
         ),

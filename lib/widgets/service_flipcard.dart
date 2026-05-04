@@ -63,11 +63,15 @@ class _ServiceFlipCardState extends State<ServiceFlipCard> {
                 Expanded(
                   child: SizedBox(
                     width: widget.cardWidth, // Fill the entire width
-                    child: Image.asset(
-                      "assets/animations/${widget.imageName}",
-                      fit: BoxFit
-                          .fill, // Stretch the image to fill the available space
-                    ),
+                    child: widget.imageName.startsWith('http')
+                        ? Image.network(
+                            widget.imageName,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.asset(
+                            "assets/animations/${widget.imageName}",
+                            fit: BoxFit.fill,
+                          ),
                   ),
                 ),
                 // Title Section (now at the bottom)

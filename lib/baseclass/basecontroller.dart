@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:arshad_dev/apiservice/dio_api.dart';
-import 'package:arshad_dev/locale/locale_service.dart';
 import 'package:arshad_dev/storage/storage_service.dart';
 
 class BaseController extends GetxController {
@@ -16,7 +15,6 @@ class BaseController extends GetxController {
   static RxBool isConnected = true.obs;
   static RxBool isSessionExpired = false.obs;
   static StorageService storageService = Get.find<StorageService>();
-  static RxString version = "".obs;
   static RxString languageName = "english".obs;
 
   static arshad_devSnackBar(String title, String message) {
@@ -60,30 +58,7 @@ class BaseController extends GetxController {
   //       "V ${packageInfo.version}(${packageInfo.buildNumber})");
   // }
 
-  getLanguageType() async {
-    String langCode = await storageService.getLanguageCode();
-    if (langCode == "ar") {
-      languageName.value = "arabic";
-    } else {
-      languageName.value = "english";
-    }
-  }
 
-  static changeLanguage() async {
-    if (languageName.value == "arabic") {
-      await storageService.write(Constants.langCode, "en");
-      await storageService.write(Constants.appLanguage, Constants.english);
-      LocaleService().changeLocale("english" ?? Constants.english);
-      languageName.value = "english";
-      Get.offAllNamed(Routes.splash);
-    } else {
-      await storageService.write(Constants.langCode, "ar");
-      await storageService.write(Constants.appLanguage, Constants.arabic);
-      LocaleService().changeLocale("arabic" ?? Constants.english);
-      languageName.value = "arabic";
-      Get.offAllNamed(Routes.splash);
-    }
-  }
 
   Future<bool> checkConnection() async {
     var connectivityResult = await (Connectivity().checkConnectivity());

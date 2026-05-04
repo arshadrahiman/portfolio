@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:arshad_dev/theme/app_theme.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'dart:ui';
 
 class CertificationsSection extends StatelessWidget {
@@ -81,32 +82,165 @@ class CertificationsSection extends StatelessWidget {
   Widget _buildCertificationsGrid(bool isMobile) {
     final certifications = [
       {
-        'title': 'Google UX Design Professional Certificate',
-        'issuer': 'Google / Coursera',
-        'date': 'Aug 2023',
-        'imageUrl': 'https://picsum.photos/400/300?1',
-        'url': '#',
-      },
-      {
-        'title': 'Flutter & Dart - The Complete Guide',
+        'title': 'Project Integration Management PMP',
         'issuer': 'Udemy',
-        'date': 'Jan 2024',
-        'imageUrl': 'https://picsum.photos/400/300?2',
-        'url': '#',
-      },
-      {
-        'title': 'Firebase Cloud Firestore',
-        'issuer': 'Google Developers',
         'date': 'Nov 2023',
-        'imageUrl': 'https://picsum.photos/400/300?3',
+        'imageUrl': 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': 'https://www.udemy.com/certificate/UC-ce6d0881-790a-42f7-9387-e1d966072959/',
+      },
+      {
+        'title': 'iOS 16 Swift & SwiftUI - Complete iOS App Development',
+        'issuer': 'Udemy',
+        'date': 'Oct 2023',
+        'imageUrl': 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': 'https://www.udemy.com/certificate/UC-53715fd3-5bc6-4b95-83ef-b18bf9b24f7e/',
+      },
+      {
+        'title': 'Flutter sqlite Database with full Project',
+        'issuer': 'Udemy',
+        'date': 'Jul 2023',
+        'imageUrl': 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': 'https://www.udemy.com/certificate/UC-4e93a37-c466-4675-936a-653b05da68e/',
+      },
+      {
+        'title': 'Figma UI/UX Design course 2022',
+        'issuer': 'Figma',
+        'date': 'Apr 2022',
+        'imageUrl': 'https://images.unsplash.com/photo-1586717791821-3f44a563de4d?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': 'https://www.udemy.com/certificate/UC-6a06a9a2-3e36-4832-9ebc-22344a909cf1/',
+      },
+      {
+        'title': 'PMI Risk Management Professional (PMI-RMP)',
+        'issuer': 'Project Management Institute',
+        'date': 'Apr 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1454165833767-1316b044633b?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': 'https://www.pmi.org/certifications/risk-management-rmp',
+      },
+      {
+        'title': 'Python program From UST',
+        'issuer': 'UST',
+        'date': 'Dec 2021',
+        'imageUrl': 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&h=300&q=80',
         'url': '#',
       },
       {
-        'title': 'Clean Architecture & SOLID Principles',
-        'issuer': 'Pluralsight',
-        'date': 'Mar 2024',
-        'imageUrl': 'https://picsum.photos/400/300?4',
+        'title': 'Introduction to Cybersecurity',
+        'issuer': 'Cisco Networking Academy',
+        'date': 'Apr 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': 'https://www.credly.com/badges/0a4a87ce-4026-4417-a136-21ee0c21ac69/public_url',
+      },
+      {
+        'title': 'Project management short course',
+        'issuer': 'eLearning College',
+        'date': 'Dec 2021',
+        'imageUrl': 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=400&h=300&q=80',
         'url': '#',
+      },
+      {
+        'title': 'Introduction to Flutter Development- Dart',
+        'issuer': 'The App Brewery',
+        'date': 'Nov 2021',
+        'imageUrl': 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Introduction to Scrum',
+        'issuer': 'BlazeMeter University',
+        'date': 'Oct 2021',
+        'imageUrl': 'https://images.unsplash.com/photo-1522071823991-b99c551e581c?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Apache JMeter Pro',
+        'issuer': 'BlazeMeter University',
+        'date': 'Oct 2021',
+        'imageUrl': 'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Certification in Agile Scrum Essential',
+        'issuer': 'IIBA',
+        'date': 'Sep 2021',
+        'imageUrl': 'https://images.unsplash.com/photo-1522071823991-b99c551e581c?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Certified Software Tester (CSTE)',
+        'issuer': 'ISTP Digital',
+        'date': 'Jun 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Css course',
+        'issuer': 'Sololearn',
+        'date': 'May 2021',
+        'imageUrl': 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'HTML fundamental course',
+        'issuer': 'Sololearn',
+        'date': 'Apr 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'SelectorsHub Certification Program',
+        'issuer': 'SelectorsHub',
+        'date': 'Apr 2021',
+        'imageUrl': 'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Understanding of SQL',
+        'issuer': 'Sololearn',
+        'date': 'Feb 2021',
+        'imageUrl': 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Cybersecurity',
+        'issuer': 'Edapt',
+        'date': 'Apr 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'CyberSecurity Forensic Analyst (CSFA)',
+        'issuer': 'Edapt',
+        'date': 'Oct 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Certified Software Tester (CSTE)',
+        'issuer': 'EDUONIX',
+        'date': 'Oct 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'The fundamental of digital marketing',
+        'issuer': 'Google Digital Garage',
+        'date': 'Apr 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Digital marketing',
+        'issuer': 'Edapt',
+        'date': 'Apr 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': '#',
+      },
+      {
+        'title': 'Introduction to software product management',
+        'issuer': 'University of Alberta',
+        'date': 'Apr 2020',
+        'imageUrl': 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=400&h=300&q=80',
+        'url': 'https://www.coursera.org/account/accomplishments/verify/3TCJQPQAVGZ',
       },
     ];
 
@@ -227,16 +361,23 @@ class _CertificationCardState extends State<CertificationCard> {
                       ),
                       if (_isHovered)
                         Center(
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.black.withValues(alpha: 0.6),
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.open_in_new,
-                              color: Colors.white,
-                              size: 28,
+                          child: GestureDetector(
+                            onTap: () {
+                              if (widget.url != '#') {
+                                launchUrl(Uri.parse(widget.url));
+                              }
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withValues(alpha: 0.6),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.open_in_new,
+                                color: Colors.white,
+                                size: 28,
+                              ),
                             ),
                           ),
                         ),
@@ -291,7 +432,9 @@ class _CertificationCardState extends State<CertificationCard> {
                           ),
                           TextButton.icon(
                             onPressed: () {
-                              // Launch URL logic
+                              if (widget.url != '#') {
+                                launchUrl(Uri.parse(widget.url));
+                              }
                             },
                             icon: Icon(
                               Icons.arrow_forward,

@@ -70,7 +70,7 @@ class ExperienceStepperWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "experience".tr,
+            "Experience",
             style: const TextStyle(
               fontSize: 40,
               fontWeight: FontWeight.bold,

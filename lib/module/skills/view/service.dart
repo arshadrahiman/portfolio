@@ -44,7 +44,7 @@ class ServiceDesktopWidget extends GetView<ServiceController> {
               ),
               const SizedBox(width: 16),
               Text(
-                "services".tr,
+                "What I can do",
                 style: const TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
@@ -93,7 +93,7 @@ class ServiceDesktopWidget extends GetView<ServiceController> {
                                     "GetX / Bloc / Riverpod",
                                     "Method Channel"
                                   ],
-                                  title: 'service_mobile'.tr,
+                                  title: 'Mobile App Development',
                                   imageName: 'mobile.gif',
                                 ),
                               ),
@@ -112,7 +112,7 @@ class ServiceDesktopWidget extends GetView<ServiceController> {
                                     "SignalR / WebRTC",
                                     "Data Encryption"
                                   ],
-                                  title: 'service_backend'.tr,
+                                  title: 'Backend & Real-time Integration',
                                   imageName: 'backend.gif',
                                 ),
                               ),
@@ -132,7 +132,7 @@ class ServiceDesktopWidget extends GetView<ServiceController> {
                                     "SEO & Performance",
                                     "HTML5 / CSS3 / Tailwind"
                                   ],
-                                  title: 'service_web'.tr,
+                                  title: 'Web Development',
                                   imageName: 'web.gif',
                                 ),
                               ),
@@ -151,8 +151,8 @@ class ServiceDesktopWidget extends GetView<ServiceController> {
                                     "CI/CD (Azure / App Center)",
                                     "QA & Automation"
                                   ],
-                                  title: 'service_testing'.tr,
-                                  imageName: 'backend.gif', // Using backend.gif or another relevant one
+                                  title: 'Software Testing & DevOps',
+                                  imageName: 'https://cdn.dribbble.com/users/1162077/screenshots/3848914/tester.gif',
                                 ),
                               ),
                             ),
@@ -228,7 +228,7 @@ class ServiceDesktopWidget extends GetView<ServiceController> {
                               "QA & Automation"
                             ],
                             title: 'Software Testing',
-                            imageName: 'backend.gif',
+                            imageName: 'https://cdn.dribbble.com/users/1162077/screenshots/3848914/tester.gif',
                           ),
                         ),
                       ],

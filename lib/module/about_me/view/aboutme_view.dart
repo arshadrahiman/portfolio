@@ -41,7 +41,7 @@ class AboutMeSection extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  'about_me'.tr,
+                  'About Me',
                   style: TextStyle(
                     fontSize: isMobile ? 28 : 36,
                     fontWeight: FontWeight.bold,
@@ -74,7 +74,7 @@ class AboutMeSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'about_desc'.tr,
+                        'I am a dedicated Cross-platform App Developer and Software Lead with over 7 years of experience in Software Development and Testing. I specialize in building robust, scalable solutions using Flutter and Dart, with a solid history of delivering high-quality software for international clients.',
                         style: TextStyle(
                           fontSize: isMobile ? 16 : 18,
                           color: Colors.grey[300],
@@ -104,7 +104,7 @@ class AboutMeSection extends StatelessWidget {
   
                       const SizedBox(height: 24),
                       Text(
-                        "about_sub_desc".tr,
+                        'Currently leading the mobile development team at Mobcoder (Tawuniya Insurance) in Riyadh, where I drive architecture decisions and manage release processes. With an MBA in Project Leadership and Management, I blend technical expertise with strategic leadership to accomplish critical milestones.',
                         style: TextStyle(
                           fontSize: isMobile ? 14 : 16,
                           color: Colors.grey[400],
@@ -114,7 +114,7 @@ class AboutMeSection extends StatelessWidget {
                       ),
                       const SizedBox(height: 24),
                       Text(
-                        "about_passion".tr,
+                        'Passionate about solving real-world problems through technology, I continuously stay updated with the latest trends to drive innovation.',
                         style: TextStyle(
                           fontSize: isMobile ? 14 : 16,
                           color: Colors.grey[400],
