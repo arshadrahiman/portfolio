@@ -11,6 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:html' as html show window;
+import 'dart:ui';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -129,12 +130,6 @@ class HeroSection extends StatelessWidget {
                         ),
                         const SizedBox(width: 16),
                         _SocialButton(
-                          iconPath: IconsUtil.email,
-                          onTap: () => _launchSocial(
-                              'mailto:arshadrahman.dev@gmail.com'),
-                        ),
-                        const SizedBox(width: 16),
-                        _SocialButton(
                           iconPath: IconsUtil.linkedin,
                           isSvg: false,
                           onTap: () => _launchSocial(
@@ -168,12 +163,115 @@ class HeroSection extends StatelessWidget {
   }
 
   void openConsultationLink() {
-    const url = 'https://calendly.com/software-engineer-arshadrahman';
-    if (kIsWeb) {
-      html.window.open(url, '_blank');
-    } else {
-      _launchURL(url);
-    }
+    Get.dialog(
+      Center(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+          child: Container(
+            width: 340,
+            padding: const EdgeInsets.all(32),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1A1A2E).withValues(alpha: 0.7),
+              borderRadius: BorderRadius.circular(28),
+              border: Border.all(
+                color: AppTheme.primaryBorderColor.withValues(alpha: 0.3),
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: AppTheme.primaryBorderColor.withValues(alpha: 0.15),
+                  blurRadius: 30,
+                  spreadRadius: 5,
+                ),
+              ],
+            ),
+            child: Material(
+              color: Colors.transparent,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: AppTheme.primaryBorderColor.withValues(alpha: 0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.handshake_rounded,
+                      color: AppTheme.primaryBorderColor,
+                      size: 32,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Let's Connect",
+                    style: TextStyle(
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    "How would you like to reach out?",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.white70,
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  _ContactOption(
+                    icon: Icons.video_camera_front_rounded,
+                    title: "1:1 Meeting",
+                    subtitle: "Schedule via Calendly",
+                    onTap: () {
+                      Get.back();
+                      _launchSocial('https://calendly.com/software-engineer-arshadrahman');
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  _ContactOption(
+                    icon: Icons.chat_rounded,
+                    title: "WhatsApp Chat",
+                    subtitle: "Direct message",
+                    onTap: () {
+                      Get.back();
+                      // Update with your actual phone number
+                      _launchSocial('https://wa.me/');
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  _ContactOption(
+                    icon: Icons.email_rounded,
+                    title: "Email",
+                    subtitle: "Drop a message",
+                    onTap: () {
+                      Get.back();
+                      _launchSocial('mailto:arshadrahman.dev@gmail.com');
+                    },
+                  ),
+                  const SizedBox(height: 24),
+                  TextButton(
+                    onPressed: () => Get.back(),
+                    style: TextButton.styleFrom(
+                      foregroundColor: Colors.white70,
+                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                    ),
+                    child: const Text(
+                      "Cancel",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+      barrierColor: Colors.black.withValues(alpha: 0.6),
+    );
   }
 
   void _launchSocial(String url) {
@@ -257,6 +355,97 @@ class _SocialButton extends StatelessWidget {
                       color: iconColor,
                     ),
                   ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ContactOption extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  const _ContactOption({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final RxBool isHovered = false.obs;
+
+    return MouseRegion(
+      onEnter: (_) => isHovered.value = true,
+      onExit: (_) => isHovered.value = false,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Obx(
+          () => AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: isHovered.value
+                  ? AppTheme.primaryBorderColor.withValues(alpha: 0.1)
+                  : Colors.white.withValues(alpha: 0.03),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: isHovered.value
+                    ? AppTheme.primaryBorderColor.withValues(alpha: 0.5)
+                    : Colors.white.withValues(alpha: 0.1),
+              ),
+            ),
+            child: Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: AppTheme.primaryBorderColor.withValues(alpha: 0.1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    icon,
+                    color: AppTheme.primaryBorderColor,
+                    size: 24,
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        subtitle,
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: isHovered.value
+                      ? AppTheme.primaryBorderColor
+                      : Colors.white54,
+                  size: 16,
+                ),
+              ],
+            ),
           ),
         ),
       ),

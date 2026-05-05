@@ -44,7 +44,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   const BorderRadius.vertical(bottom: Radius.circular(20)),
               child: Container(
                 height: kToolbarHeight,
-                width: MediaQuery.of(context).size.width - 300,
+                width: MediaQuery.of(context).size.width - 100,
                 decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 44, 44, 44),
                 ),
@@ -53,14 +53,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   children: [
                     _MenuItem(title: 'Home', onActionPressed: onActionPressed),
                     _MenuItem(title: 'About', onActionPressed: onActionPressed),
-                    _MenuItem(
-                        title: 'Services', onActionPressed: onActionPressed),
-                    _MenuItem(
-                        title: 'Projects', onActionPressed: onActionPressed),
-                    _MenuItem(
-                        title: 'Experience', onActionPressed: onActionPressed),
-                    _MenuItem(
-                        title: 'Contact Me', onActionPressed: onActionPressed),
+                    _MenuItem(title: 'Services', onActionPressed: onActionPressed),
+                    _MenuItem(title: 'Projects', onActionPressed: onActionPressed),
+                    _MenuItem(title: 'Certifications', onActionPressed: onActionPressed),
+                    _MenuItem(title: 'Qualifications', onActionPressed: onActionPressed),
+                    _MenuItem(title: 'Experience', onActionPressed: onActionPressed),
+                    _MenuItem(title: 'Contact', onActionPressed: onActionPressed),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20.0,

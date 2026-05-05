@@ -8,8 +8,11 @@ class _TechStackController extends GetxController {
   final ScrollController scrollController = ScrollController();
   final RxBool scrollingDown = true.obs;
   int scrollSeconds = 10;
+  bool _isAutoScrolling = false;
 
   void startAutoScroll() {
+    if (_isAutoScrolling) return;
+    _isAutoScrolling = true;
     Future.delayed(const Duration(seconds: 1), _autoScroll);
   }
 
@@ -48,7 +51,7 @@ class TechStackAutoScrollWidget extends StatelessWidget {
     super.key,
     required this.imageHeight,
     this.titleFontSize = 24,
-    this.scrollSeconds = 10,
+    this.scrollSeconds = 15,
   });
 
   final double imageHeight;
