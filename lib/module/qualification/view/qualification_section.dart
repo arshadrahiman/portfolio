@@ -33,12 +33,12 @@ class QualificationStepperWidget extends StatelessWidget {
       startDate: '2018',
       endDate: '2021',
     ),
-    _QualificationItem(
-      degree: 'High School (CBSE)',
-      institution: 'Sabari Central School, Cherplasheri',
-      startDate: '2001',
-      endDate: '2017',
-    ),
+    // _QualificationItem(
+    //   degree: 'High School (CBSE)',
+    //   institution: 'Sabari Central School, Cherplasheri',
+    //   startDate: '2001',
+    //   endDate: '2017',
+    // ),
   ];
 
   @override
