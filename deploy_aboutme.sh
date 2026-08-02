@@ -22,8 +22,8 @@ echo "📂 Copying build artifacts..."
 cp -r build/web/* about-me/
 
 # 4. Create CNAME file for custom domain
-echo "🌐 Writing CNAME file for arshadrahman.in..."
-echo "arshadrahman.in" > about-me/CNAME
+echo "🌐 Writing CNAME file for www.arshadrahman.in..."
+echo "www.arshadrahman.in" > about-me/CNAME
 
 # 5. Commit and push
 echo "📤 Committing and pushing to production..."
