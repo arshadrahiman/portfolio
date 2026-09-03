@@ -138,7 +138,8 @@ class HeroSection extends StatelessWidget {
                         const SizedBox(width: 16),
                         _SocialButton(
                           iconPath: IconsUtil.insta,
-                          iconColor: const Color(0xFFE1306C), // Instagram Brand Color
+                          iconColor:
+                              const Color(0xFFE1306C), // Instagram Brand Color
                           onTap: () => _launchSocial(
                               'https://instagram.com/arshad_rahiman'),
                         ),
@@ -228,7 +229,8 @@ class HeroSection extends StatelessWidget {
                     subtitle: "Schedule via Calendly",
                     onTap: () {
                       Get.back();
-                      _launchSocial('https://calendly.com/software-engineer-arshadrahman');
+                      _launchSocial(
+                          'https://calendly.com/software-engineer-arshadrahman');
                     },
                   ),
                   const SizedBox(height: 16),
@@ -257,7 +259,8 @@ class HeroSection extends StatelessWidget {
                     onPressed: () => Get.back(),
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white70,
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
                     ),
                     child: const Text(
                       "Cancel",

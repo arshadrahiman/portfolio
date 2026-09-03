@@ -23,13 +23,13 @@ class ExperienceStepperWidget extends StatelessWidget {
   static const List<_ExperienceItem> _experiences = [
     _ExperienceItem(
       designation: 'Technical Lead (Flutter)',
-      company: 'Mobcoder (Tawuniya Insurance), Riyadh, SA',
+      company: 'Mobcoder (Tawuniya Insurance), Riyadh, KSA',
       startDate: 'July 2025',
       endDate: 'Present',
     ),
     _ExperienceItem(
       designation: 'Flutter Developer & Team Lead',
-      company: 'Leader IT Private Limited, Technopark, India',
+      company: 'Leader IT Private Limited, Riyadh, KSA',
       startDate: 'March 2023',
       endDate: 'July 2025',
     ),
