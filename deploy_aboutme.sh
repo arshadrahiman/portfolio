@@ -29,7 +29,7 @@ echo "www.arshadrahman.in" > about-me/CNAME
 echo "📤 Committing and pushing to production..."
 cd about-me
 git add .
-git commit -m "Deploy: Localization and language toggle features ($(date))" || echo "No changes to commit"
+git commit -m "Deploy: Website release ($(date))" || echo "No changes to commit"
 git push origin production
 
 echo "✅ Deployment to about-me successful!"
