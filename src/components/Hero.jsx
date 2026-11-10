@@ -64,10 +64,10 @@ export default function Hero({ profile }) {
               <div className="relative group shrink-0">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl p-[2px] bg-gradient-to-tr from-blue-500 via-cyan-400 to-indigo-500 shadow-xl shadow-blue-500/25">
                   <img
-                    src="/assets/icons/profile_pic.jpg"
+                    src="/profile.jpg"
                     alt="Abdullah Arshadul Rahman"
-                    className="w-full h-full object-cover rounded-[14px]"
-                    onError={(e) => { e.target.style.display = 'none'; }}
+                    className="w-full h-full object-cover object-[center_20%] rounded-[14px]"
+                    onError={(e) => { e.target.src = '/assets/icons/profile_pic.jpg'; }}
                   />
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#08080b] flex items-center justify-center">

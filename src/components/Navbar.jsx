@@ -36,9 +36,9 @@ export default function Navbar({ profile }) {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-indigo-600 p-[1.5px] shadow-lg shadow-blue-500/20 group-hover:scale-105 transition">
               <div className="w-full h-full bg-[#08080b] rounded-[10px] overflow-hidden flex items-center justify-center">
                 <img
-                  src="/assets/icons/profile_pic.jpg"
+                  src="/profile.jpg"
                   alt="Arshad Rahman"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[center_20%]"
                   onError={(e) => {
                     e.target.style.display = 'none';
                     e.target.nextSibling.style.display = 'block';
