@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Github, Linkedin, Twitter, MessageCircle, Heart } from 'lucide-react';
+import { ArrowUp, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 
 export default function Footer({ profile }) {
   const scrollToTop = () => {
@@ -60,6 +60,17 @@ export default function Footer({ profile }) {
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
+              </a>
+            )}
+            {profile.socialLinks.instagram && (
+              <a
+                href={profile.socialLinks.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition border border-white/5"
+                aria-label="Instagram"
+              >
+                <Instagram className="w-4 h-4" />
               </a>
             )}
             <button

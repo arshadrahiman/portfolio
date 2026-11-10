@@ -5,72 +5,189 @@ export const portfolioData = {
     preferredName: "Arshad Rahman",
     role: "Senior Flutter & Full-Stack Engineer",
     secondaryRole: "Mobile Systems Architect & Technical Lead",
-    statusBadge: "OPEN TO WORK · TARGET: DUBAI / UAE 🇦🇪",
-    statusDetail: "Open to Senior Mobile / Tech Lead opportunities in Dubai, UAE & Global Remote",
-    baseLocation: "Kerala, India / Riyadh, KSA",
-    targetLocation: "Dubai / UAE 🇦🇪",
+    statusBadge: "OPEN TO WORK · READY TO RELOCATE GLOBALLY 🌍",
+    statusDetail: "Open to Full-Time & Contract roles · Immediate relocation to any global location (UAE, GCC, Europe, UK, US, Worldwide) or Remote",
+    baseLocation: "Kerala, India",
+    workLocations: "Riyadh, KSA · Dubai, UAE · Kerala, India",
+    relocationStatus: "Ready to Relocate Anywhere Worldwide",
+    contractStatus: "Available for Contract & Full-Time",
     experienceYears: "7+",
     email: "arshadrahman.dev@gmail.com",
-    secondaryEmail: "hello@musman.dev",
     portfolioUrl: "https://arshadrahman.in",
     calendlyUrl: "https://calendly.com/software-engineer-arshadrahman",
     socialLinks: {
       github: "https://github.com/arshadrahiman",
       linkedin: "https://www.linkedin.com/in/arshadul-rahman",
+      instagram: "https://instagram.com/arshad_rahiman",
       twitter: "https://twitter.com/",
       whatsapp: "https://wa.me/"
     },
     hero: {
       eyebrow: "Banking · Fintech · Insurance · 7+ Years Experience",
-      headline: "Crafting secure, high-performance mobile apps that hold up in the real world.",
-      subheadline: "Senior Mobile Team Lead & Full-Stack Engineer specializing in Flutter, Kotlin, React Native, and robust backend microservices (.NET, Node.js, Python). Leading with Clean Architecture, enterprise mobile security (OWASP MASVS), and zero-to-App Store delivery.",
+      headline: "Crafting secure, high-performance mobile apps that hold up in production.",
+      subheadline: "Senior Mobile Team Lead & Full-Stack Engineer specializing in Flutter, Kotlin, React Native, Java, and robust backend microservices (.NET, Node.js, Python, PHP). Experienced leading high-stakes mobile deliveries in Riyadh and Dubai, with deep expertise in Clean Architecture, OWASP MASVS mobile security, and automated store releases.",
       stats: [
         { label: "Industry Tenure", value: "7+ Years", detail: "Software Dev & Mobile Leadership" },
         { label: "Production Apps", value: "20+", detail: "Across iOS & Android stores" },
         { label: "Crash-Free Rate", value: "99.9%", detail: "Sustained production SLA" },
-        { label: "Domains Mastered", value: "Fintech & InsurTech", detail: "Banking, Insurance & Health" }
+        { label: "Global Readiness", value: "Anywhere", detail: "Relocation & Contract Ready" }
       ]
     },
     currentFocus: [
-      { label: "Working on", value: "Reusable Flutter security and architecture kits" },
-      { label: "Learning", value: "SwiftUI, Flutter performance profiling, native platform channels" },
-      { label: "Targeting", value: "Flutter / Mobile Lead roles in Dubai and the UAE 🇦🇪" },
+      { label: "Availability", value: "Ready to relocate anywhere globally & available for contract / full-time" },
+      { label: "Working on", value: "Reusable enterprise Flutter security, biometrics, and architecture kits" },
+      { label: "Learning", value: "SwiftUI, advanced Flutter performance profiling, and platform channels" },
       { label: "Ask me about", value: "Flutter, mobile security, Node.js / TypeScript / .NET APIs, test automation" }
     ]
   },
 
-  // 4 Core Pillars from GitHub README
+  // 4 Core Competency Pillars from GitHub README
   pillars: [
     {
       icon: "smartphone",
       title: "Mobile Engineering",
-      tagline: "Cross-platform & Native Excellence",
-      skills: "Flutter, Kotlin, React Native, Java, Swift; custom native bridges, store releases, 60fps performance."
+      tagline: "Cross-platform & Native Bridges",
+      skills: "Flutter, Kotlin, React Native, Java, Swift; native Method Channels, Store deployments, 60fps UI performance."
     },
     {
       icon: "shield",
       title: "Mobile Security",
-      tagline: "Enterprise & OWASP MASVS",
-      skills: "Certificate pinning, biometrics auth, encrypted local storage, root & jailbreak detection, code obfuscation."
+      tagline: "OWASP MASVS & Hardening",
+      skills: "SSL/TLS certificate pinning, biometrics auth, AES-256 local storage, root & jailbreak detection, code obfuscation."
     },
     {
       icon: "server",
-      title: "Back-End & APIs",
-      tagline: "Microservices & Distributed Systems",
-      skills: "Node.js, TypeScript, Python, PHP, .NET microservices, GraphQL, REST APIs, WebSockets."
+      title: "Back-End & Microservices",
+      tagline: "Robust Distributed APIs",
+      skills: "Node.js, TypeScript, Python, PHP, .NET microservices, GraphQL, REST APIs, WebSockets & SignalR."
     },
     {
       icon: "test-tube",
       title: "Test Automation & QA",
-      tagline: "Full-Spectrum Reliability",
-      skills: "Appium, Robot Framework, Selenium, JMeter load testing, Postman API suites, CI/CD automation."
+      tagline: "Rigorous QA Standards",
+      skills: "Appium, Robot Framework, Selenium, JMeter load testing, Postman API collections, CI/CD pipelines."
     }
   ],
 
+  // Career Work Experience Timeline
+  experience: [
+    {
+      designation: "Technical Lead (Flutter)",
+      company: "Mobcoder (Tawuniya Insurance)",
+      location: "Riyadh, KSA",
+      startDate: "July 2025",
+      endDate: "Present",
+      description: "Leading Flutter engineering for one of Saudi Arabia's largest insurance providers (Tawuniya). Driving architecture decisions, code reviews, sprint planning, and release management for member-facing mobile applications.",
+      tags: ["Flutter", "Dart", "Clean Architecture", "Team Lead", "REST APIs", "Agile"]
+    },
+    {
+      designation: "Flutter Developer & Team Lead",
+      company: "Leader IT Private Limited (Leader Investment Group)",
+      location: "Riyadh, KSA",
+      startDate: "March 2023",
+      endDate: "July 2025",
+      description: "Architected and delivered secure mobile banking, investment, and enterprise features on Flutter and .NET microservices back ends. Automated CI/CD via App Center and beta distribution on TestFlight.",
+      tags: ["Flutter", ".NET", "Microservices", "Mobile Security", "CI/CD", "TestFlight"]
+    },
+    {
+      designation: "Flutter Developer",
+      company: "Hashcode IT Solutions",
+      location: "Dubai, UAE",
+      startDate: "Nov 2022",
+      endDate: "Jan 2023",
+      description: "Delivered cross-platform mobile solutions for UAE clients, integrating complex third-party REST APIs, local offline caching, and responsive interfaces.",
+      tags: ["Flutter", "Dart", "REST APIs", "Dubai, UAE"]
+    },
+    {
+      designation: "Flutter Developer",
+      company: "Hexeam Software Solutions",
+      location: "Kerala, India",
+      startDate: "April 2022",
+      endDate: "Oct 2022",
+      description: "Engineered scalable Flutter mobile applications, implemented GetX state management, and built clean custom UI widgets for international clients.",
+      tags: ["Flutter", "Dart", "GetX", "Firebase"]
+    },
+    {
+      designation: "QA & Automation Engineer",
+      company: "Gritstone Technologies",
+      location: "Kerala, India",
+      startDate: "July 2021",
+      endDate: "March 2022",
+      description: "Led software quality assurance and automation test suites using Appium, Selenium, JMeter, and Postman. Established automated regression pipelines.",
+      tags: ["Appium", "Selenium", "JMeter", "Postman", "QA Automation"]
+    },
+    {
+      designation: "Software Developer",
+      company: "ISTP Digital",
+      location: "Kerala, India",
+      startDate: "Jan 2019",
+      endDate: "June 2021",
+      description: "Developed web applications and mobile software components utilizing modern web technologies, relational databases, and API integrations.",
+      tags: ["Full-Stack", "JavaScript", "PHP", "MySQL", "APIs"]
+    }
+  ],
+
+  // Academic Qualifications
+  qualifications: [
+    {
+      degree: "MBA in Project Leadership and Management",
+      institution: "Suresh Gyan Vihar University, Rajasthan",
+      startDate: "2023",
+      endDate: "2025"
+    },
+    {
+      degree: "BCA in Computer Application",
+      institution: "Bharathiar University, Tamil Nadu",
+      startDate: "2018",
+      endDate: "2021"
+    }
+  ],
+
+  // Professional Certifications
+  certifications: [
+    {
+      title: "Project Integration Management PMP",
+      issuer: "Udemy",
+      date: "Nov 2023",
+      badge: "Project Management"
+    },
+    {
+      title: "iOS 16 Swift & SwiftUI - Complete iOS App Development",
+      issuer: "Udemy",
+      date: "Oct 2023",
+      badge: "iOS & Swift"
+    },
+    {
+      title: "Flutter SQLite Database with Full Project",
+      issuer: "Udemy",
+      date: "Jul 2023",
+      badge: "Offline Storage"
+    },
+    {
+      title: "PMI Risk Management Professional (PMI-RMP)",
+      issuer: "Project Management Institute (PMI)",
+      date: "Apr 2020",
+      badge: "Risk Management"
+    },
+    {
+      title: "Introduction to Cybersecurity",
+      issuer: "Cisco Networking Academy",
+      date: "Apr 2020",
+      badge: "Cybersecurity"
+    },
+    {
+      title: "Apache JMeter Pro & Introduction to Scrum",
+      issuer: "BlazeMeter University",
+      date: "Oct 2021",
+      badge: "QA & DevOps"
+    }
+  ],
+
+  // Services offered
   services: [
     {
       id: "banking-fintech-insurtech",
-      title: "Banking, Fintech & Insurance Apps",
+      title: "Banking, FinTech & Insurance Apps",
       tagline: "High-security regulatory compliance and financial transaction integrity",
       description: "Proven track record delivering member-facing insurance systems (Tawuniya) and mobile banking & investment platforms (Leader Investment Group). Architected for fault-tolerant microservices, biometric authentication, and strict compliance.",
       points: [
@@ -98,7 +215,7 @@ export const portfolioData = {
       id: "mobile-security-hardening",
       title: "Mobile Security Hardening & Audits",
       tagline: "Fortifying applications against tampering, reverse engineering & MITM",
-      description: "Preventing sensitive financial and personal data leakage with military-grade mobile security protocols. I implement strict cryptographic layers and runtime application self-protection (RASP).",
+      description: "Preventing sensitive financial and personal data leakage with military-grade mobile security protocols. Implementing strict cryptographic layers and runtime application self-protection (RASP).",
       points: [
         "SSL/TLS Certificate Pinning to eliminate Man-in-the-Middle (MITM) attacks",
         "Biometric authentication (TouchID, FaceID, BiometricPrompt) & Secure Enclave/KeyStore",
@@ -122,9 +239,10 @@ export const portfolioData = {
     }
   ],
 
+  // Clean Architecture Philosophy
   architecture: {
-    title: "Architecture First Philosophy",
-    subtitle: "Why Clean Architecture is non-negotiable for serious mobile & enterprise products",
+    title: "Clean Architecture Philosophy",
+    subtitle: "Why clean separation of concerns is non-negotiable for serious mobile & enterprise products",
     philosophy: "Most mobile apps collapse under their own weight when features scale because business logic is tangled into UI widgets. I enforce strict unidirectional data flow and clean separation of concerns, ensuring high testability, rapid onboarding, and zero architectural rot.",
     layers: [
       {
@@ -158,6 +276,7 @@ export const portfolioData = {
     ]
   },
 
+  // Real Production Projects Belonging Exclusively to Arshad Rahman
   caseStudies: [
     {
       id: "tawuniya-insurance",
@@ -177,7 +296,8 @@ export const portfolioData = {
         { label: "Deployment Cycle", value: "Weekly Automated" }
       ],
       tags: ["Flutter", "Dart", "Clean Architecture", "Team Lead", "REST APIs", "InsurTech", "Agile / Scrum"],
-      badge: "Enterprise Leadership"
+      badge: "Enterprise Leadership",
+      liveUrl: "#contact"
     },
     {
       id: "leader-investment-group",
@@ -189,7 +309,7 @@ export const portfolioData = {
       company: "Leader IT / Leader Investment Group, Riyadh · 2023 – 2025",
       tagline: "Secure Mobile Investment & Banking Solution with .NET Back End",
       summary: "Architected and delivered secure mobile banking and investment features for high-net-worth clients. Built on Flutter and .NET microservices back ends, featuring automated CI/CD via App Center and iOS beta distribution through TestFlight.",
-      challenge: "Strict financial data protection, low-latency portfolio chart updates, and biometric authentication required under Saudi monetary authority guidelines.",
+      challenge: "Strict financial data protection, low-latency portfolio chart updates, and biometric authentication required under monetary authority guidelines.",
       solution: "Implemented SSL Certificate Pinning, Biometric Enclave integration, real-time portfolio streaming, and multi-factor authentication (MFA) with automated build verification.",
       metrics: [
         { label: "Security Benchmark", value: "OWASP MASVS L2" },
@@ -197,7 +317,8 @@ export const portfolioData = {
         { label: "Release Automation", value: "App Center / TestFlight" }
       ],
       tags: ["Flutter", ".NET Microservices", "Mobile Security", "Biometrics", "CI/CD", "TestFlight", "App Center"],
-      badge: "FinTech & Banking"
+      badge: "FinTech & Banking",
+      liveUrl: "#contact"
     },
     {
       id: "physiotally",
@@ -214,7 +335,7 @@ export const portfolioData = {
       metrics: [
         { label: "Offline Availability", value: "100% Fully Offline" },
         { label: "Receipt Generation Time", value: "<0.3s" },
-        { label: "Availability", value: "Live on Google Play" }
+        { label: "Store Status", value: "Live on Google Play" }
       ],
       tags: ["Flutter", "SQLite", "Offline-first", "PDF Generation", "Google Play", "HealthTech"],
       liveUrl: "https://play.google.com/store"
@@ -238,57 +359,6 @@ export const portfolioData = {
       ],
       tags: ["React", "PHP", "MySQL", "Cron Automations", "PDF Compiler", "Healthcare Admin"],
       liveUrl: "#contact"
-    },
-    {
-      id: "practice360",
-      featured: false,
-      title: "Practice360 (Healthcare SHA)",
-      category: "HealthTech & Institutional Systems",
-      platforms: ["iOS", "Android"],
-      tagline: "National Healthcare Management Mandated by Kenyan SHA",
-      summary: "A mission-critical healthcare application engineered to operate across national hospital networks and rural clinics under the Kenyan Social Health Authority (SHA). Demands offline resilience and biometric doctor verification.",
-      challenge: "Healthcare practitioners in remote areas routinely experience severe internet outages lasting hours or days.",
-      solution: "Engineered an offline-first transactional engine using encrypted local SQLite database with automatic background sync queues.",
-      metrics: [
-        { label: "Offline Sync Reliability", value: "100%" },
-        { label: "Regulatory Compliance", value: "SHA Approved" }
-      ],
-      tags: ["Flutter", "Clean Architecture", "SQLite Encryption", "Biometrics", "REST APIs"],
-      liveUrl: "https://musman.dev/#contact"
-    },
-    {
-      id: "tapday",
-      featured: false,
-      title: "Tapday (Shopify App Builder)",
-      category: "E-Commerce & SaaS Platforms",
-      platforms: ["iOS", "Android"],
-      tagline: "No-Code Mobile Application Platform for Shopify Merchants",
-      summary: "A high-performance SaaS engine that turns standard Shopify web stores into native iOS and Android apps with drag-and-drop customization, push notification automations, and native checkout.",
-      challenge: "Rendering dynamic merchant designs without republishing the app to App Store or Play Store for every theme edit.",
-      solution: "Built a dynamic Server-Driven UI (SDUI) component parsing system in Flutter, integrated directly with Shopify Storefront GraphQL APIs.",
-      metrics: [
-        { label: "Conversion Lift", value: "+38%" },
-        { label: "Stores Powered", value: "100+" }
-      ],
-      tags: ["Flutter", "Shopify GraphQL", "Server-Driven UI", "Riverpod", "Apple Pay / Google Pay"],
-      liveUrl: "https://musman.dev/#contact"
-    },
-    {
-      id: "crypto-pos",
-      featured: false,
-      title: "Crypto POS",
-      category: "Fintech & Point-of-Sale Hardware",
-      platforms: ["Android", "iOS", "Web"],
-      tagline: "Cross-Platform Sales & Crypto Point-of-Sale Solution",
-      summary: "A commercial sales management system powering brick-and-mortar retailers with instant fiat-to-crypto acceptance, inventory tracking, and direct hardware integration with Bluetooth thermal receipt printers.",
-      challenge: "Retailers needed instantaneous receipt printing and hardware driver reliability on low-end Android POS terminals.",
-      solution: "Implemented low-latency WebSocket connection and custom MethodChannels for ESC/POS thermal printers via Bluetooth SPP.",
-      metrics: [
-        { label: "Settlement Latency", value: "<1.2s" },
-        { label: "Hardware Support", value: "50+ Printer Models" }
-      ],
-      tags: ["Flutter", "Method Channels", "WebSockets", "Bluetooth ESC/POS", "SQLite"],
-      liveUrl: "https://musman.dev/#contact"
     },
     {
       id: "flashchat",
@@ -410,31 +480,34 @@ export const portfolioData = {
 
   faq: [
     {
-      q: "Are you open to relocation or on-site roles in Dubai / UAE?",
-      a: "Yes! I am actively targeting Senior Flutter Developer, Mobile Team Lead, and Full-Stack Engineering roles in Dubai and the wider UAE (with immediate relocation readiness and valid passport)."
+      q: "Are you open to relocation or on-site roles globally?",
+      a: "Yes! I am actively open and ready to relocate to ANY location globally (Dubai / UAE, Saudi Arabia, Qatar, Europe, UK, USA, Singapore, etc.). I hold a valid passport and am ready for immediate transition."
+    },
+    {
+      q: "Are you available for contract or freelance engagements?",
+      a: "Yes, I am fully open to both full-time positions and contract / freelance opportunities (short-term, long-term, codebase audits, or fractional mobile leadership)."
     },
     {
       q: "What domains have you built mobile solutions for?",
-      a: "My deepest expertise is in Banking, FinTech, and InsurTech (such as Tawuniya Insurance and Leader Investment Group in Riyadh), alongside HealthTech (PhysioTally, Practice360) and E-Commerce SaaS."
+      a: "My deepest expertise is in Banking, FinTech, and InsurTech (including Tawuniya Insurance and Leader Investment Group in Riyadh), alongside HealthTech (PhysioTally) and enterprise admin portals."
     },
     {
       q: "How do you guarantee mobile security in production?",
-      a: "I build to OWASP MASVS guidelines: SSL/TLS certificate pinning on network endpoints, biometric authentication backed by Secure Enclave / KeyStore, runtime root & jailbreak detection, and code obfuscation."
+      a: "I build strictly to OWASP MASVS guidelines: SSL/TLS certificate pinning on network endpoints, biometric authentication backed by Secure Enclave / KeyStore, runtime root & jailbreak detection, and code obfuscation."
     },
     {
       q: "What is your experience in Test Automation and QA?",
-      a: "Before advancing into Mobile Lead roles, I worked as a QA & Automation Engineer. I bring rigorous automated testing practices using Appium, Robot Framework, Selenium, JMeter for load simulation, and automated CI/CD release pipelines."
+      a: "Prior to leading mobile development teams, I worked as a QA & Automation Engineer. I bring rigorous automated testing practices using Appium, Robot Framework, Selenium, JMeter for load simulation, and automated CI/CD release pipelines."
     }
   ],
 
   contact: {
     headline: "Let's build something secure and exceptional.",
-    subheadline: "Available for Senior Mobile / Tech Lead roles in Dubai / UAE 🇦🇪, enterprise contracts, and legacy codebase audits.",
+    subheadline: "Available for Senior Mobile / Tech Lead roles globally (Ready to Relocate), contract engagements, and enterprise codebase takeovers.",
     directEmail: "arshadrahman.dev@gmail.com",
-    secondaryEmail: "hello@musman.dev",
     calendlyLink: "https://calendly.com/software-engineer-arshadrahman",
-    responseTime: "Typically replies within 2–4 hours",
-    availabilityStatus: "Open to Work · Dubai / UAE & Remote",
-    targetBadge: "Target: Dubai / UAE 🇦🇪"
+    responseTime: "Typically replies within 1–2 hours",
+    availabilityStatus: "Open to Relocate Anywhere · Full-Time & Contract",
+    targetBadge: "Global Relocation & Contract Ready 🌍"
   }
 };

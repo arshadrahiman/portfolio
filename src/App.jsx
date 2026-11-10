@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import CorePillars from './components/CorePillars';
 import SecuritySection from './components/SecuritySection';
 import WhatITakeCareOf from './components/WhatITakeCareOf';
+import Experience from './components/Experience';
 import Architecture from './components/Architecture';
 import SelectedWork from './components/SelectedWork';
 import TechStack from './components/TechStack';
@@ -33,13 +34,20 @@ export default function App() {
         {/* What I Take Care Of (Services) */}
         <WhatITakeCareOf services={portfolioData.services} />
 
+        {/* Career Work Experience, MBA/BCA Education & Certifications */}
+        <Experience
+          experience={portfolioData.experience}
+          qualifications={portfolioData.qualifications}
+          certifications={portfolioData.certifications}
+        />
+
         {/* Mobile Security Architecture (OWASP MASVS, Pinning, Biometrics) */}
         <SecuritySection securityFocus={portfolioData.securityFocus} />
 
         {/* Clean Architecture Philosophy */}
         <Architecture architecture={portfolioData.architecture} />
 
-        {/* Featured Case Studies (Tawuniya, Leader Investment, PhysioTally, Clinical Dietitian, musman.dev studies) */}
+        {/* Featured Case Studies (Tawuniya, Leader Investment, PhysioTally, Clinical Dietitian, FlashChat, Monify, RoadRadar) */}
         <SelectedWork caseStudies={portfolioData.caseStudies} />
 
         {/* Tech Arsenal & Tooling */}
@@ -51,7 +59,7 @@ export default function App() {
         {/* Frequently Asked Questions */}
         <FAQ faq={portfolioData.faq} />
 
-        {/* Contact Section matching musman.dev/#contact */}
+        {/* Contact Section */}
         <Contact contact={portfolioData.contact} profile={currentProfile} />
       </main>
 

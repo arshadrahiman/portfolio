@@ -7,10 +7,11 @@ export default function Hero({ profile }) {
   // Rotating typing text from README
   const typingLines = [
     "Crafting secure, high-performance mobile apps 🛡️",
-    "Flutter · Kotlin · React Native · Java",
+    "Flutter · Kotlin · React Native · Java · Swift",
     "Node.js · TypeScript · Python · PHP · .NET",
-    "Banking · Fintech · Insurance 💳",
-    "Open to opportunities in Dubai / UAE 🇦🇪"
+    "Banking · Fintech · Insurance · 7+ Years Experience",
+    "Ready to relocate to any location globally ✈️",
+    "Available for Full-Time & Contract roles 💼"
   ];
   const [lineIndex, setLineIndex] = useState(0);
 
@@ -38,7 +39,7 @@ export default function Hero({ profile }) {
           {/* Left Column: Headline & Value Proposition */}
           <div className="lg:col-span-7 space-y-7">
             
-            {/* Status & Location Badges from README */}
+            {/* Status & Location Badges */}
             <div className="flex flex-wrap items-center gap-2">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500/25 text-emerald-400">
                 <span className="flex h-2 w-2 relative">
@@ -48,13 +49,17 @@ export default function Hero({ profile }) {
                 <span>OPEN TO WORK</span>
               </div>
 
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
+                <MapPin className="w-3.5 h-3.5 text-cyan-400" />
+                <span>READY TO RELOCATE ANYWHERE 🌍</span>
+              </div>
+
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-purple-500/10 border border-purple-500/20 text-purple-300">
-                <MapPin className="w-3.5 h-3.5 text-purple-400" />
-                <span>TARGET: DUBAI / UAE 🇦🇪</span>
+                <Briefcase className="w-3.5 h-3.5 text-purple-400" />
+                <span>FULL-TIME &amp; CONTRACT READY</span>
               </div>
 
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 border border-blue-500/20 text-blue-300">
-                <Briefcase className="w-3.5 h-3.5 text-blue-400" />
                 <span>7+ YEARS EXP</span>
               </div>
             </div>

@@ -16,6 +16,7 @@ export default function Navbar({ profile }) {
   const navLinks = [
     { name: 'Selected Work', href: '#work' },
     { name: 'Services', href: '#services' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Architecture', href: '#architecture' },
     { name: 'Tech Stack', href: '#stack' },
     { name: 'Utilities', href: '#utilities' },
@@ -76,7 +77,7 @@ export default function Navbar({ profile }) {
           <div className="hidden lg:flex items-center gap-3">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              Dubai / UAE Ready
+              Relocation &amp; Contract Ready
             </div>
 
             <a

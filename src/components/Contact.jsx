@@ -98,18 +98,6 @@ export default function Contact({ contact, profile }) {
                 </button>
               </div>
 
-              {contact.secondaryEmail && (
-                <div className="p-3 rounded-xl bg-[#0d0e15]/50 border border-white/5 flex items-center justify-between text-xs text-gray-400">
-                  <span>Alternate: {contact.secondaryEmail}</span>
-                  <button
-                    onClick={() => handleCopy(contact.secondaryEmail)}
-                    className="hover:text-white"
-                  >
-                    <Copy className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              )}
-
               <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-gray-400">
                 <Clock className="w-3.5 h-3.5 text-blue-400" />
                 <span>{contact.responseTime}</span>
@@ -221,10 +209,11 @@ export default function Contact({ contact, profile }) {
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                       className="w-full bg-[#0d0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500/50"
                     >
+                      <option value="Full-Time Role (Ready to Relocate)">Full-Time Role (Senior Mobile / Tech Lead - Relocation Ready)</option>
+                      <option value="Contract / Freelance Engagement">Contract / Freelance Engagement (Short or Long-Term)</option>
                       <option value="Zero-to-App Store (Greenfield)">Zero-to-App Store (Greenfield Build)</option>
                       <option value="Legacy App Audit & Takeover">Legacy App Audit & Codebase Takeover</option>
-                      <option value="Complex Integration (Hardware / Payments)">Complex Integration (Hardware / Native SDKs / Payments)</option>
-                      <option value="Clean Architecture Consulting">Architecture Consulting & Senior Advisory</option>
+                      <option value="Clean Architecture & Security Consulting">Architecture & OWASP Security Consulting</option>
                     </select>
                   </div>
 
@@ -255,10 +244,11 @@ export default function Contact({ contact, profile }) {
                         onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                         className="w-full bg-[#0d0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500/50"
                       >
-                        <option value="$5k - $15k">$5,000 – $15,000</option>
-                        <option value="$15k - $30k">$15,000 – $30,000</option>
-                        <option value="$30k+">$30,000+</option>
-                        <option value="Hourly / Retainer">Hourly / Retainer Based</option>
+                        <option value="Competitive Full-Time / Relocation">Full-Time Compensation (Relocation Package)</option>
+                        <option value="Hourly / Daily Retainer">Contract / Retainer (Hourly / Daily Rate)</option>
+                        <option value="$5k - $15k Project">$5,000 – $15,000 Project</option>
+                        <option value="$15k - $30k Project">$15,000 – $30,000 Project</option>
+                        <option value="$30k+ Project">$30,000+ Enterprise Scope</option>
                       </select>
                     </div>
                   </div>

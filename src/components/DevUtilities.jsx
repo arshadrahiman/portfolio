@@ -225,7 +225,7 @@ function JsonToCodeUtility({ onCopy, copiedId }) {
 function RegexTesterUtility() {
   const [pattern, setPattern] = useState('([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})');
   const [flags, setFlags] = useState('g');
-  const [testString, setTestString] = useState('Contact us at hello@musman.dev or support@company.org for production inquiries.');
+  const [testString, setTestString] = useState('Contact us at arshadrahman.dev@gmail.com or hire@company.org for production inquiries.');
   const [matches, setMatches] = useState([]);
   const [regexError, setRegexError] = useState('');
 
@@ -382,7 +382,7 @@ function CaseConverterUtility({ onCopy, copiedId }) {
 
 // 4. JWT Inspector Utility
 function JwtInspectorUtility({ onCopy, copiedId }) {
-  const sampleJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik11aGFtbWFkIFVzbWFuIiwicm9sZSI6InNlbmlvcl9kZXZlbG9wZXIiLCJpYXQiOjE3MDk4MjAwMDAsImV4cCI6MTc5NjIyNDAwMH0.dytgBw8mY_example_signature";
+  const sampleJwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ1c3JfYXJzaGFkIiwibmFtZSI6IkFyc2hhZCBSYWhtYW4iLCJyb2xlIjoic2VuaW9yX2ZsdXR0ZXJfbGVhZCIsImlhdCI6MTcwOTgyMDAwMCwiZXhwIjoxNzk2MjI0MDAwfQ.signature_verification";
   const [token, setToken] = useState(sampleJwt);
   const [header, setHeader] = useState(null);
   const [payload, setPayload] = useState(null);
@@ -504,7 +504,7 @@ function JwtInspectorUtility({ onCopy, copiedId }) {
 
 // 5. QR Code Generator Utility
 function QrGeneratorUtility() {
-  const [text, setText] = useState('https://musman.dev/#contact');
+  const [text, setText] = useState('https://arshadrahman.in/#contact');
   const canvasRef = useRef(null);
 
   useEffect(() => {
