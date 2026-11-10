@@ -14,7 +14,7 @@ export const portfolioData = {
       relocationStatus: "Ready to Relocate Anywhere Worldwide",
       contractStatus: "Available for Contracts & Senior Roles",
       experienceYears: "7+",
-      email: "arshadrahman.dev@gmail.com",
+      email: "arshadrahiman007@gmail.com",
       portfolioUrl: "https://arshadrahman.in",
       calendlyUrl: "https://calendly.com/software-engineer-arshadrahman",
       socialLinks: {
@@ -506,7 +506,7 @@ export const portfolioData = {
     contact: {
       headline: "Let's build something secure and exceptional.",
       subheadline: "Available for Senior Mobile / Tech Lead roles globally (Ready to Relocate), contract engagements, and enterprise codebase takeovers.",
-      directEmail: "arshadrahman.dev@gmail.com",
+      directEmail: "arshadrahiman007@gmail.com",
       calendlyLink: "https://calendly.com/software-engineer-arshadrahman",
       responseTime: "Typically replies within 1–2 hours",
       availabilityStatus: "Available for Contracts & Senior Roles",
@@ -532,7 +532,7 @@ export const portfolioData = {
       relocationStatus: "جاهز للانتقال لأي دولة حول العالم",
       contractStatus: "متاح للعقود والمناصب القيادية العليا",
       experienceYears: "+7",
-      email: "arshadrahman.dev@gmail.com",
+      email: "arshadrahiman007@gmail.com",
       portfolioUrl: "https://arshadrahman.in",
       calendlyUrl: "https://calendly.com/software-engineer-arshadrahman",
       socialLinks: {
@@ -1024,7 +1024,7 @@ export const portfolioData = {
     contact: {
       headline: "فلنبنِ معاً حلولاً آمنة واستثنائية.",
       subheadline: "متاح للوظائف القيادية في هندسة الجوال عالمياً (جاهز للانتقال الفوري)، ولعقود العمل البرمجية، وتدقيق وتطوير المشاريع القائمة.",
-      directEmail: "arshadrahman.dev@gmail.com",
+      directEmail: "arshadrahiman007@gmail.com",
       calendlyLink: "https://calendly.com/software-engineer-arshadrahman",
       responseTime: "الرد خلال ١ إلى ٢ ساعة عادة",
       availabilityStatus: "متاح للعقود والمناصب القيادية العليا",

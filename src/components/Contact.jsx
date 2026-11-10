@@ -79,7 +79,7 @@ export default function Contact({ contact, profile }) {
     setSubmitted(true);
 
     // mailto trigger
-    const directEmail = contact?.directEmail || profile?.email || 'arshadrahman.dev@gmail.com';
+    const directEmail = contact?.directEmail || profile?.email || 'arshadrahiman007@gmail.com';
     const subject = encodeURIComponent(`Project / Role Inquiry: ${formData.projectType} from ${formData.name}`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\nTimeline: ${formData.timeline}\nEstimated Budget: ${formData.budget}\n\nProject Details:\n${formData.message}`
@@ -87,7 +87,7 @@ export default function Contact({ contact, profile }) {
     window.open(`mailto:${directEmail}?subject=${subject}&body=${body}`, '_blank');
   };
 
-  const directEmail = contact?.directEmail || profile?.email || 'arshadrahman.dev@gmail.com';
+  const directEmail = contact?.directEmail || profile?.email || 'arshadrahiman007@gmail.com';
   const calendlyLink = contact?.calendlyLink || profile?.calendlyUrl || 'https://calendly.com/software-engineer-arshadrahman';
 
   return (

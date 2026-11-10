@@ -228,7 +228,7 @@ function JsonToCodeUtility({ onCopy, copiedId }) {
 function RegexTesterUtility() {
   const [pattern, setPattern] = useState('([a-zA-Z0-9._%+-]+)@([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})');
   const [flags, setFlags] = useState('g');
-  const [testString, setTestString] = useState('Contact us at arshadrahman.dev@gmail.com or hire@company.org for production inquiries.');
+  const [testString, setTestString] = useState('Contact us at arshadrahiman007@gmail.com or hire@company.org for production inquiries.');
   const [matches, setMatches] = useState([]);
   const [regexError, setRegexError] = useState('');
 
