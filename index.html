@@ -1,95 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/portfolio-flutter/">
-
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="arshad_dev">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <title>arshad_dev</title>
-  <style>
-    body {
-      background-color: #0A0A0A;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-    .loading-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      width: 100vw;
-      background-color: #0A0A0A;
-    }
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 3px solid rgba(225, 1, 45, 0.1);
-      border-radius: 50%;
-      border-top-color: #E1012D;
-      animation: spin 1s ease-in-out infinite;
-      box-shadow: 0 0 15px rgba(225, 1, 45, 0.4);
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    .loading-text {
-      margin-top: 20px;
-      color: #FFFFFF;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      font-size: 16px;
-      letter-spacing: 2px;
-      opacity: 0.8;
-    }
-  </style>
-</head>
-<body>
-  <div id="loading-indicator" class="loading-container">
-    <div class="spinner"></div>
-    <div class="loading-text">INITIALIZING...</div>
-  </div>
-  <script>
-    window.addEventListener('load', function(ev) {
-      var checkFlutter = setInterval(function() {
-        var glassPane = document.querySelector('flt-glass-pane');
-        if (glassPane || document.querySelector('flutter-view')) {
-          var loader = document.getElementById('loading-indicator');
-          if (loader) {
-            loader.style.opacity = '0';
-            setTimeout(function() {
-              loader.remove();
-            }, 500);
-          }
-          clearInterval(checkFlutter);
-        }
-      }, 100);
-    });
-  </script>
-  <script src="flutter_bootstrap.js" async></script>
-</body>
+<!doctype html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%20width=%22100%22%20height=%22100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%233b82f6%22/><text y=%2265%22 font-size=%2250%22 font-family=%22sans-serif%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22 x=%2250%22>A</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abdullah Arshadul Rahman | Senior Flutter & Full-Stack Engineer</title>
+    <meta name="description" content="Senior Mobile Team Lead & Full-Stack Engineer specializing in Flutter, Kotlin, React Native, Clean Architecture, banking, fintech, insurance, and OWASP MASVS mobile security. Ready to relocate anywhere & available for contracts." />
+    <!-- Resource Hints & Fast Preloads -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="/profile.jpg" fetchpriority="high">
+    
+    <!-- Optimized Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-C0xxXWxZ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Do9UcCng.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-VbZTnLWH.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CH8JfPFd.css">
+  </head>
+  <body class="bg-[#08080b] text-[#f1f2f6] font-sans antialiased selection:bg-blue-500/30 selection:text-blue-200 min-h-screen overflow-x-hidden">
+    <div id="root"></div>
+  </body>
 </html>
