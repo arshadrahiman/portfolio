@@ -40,12 +40,15 @@ A high-performance personal portfolio built with **React 18 + Vite + Tailwind CS
 ## 🚀 Getting Started
 
 ```bash
-# Run locally
+# Run local development server
 npm run dev
 
 # Build for production
 npm run build
 
-# Deploy to GitHub Pages (about-me repository)
+# Preview production build locally
+npm run preview
+
+# Deploy directly to GitHub Pages
 npm run deploy
 ```

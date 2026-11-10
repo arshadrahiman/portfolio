@@ -79,8 +79,14 @@ export default function Hero({ profile }) {
                     src="/profile.jpg"
                     alt={profile.fullName}
                     className="w-full h-full object-cover object-[center_20%] rounded-[14px]"
-                    onError={(e) => { e.target.src = '/assets/icons/profile_pic.jpg'; }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                    }}
                   />
+                  <div className="w-full h-full bg-[#12131e] rounded-[14px] hidden items-center justify-center font-bold text-xl text-cyan-400">
+                    A
+                  </div>
                 </div>
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-[#08080b] flex items-center justify-center">
                   <div className="w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-[#08080b] animate-pulse"></div>
