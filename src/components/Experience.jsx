@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Briefcase, GraduationCap, Award, MapPin, Calendar, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Briefcase, GraduationCap, Award, MapPin, Calendar } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function Experience({ experience, qualifications, certifications }) {
-  const [activeTab, setActiveTab] = useState('experience'); // 'experience' | 'credentials'
+  const [activeTab, setActiveTab] = useState('experience');
+  const { lang, isRTL } = useLanguage();
+  const t = uiTranslations[lang]?.experience || uiTranslations.en.experience;
 
   return (
     <section id="experience" className="py-24 relative border-t border-white/5 bg-[#0a0b12]">
@@ -13,13 +17,13 @@ export default function Experience({ experience, qualifications, certifications 
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
               <Briefcase className="w-3.5 h-3.5" />
-              Career Track Record
+              {t.badge}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Experience &amp; Leadership
+              {t.title}
             </h2>
             <p className="mt-3 text-base text-gray-400">
-              7+ years delivering high-impact mobile solutions across Riyadh (KSA), Dubai (UAE), and India.
+              {t.desc}
             </p>
           </div>
 
@@ -34,7 +38,7 @@ export default function Experience({ experience, qualifications, certifications 
               }`}
             >
               <Briefcase className="w-3.5 h-3.5" />
-              Work History
+              {t.tabExperience}
             </button>
             <button
               onClick={() => setActiveTab('credentials')}
@@ -45,20 +49,20 @@ export default function Experience({ experience, qualifications, certifications 
               }`}
             >
               <GraduationCap className="w-3.5 h-3.5" />
-              Education &amp; Certifications
+              {t.tabCredentials}
             </button>
           </div>
         </div>
 
         {/* Work Experience Tab */}
         {activeTab === 'experience' && (
-          <div className="relative border-l border-white/10 ml-4 md:ml-6 space-y-12">
+          <div className={`relative ${isRTL ? 'border-r mr-4 md:mr-6' : 'border-l ml-4 md:ml-6'} border-white/10 space-y-12`}>
             {experience.map((item, idx) => (
-              <div key={idx} className="relative pl-8 md:pl-10 group">
+              <div key={idx} className={`relative ${isRTL ? 'pr-8 md:pr-10' : 'pl-8 md:pl-10'} group`}>
                 {/* Timeline Node Dot */}
-                <div className={`absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-2 transition-all ${
-                  item.endDate === 'Present'
-                    ? 'bg-emerald-500 border-emerald-300 ring-4 ring-emerald-500/20 animate-pulse'
+                <div className={`absolute ${isRTL ? '-right-[9px]' : '-left-[9px]'} top-1.5 w-4 h-4 rounded-full border-2 transition-all ${
+                  idx === 0
+                    ? 'bg-blue-600 border-cyan-400 ring-4 ring-blue-500/20'
                     : 'bg-[#121422] border-blue-500 group-hover:bg-blue-500'
                 }`} />
 
@@ -111,7 +115,7 @@ export default function Experience({ experience, qualifications, certifications 
             <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-white/10">
               <div className="flex items-center gap-2 mb-6 pb-4 border-b border-white/5">
                 <GraduationCap className="w-5 h-5 text-blue-400" />
-                <h3 className="text-lg font-bold text-white">Academic Qualifications</h3>
+                <h3 className="text-lg font-bold text-white">{t.academicTitle}</h3>
               </div>
 
               <div className="space-y-6">
@@ -133,7 +137,7 @@ export default function Experience({ experience, qualifications, certifications 
             <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-white/10">
               <div className="flex items-center gap-2 mb-6 pb-4 border-b border-white/5">
                 <Award className="w-5 h-5 text-cyan-400" />
-                <h3 className="text-lg font-bold text-white">Certifications &amp; Courses</h3>
+                <h3 className="text-lg font-bold text-white">{t.certsTitle}</h3>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

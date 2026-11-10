@@ -1,16 +1,61 @@
 import React, { useState } from 'react';
-import { Mail, Calendar, Copy, Check, Send, Sparkles, Clock, MessageSquare, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Mail, Calendar, Copy, Check, Send, Clock, MessageSquare, ArrowRight, ShieldCheck } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function Contact({ contact, profile }) {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { lang, isRTL } = useLanguage();
+  const t = uiTranslations[lang]?.contact || uiTranslations.en.contact;
+
+  const projectTypeOptions = lang === 'ar' ? [
+    { value: 'Full-Time Role (Ready to Relocate)', label: 'وظيفة بدوام كامل (قائد تقني / مطور أول - جاهز للانتقال الفوري)' },
+    { value: 'Contract / Freelance Engagement', label: 'عقد عمل / عمل مستقل (مشروع قصير أو طويل المدى)' },
+    { value: 'Zero-to-App Store (Greenfield)', label: 'بناء تطبيق متكامل من الصفر حتى متاجر التطبيقات' },
+    { value: 'Legacy App Audit & Takeover', label: 'تدقيق واستلام كود تطبيق قائم (Codebase Takeover)' },
+    { value: 'Clean Architecture & Security Consulting', label: 'استشارات معمارية وتأمين تطبيقات الجوال (OWASP)' },
+  ] : [
+    { value: 'Full-Time Role (Ready to Relocate)', label: 'Full-Time Role (Senior Mobile / Tech Lead - Relocation Ready)' },
+    { value: 'Contract / Freelance Engagement', label: 'Contract / Freelance Engagement (Short or Long-Term)' },
+    { value: 'Zero-to-App Store (Greenfield)', label: 'Zero-to-App Store (Greenfield Build)' },
+    { value: 'Legacy App Audit & Takeover', label: 'Legacy App Audit & Codebase Takeover' },
+    { value: 'Clean Architecture & Security Consulting', label: 'Architecture & OWASP Security Consulting' },
+  ];
+
+  const timelineOptions = lang === 'ar' ? [
+    { value: 'Immediately (ASAP)', label: 'فوراً وبشكل عاجل (ASAP)' },
+    { value: 'Within 1-2 months', label: 'خلال شهر إلى شهرين' },
+    { value: 'Within 3-6 months', label: 'خلال ٣ إلى ٦ أشهر' },
+    { value: 'Exploring Feasibility', label: 'استكشاف الجدوى الفنية' },
+  ] : [
+    { value: 'Immediately (ASAP)', label: 'Immediately (ASAP)' },
+    { value: 'Within 1-2 months', label: 'Within 1–2 months' },
+    { value: 'Within 3-6 months', label: 'Within 3–6 months' },
+    { value: 'Exploring Feasibility', label: 'Exploring Feasibility' },
+  ];
+
+  const budgetOptions = lang === 'ar' ? [
+    { value: 'Competitive Full-Time / Relocation', label: 'حزمة تعويض بدوام كامل (مع حزمة الانتقال)' },
+    { value: 'Hourly / Daily Retainer', label: 'عقد بالساعة أو باليوم (Retainer)' },
+    { value: '$5k - $15k Project', label: 'مشروع بقيمة ٥,٠٠٠ – ١٥,٠٠٠ دولار' },
+    { value: '$15k - $30k Project', label: 'مشروع بقيمة ١٥,٠٠٠ – ٣٠,٠٠٠ دولار' },
+    { value: '$30k+ Project', label: 'مشروع مؤسسي بقيمة +٣٠,٠٠٠ دولار' },
+  ] : [
+    { value: 'Competitive Full-Time / Relocation', label: 'Full-Time Compensation (Relocation Package)' },
+    { value: 'Hourly / Daily Retainer', label: 'Contract / Retainer (Hourly / Daily Rate)' },
+    { value: '$5k - $15k Project', label: '$5,000 – $15,000 Project' },
+    { value: '$15k - $30k Project', label: '$15,000 – $30,000 Project' },
+    { value: '$30k+ Project', label: '$30,000+ Enterprise Scope' },
+  ];
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'Zero-to-App Store (Greenfield)',
-    timeline: 'Within 1-2 months',
-    budget: '$5k - $15k',
+    projectType: 'Full-Time Role (Ready to Relocate)',
+    timeline: 'Immediately (ASAP)',
+    budget: 'Competitive Full-Time / Relocation',
     message: ''
   });
 
@@ -33,13 +78,17 @@ export default function Contact({ contact, profile }) {
 
     setSubmitted(true);
 
-    // Optional mailto backup trigger
-    const subject = encodeURIComponent(`Project Inquiry: ${formData.projectType} from ${formData.name}`);
+    // mailto trigger
+    const directEmail = contact?.directEmail || profile?.email || 'arshadrahman.dev@gmail.com';
+    const subject = encodeURIComponent(`Project / Role Inquiry: ${formData.projectType} from ${formData.name}`);
     const body = encodeURIComponent(
       `Name: ${formData.name}\nEmail: ${formData.email}\nProject Type: ${formData.projectType}\nTimeline: ${formData.timeline}\nEstimated Budget: ${formData.budget}\n\nProject Details:\n${formData.message}`
     );
-    window.open(`mailto:${contact.directEmail}?subject=${subject}&body=${body}`, '_blank');
+    window.open(`mailto:${directEmail}?subject=${subject}&body=${body}`, '_blank');
   };
+
+  const directEmail = contact?.directEmail || profile?.email || 'arshadrahman.dev@gmail.com';
+  const calendlyLink = contact?.calendlyLink || profile?.calendlyUrl || 'https://calendly.com/software-engineer-arshadrahman';
 
   return (
     <section id="contact" className="py-24 relative border-t border-white/5 bg-[#08080b]">
@@ -49,16 +98,16 @@ export default function Contact({ contact, profile }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <div className={`max-w-3xl mb-16 ${isRTL ? 'text-right' : 'text-left'}`}>
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
             <Mail className="w-3.5 h-3.5" />
-            Get In Touch
+            {t.badge}
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            {contact.headline}
+            {contact?.headline || (lang === 'ar' ? 'فلنبنِ معاً حلولاً آمنة واستثنائية.' : "Let's build something secure and exceptional.")}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-gray-400 leading-relaxed">
-            {contact.subheadline}
+            {contact?.subheadline || (lang === 'ar' ? 'متاح للوظائف القيادية في هندسة الجوال عالمياً (جاهز للانتقال الفوري)، ولعقود العمل البرمجية.' : 'Available for Senior Mobile / Tech Lead roles globally (Ready to Relocate), contract engagements, and enterprise codebase takeovers.')}
           </p>
         </div>
 
@@ -74,25 +123,25 @@ export default function Contact({ contact, profile }) {
                   <Mail className="w-6 h-6" />
                 </div>
                 <span className="text-[11px] font-mono uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full font-semibold border border-emerald-500/20">
-                  {contact.availabilityStatus}
+                  {contact?.availabilityStatus || (lang === 'ar' ? 'متاح فوراً · جاهز للانتقال والعقود' : 'Immediately Available · Global Relocation')}
                 </span>
               </div>
 
               <h3 className="text-lg font-bold text-white mb-1">
-                Direct Email Inquiry
+                {t.emailInquiry}
               </h3>
               <p className="text-xs text-gray-400 mb-6">
-                Preferred for initial specs, contract briefs, or architecture inquiries.
+                {t.emailDesc}
               </p>
 
               <div className="p-3.5 rounded-xl bg-[#0d0e15] border border-white/5 flex items-center justify-between mb-4">
-                <span className="font-mono text-sm text-cyan-300 select-all">
-                  {contact.directEmail}
+                <span className="font-mono text-sm text-cyan-300 select-all" dir="ltr">
+                  {directEmail}
                 </span>
                 <button
-                  onClick={() => handleCopy(contact.directEmail)}
+                  onClick={() => handleCopy(directEmail)}
                   className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition"
-                  title="Copy Email"
+                  title={lang === 'ar' ? 'نسخ البريد' : 'Copy Email'}
                 >
                   {copiedEmail ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
                 </button>
@@ -100,38 +149,38 @@ export default function Contact({ contact, profile }) {
 
               <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-gray-400">
                 <Clock className="w-3.5 h-3.5 text-blue-400" />
-                <span>{contact.responseTime}</span>
+                <span>{contact?.responseTime || (lang === 'ar' ? 'رد معتاد خلال ساعتين إلى ٤ ساعات' : 'Typical response within 2–4 hours')}</span>
               </div>
             </div>
 
             {/* 1:1 Call Booking Card */}
             <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-white/10">
               <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
                   <Calendar className="w-6 h-6" />
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white">
-                    Schedule a 1:1 Discovery Call
+                    {t.scheduleCallTitle}
                   </h3>
                   <p className="text-xs text-gray-400">
-                    30 minutes on Google Meet / Zoom
+                    {t.scheduleCallSubtitle}
                   </p>
                 </div>
               </div>
 
               <p className="text-xs text-gray-300 leading-relaxed mb-6">
-                Discuss roadmap viability, technical scoping, codebase takeover evaluation, or contract fit.
+                {t.scheduleCallDesc}
               </p>
 
               <a
-                href={contact.calendlyLink}
+                href={calendlyLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/20 transition"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/20 transition active:scale-[0.99]"
               >
-                Book Discovery Call on Calendly
-                <ArrowRight className="w-3.5 h-3.5" />
+                {t.scheduleCallBtn}
+                <ArrowRight className={`w-3.5 h-3.5 ${isRTL ? 'rotate-180' : ''}`} />
               </a>
             </div>
 
@@ -143,11 +192,11 @@ export default function Contact({ contact, profile }) {
               <div className="flex items-center gap-2 mb-2">
                 <MessageSquare className="w-4 h-4 text-blue-400" />
                 <span className="text-xs font-mono uppercase font-bold text-gray-400 tracking-wider">
-                  Direct Project Inquiry
+                  {t.formHeader}
                 </span>
               </div>
               <h3 className="text-2xl font-black text-white mb-6">
-                Send Project Details
+                {t.formTitle}
               </h3>
 
               {submitted ? (
@@ -155,15 +204,15 @@ export default function Contact({ contact, profile }) {
                   <div className="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto">
                     <Check className="w-7 h-7" />
                   </div>
-                  <h4 className="text-xl font-bold text-white">Inquiry Received</h4>
+                  <h4 className="text-xl font-bold text-white">{t.successTitle}</h4>
                   <p className="text-sm text-gray-300 max-w-md mx-auto">
-                    Thank you, {formData.name}. Your project details have been noted. I'll review and respond to <strong className="text-white">{formData.email}</strong> within 2–4 hours.
+                    {t.successDesc.replace('{name}', formData.name).replace('{email}', formData.email)}
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="text-xs text-blue-400 hover:underline pt-2"
+                    className="text-xs text-blue-400 hover:underline pt-2 inline-block cursor-pointer"
                   >
-                    Send another message
+                    {t.sendAnother}
                   </button>
                 </div>
               ) : (
@@ -173,7 +222,7 @@ export default function Contact({ contact, profile }) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-gray-300 mb-2">
-                        Your Name *
+                        {t.nameLabel}
                       </label>
                       <input
                         type="text"
@@ -181,12 +230,12 @@ export default function Contact({ contact, profile }) {
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         className="w-full bg-[#0d0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500/50"
-                        placeholder="e.g. Alex Henderson"
+                        placeholder={lang === 'ar' ? 'مثال: عبد الله أحمد' : 'e.g. Alex Henderson'}
                       />
                     </div>
                     <div>
                       <label className="block text-xs font-semibold text-gray-300 mb-2">
-                        Work Email *
+                        {t.emailLabel}
                       </label>
                       <input
                         type="email"
@@ -202,18 +251,18 @@ export default function Contact({ contact, profile }) {
                   {/* Project Type */}
                   <div>
                     <label className="block text-xs font-semibold text-gray-300 mb-2">
-                      Project Type / Scope
+                      {t.scopeLabel}
                     </label>
                     <select
                       value={formData.projectType}
                       onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                       className="w-full bg-[#0d0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500/50"
                     >
-                      <option value="Full-Time Role (Ready to Relocate)">Full-Time Role (Senior Mobile / Tech Lead - Relocation Ready)</option>
-                      <option value="Contract / Freelance Engagement">Contract / Freelance Engagement (Short or Long-Term)</option>
-                      <option value="Zero-to-App Store (Greenfield)">Zero-to-App Store (Greenfield Build)</option>
-                      <option value="Legacy App Audit & Takeover">Legacy App Audit & Codebase Takeover</option>
-                      <option value="Clean Architecture & Security Consulting">Architecture & OWASP Security Consulting</option>
+                      {projectTypeOptions.map((opt) => (
+                        <option key={opt.value} value={opt.value}>
+                          {opt.label}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
@@ -221,34 +270,35 @@ export default function Contact({ contact, profile }) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-xs font-semibold text-gray-300 mb-2">
-                        Estimated Timeline
+                        {t.timelineLabel}
                       </label>
                       <select
                         value={formData.timeline}
                         onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
                         className="w-full bg-[#0d0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500/50"
                       >
-                        <option value="Immediately (ASAP)">Immediately (ASAP)</option>
-                        <option value="Within 1-2 months">Within 1–2 months</option>
-                        <option value="Within 3-6 months">Within 3–6 months</option>
-                        <option value="Exploring Feasibility">Exploring Feasibility</option>
+                        {timelineOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
 
                     <div>
                       <label className="block text-xs font-semibold text-gray-300 mb-2">
-                        Estimated Budget
+                        {t.budgetLabel}
                       </label>
                       <select
                         value={formData.budget}
                         onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                         className="w-full bg-[#0d0e15] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500/50"
                       >
-                        <option value="Competitive Full-Time / Relocation">Full-Time Compensation (Relocation Package)</option>
-                        <option value="Hourly / Daily Retainer">Contract / Retainer (Hourly / Daily Rate)</option>
-                        <option value="$5k - $15k Project">$5,000 – $15,000 Project</option>
-                        <option value="$15k - $30k Project">$15,000 – $30,000 Project</option>
-                        <option value="$30k+ Project">$30,000+ Enterprise Scope</option>
+                        {budgetOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -256,7 +306,7 @@ export default function Contact({ contact, profile }) {
                   {/* Message */}
                   <div>
                     <label className="block text-xs font-semibold text-gray-300 mb-2">
-                      Project Overview & Objectives *
+                      {t.messageLabel}
                     </label>
                     <textarea
                       required
@@ -264,22 +314,22 @@ export default function Contact({ contact, profile }) {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       className="w-full bg-[#0d0e15] border border-white/10 rounded-xl p-4 text-sm text-white focus:outline-none focus:border-blue-500/50 resize-none"
-                      placeholder="Briefly describe the product vision, current pain points, target platforms, or tech stack..."
+                      placeholder={t.messagePlaceholder}
                     />
                   </div>
 
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-4 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 shadow-xl shadow-blue-600/25 transition active:scale-[0.99] flex items-center justify-center gap-2"
+                    className="w-full py-4 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 shadow-xl shadow-blue-600/25 transition active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    <Send className="w-4 h-4" />
-                    Submit Project Inquiry
+                    <Send className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
+                    {t.submitBtn}
                   </button>
 
                   <div className="flex items-center justify-center gap-2 text-[11px] text-gray-500 pt-1 font-mono">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                    Strict NDA compliant. Your product IP is 100% safeguarded.
+                    {t.ndaNote}
                   </div>
 
                 </form>
@@ -293,4 +343,3 @@ export default function Contact({ contact, profile }) {
     </section>
   );
 }
-

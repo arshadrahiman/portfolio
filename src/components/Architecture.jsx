@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Layers, Workflow, Shield, Database, Layout, Sparkles, Check, ArrowDown } from 'lucide-react';
+import { Layers, Workflow, Shield, Database, Layout, Sparkles, Check } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function Architecture({ architecture }) {
   const [activeLayer, setActiveLayer] = useState(0);
+  const { lang } = useLanguage();
+  const t = uiTranslations[lang]?.architecture || uiTranslations.en.architecture;
 
   const layerIcons = [Layout, Shield, Database];
 
@@ -14,7 +18,7 @@ export default function Architecture({ architecture }) {
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 mb-4">
             <Workflow className="w-3.5 h-3.5" />
-            Engineering Standards
+            {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             {architecture.title}
@@ -54,7 +58,7 @@ export default function Architecture({ architecture }) {
                       </span>
                       {isActive && (
                         <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-semibold">
-                          Active
+                          {t.activeLayer}
                         </span>
                       )}
                     </div>
@@ -75,7 +79,7 @@ export default function Architecture({ architecture }) {
                 <div className="flex items-center justify-between pb-6 border-b border-white/5 mb-6">
                   <div>
                     <span className="text-xs font-mono uppercase text-blue-400 font-bold tracking-wider">
-                      Layer Breakdown
+                      {t.layerBreakdown}
                     </span>
                     <h3 className="text-2xl font-black text-white mt-1">
                       {architecture.layers[activeLayer].name}
@@ -92,7 +96,7 @@ export default function Architecture({ architecture }) {
 
                 <div className="space-y-3 pt-2">
                   <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider block">
-                    Key Guarantees & Constraints:
+                    {t.guarantees}
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {architecture.layers[activeLayer].features.map((feat, i) => (
@@ -114,7 +118,7 @@ export default function Architecture({ architecture }) {
           <div className="flex items-center gap-2 mb-6">
             <Sparkles className="w-4 h-4 text-blue-400" />
             <h4 className="text-sm font-bold text-white uppercase tracking-wider font-mono">
-              Unidirectional Request / Response Life Cycle
+              {t.flowLifecycle}
             </h4>
           </div>
 
@@ -136,4 +140,3 @@ export default function Architecture({ architecture }) {
     </section>
   );
 }
-

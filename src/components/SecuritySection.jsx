@@ -1,7 +1,11 @@
 import React from 'react';
-import { Lock, ShieldCheck, Key, EyeOff, Smartphone, ShieldAlert, Cpu } from 'lucide-react';
+import { Lock, ShieldCheck, Key, EyeOff, ShieldAlert, Cpu } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function SecuritySection({ securityFocus }) {
+  const { lang } = useLanguage();
+  const t = uiTranslations[lang]?.security || uiTranslations.en.security;
   const iconList = [Lock, Key, ShieldCheck, ShieldAlert, EyeOff, Cpu];
 
   return (
@@ -13,19 +17,19 @@ export default function SecuritySection({ securityFocus }) {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-rose-500/10 text-rose-400 border border-rose-500/20 mb-3">
               <Lock className="w-3.5 h-3.5" />
-              Security Architecture
+              {t.badge}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Enterprise Mobile Security & OWASP MASVS
+              {t.title}
             </h2>
             <p className="mt-3 text-sm sm:text-base text-gray-400">
-              In banking and insurance, security is a non-negotiable prerequisite. Every application is hardened at compile-time and runtime against compromise.
+              {t.desc}
             </p>
           </div>
 
           <div className="mt-4 md:mt-0">
             <span className="text-xs font-mono px-3.5 py-1.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 font-semibold">
-              OWASP MASVS L1 & L2 Compliant
+              {t.complianceBadge}
             </span>
           </div>
         </div>
@@ -63,4 +67,3 @@ export default function SecuritySection({ securityFocus }) {
     </section>
   );
 }
-

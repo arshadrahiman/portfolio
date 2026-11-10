@@ -18,15 +18,16 @@ export default {
           subtle: '#5c6075'
         },
         brand: {
-          primary: '#3b82f6', // electric blue
-          accent: '#06b6d4',  // cyan
-          emerald: '#10b981', // green status
+          primary: '#3b82f6',
+          accent: '#06b6d4',
+          emerald: '#10b981',
           purple: '#8b5cf6',
           orange: '#f97316'
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Inter', 'Cairo', 'system-ui', '-apple-system', 'sans-serif'],
+        arabic: ['Cairo', 'Inter', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace']
       },
       backgroundImage: {
@@ -47,4 +48,3 @@ export default {
   },
   plugins: [],
 }
-

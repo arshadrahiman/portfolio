@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, Code2, Copy, Check, QrCode, Search, FileText, ArrowRight, RefreshCw, KeyRound, Download } from 'lucide-react';
 import QRCode from 'qrcode';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function DevUtilities() {
   const [activeTab, setActiveTab] = useState('json2code');
   const [copiedId, setCopiedId] = useState(null);
+  const { lang } = useLanguage();
+  const t = uiTranslations[lang]?.utilities || uiTranslations.en.utilities;
 
   const handleCopy = (text, id) => {
     navigator.clipboard.writeText(text);
@@ -21,24 +25,24 @@ export default function DevUtilities() {
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
               <Terminal className="w-3.5 h-3.5" />
-              Developer Ecosystem
+              {t.badge}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Free Developer Utilities
+              {t.title}
             </h2>
             <p className="mt-3 text-base text-gray-400 max-w-2xl">
-              Handcrafted in-browser tools built for speed, offline privacy, and zero data telemetry.
+              {t.desc}
             </p>
           </div>
 
           {/* Utility Tab Switcher */}
           <div className="mt-6 md:mt-0 flex flex-wrap gap-1.5 p-1.5 bg-[#12131c] rounded-xl border border-white/5">
             {[
-              { id: 'json2code', label: 'JSON to Model', icon: Code2 },
-              { id: 'regex', label: 'Regex Debugger', icon: Search },
-              { id: 'case', label: 'Case Converter', icon: FileText },
-              { id: 'jwt', label: 'JWT Inspector', icon: KeyRound },
-              { id: 'qr', label: 'QR Generator', icon: QrCode },
+              { id: 'json2code', label: t.tabJson, icon: Code2 },
+              { id: 'regex', label: t.tabRegex, icon: Search },
+              { id: 'case', label: t.tabCase, icon: FileText },
+              { id: 'jwt', label: t.tabJwt, icon: KeyRound },
+              { id: 'qr', label: t.tabQr, icon: QrCode },
             ].map(tab => {
               const Icon = tab.icon;
               return (
@@ -76,7 +80,7 @@ export default function DevUtilities() {
 function JsonToCodeUtility({ onCopy, copiedId }) {
   const [jsonInput, setJsonInput] = useState(`{\n  "id": 101,\n  "title": "Clean Architecture Mobile",\n  "isPublished": true,\n  "rating": 4.95,\n  "tags": ["flutter", "architecture"]\n}`);
   const [className, setClassName] = useState('AppModel');
-  const [outputLang, setOutputLang] = useState('dart'); // 'dart' | 'ts'
+  const [outputLang, setOutputLang] = useState('dart');
   const [generatedCode, setGeneratedCode] = useState('');
   const [error, setError] = useState('');
 
@@ -126,7 +130,6 @@ function JsonToCodeUtility({ onCopy, copiedId }) {
         ];
         setGeneratedCode(lines.join('\n'));
       } else {
-        // TypeScript
         const fields = Object.entries(parsed).map(([key, val]) => {
           let tsType = 'any';
           if (typeof val === 'string') tsType = 'string';
@@ -145,7 +148,7 @@ function JsonToCodeUtility({ onCopy, copiedId }) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" dir="ltr">
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-4">
         <div className="flex items-center gap-3">
           <label className="text-xs text-gray-400 font-medium">Model Name:</label>
@@ -182,7 +185,7 @@ function JsonToCodeUtility({ onCopy, copiedId }) {
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-gray-400">Input JSON</span>
             <button
-              onClick={() => setJsonInput('{\n  "status": "success",\n  "code": 200,\n  "data": {\n    "uuid": "usr_99182",\n    "active": true\n  }\n}')}
+              onClick={() => setJsonInput('{\n  "status": "success",\n  "code": 200,\n  "data": {\n    "uuid": "usr_arshad",\n    "active": true\n  }\n}')}
               className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1"
             >
               <RefreshCw className="w-3 h-3" /> Load Sample
@@ -256,7 +259,7 @@ function RegexTesterUtility() {
   }, [pattern, flags, testString]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" dir="ltr">
       <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
         <div className="sm:col-span-3">
           <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Regex Pattern</label>
@@ -347,7 +350,7 @@ function CaseConverterUtility({ onCopy, copiedId }) {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" dir="ltr">
       <div>
         <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Input String</label>
         <input
@@ -433,7 +436,7 @@ function JwtInspectorUtility({ onCopy, copiedId }) {
   }, [token]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" dir="ltr">
       <div>
         <div className="flex items-center justify-between mb-2">
           <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Encoded JWT String</label>
@@ -548,6 +551,7 @@ function QrGeneratorUtility() {
           onChange={(e) => setText(e.target.value)}
           className="w-full bg-[#0d0e15] border border-white/10 rounded-xl px-4 py-3 font-mono text-sm text-white focus:outline-none focus:border-blue-500/50"
           placeholder="https://yourlink.com or any text"
+          dir="ltr"
         />
         <p className="text-xs text-gray-400">
           Generated entirely client-side using JavaScript canvas. Zero data is sent to any server.
@@ -571,4 +575,3 @@ function QrGeneratorUtility() {
     </div>
   );
 }
-

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { ExternalLink, Github, Smartphone, Layers, CheckCircle, TrendingUp, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Smartphone, TrendingUp, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function SelectedWork({ caseStudies }) {
-  const [filter, setFilter] = useState('featured'); // 'featured' | 'all'
+  const [filter, setFilter] = useState('featured');
+  const { lang, isRTL } = useLanguage();
+  const t = uiTranslations[lang]?.work || uiTranslations.en.work;
 
   const filteredStudies = filter === 'featured'
     ? caseStudies.filter(c => c.featured)
@@ -17,13 +21,13 @@ export default function SelectedWork({ caseStudies }) {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
               <Smartphone className="w-3.5 h-3.5" />
-              Selected Production Work
+              {t.badge}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-              Case Studies & Deliverables
+              {t.title}
             </h2>
             <p className="mt-3 text-base text-gray-400">
-              Real-world systems operating in production—engineered for high availability, zero unhandled errors, and measurable client ROI.
+              {t.desc}
             </p>
           </div>
 
@@ -37,7 +41,7 @@ export default function SelectedWork({ caseStudies }) {
                   : 'text-gray-400 hover:text-white'
               }`}
             >
-              Featured Case Studies
+              {t.filterFeatured}
             </button>
             <button
               onClick={() => setFilter('all')}
@@ -47,14 +51,14 @@ export default function SelectedWork({ caseStudies }) {
                   : 'text-gray-400 hover:text-white'
               }`}
             >
-              All Deliverables ({caseStudies.length})
+              {t.filterAll} ({caseStudies.length})
             </button>
           </div>
         </div>
 
         {/* Case Studies Cards */}
         <div className="space-y-12">
-          {filteredStudies.map((study, idx) => (
+          {filteredStudies.map((study) => (
             <div
               key={study.id}
               className="glass-panel glass-panel-hover rounded-3xl p-8 sm:p-10 border border-white/10 glow-blue overflow-hidden relative"
@@ -96,11 +100,11 @@ export default function SelectedWork({ caseStudies }) {
                   {/* Challenge & Solution Callout */}
                   <div className="space-y-3 pt-2 text-xs text-gray-400 border-t border-white/5">
                     <div>
-                      <strong className="text-gray-200">The Problem Space: </strong>
+                      <strong className="text-gray-200">{t.problemSpace}</strong>
                       {study.challenge}
                     </div>
                     <div>
-                      <strong className="text-gray-200">Engineering Solution: </strong>
+                      <strong className="text-gray-200">{t.solution}</strong>
                       {study.solution}
                     </div>
                   </div>
@@ -127,7 +131,7 @@ export default function SelectedWork({ caseStudies }) {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/20 transition"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                        {study.id === 'physiotally' ? 'View on Google Play' : 'View Live Product'}
+                        {study.id === 'physiotally' ? t.viewPlayStore : t.viewLive}
                       </a>
                     )}
                     {study.githubUrl && (
@@ -138,7 +142,7 @@ export default function SelectedWork({ caseStudies }) {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-white/5 hover:bg-white/10 border border-white/10 transition"
                       >
                         <Github className="w-4 h-4" />
-                        Inspect Source Code
+                        {t.viewCode}
                       </a>
                     )}
                     {(!study.githubUrl && (!study.liveUrl || study.liveUrl === '#contact')) && (
@@ -146,7 +150,7 @@ export default function SelectedWork({ caseStudies }) {
                         href="#contact"
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-md shadow-blue-600/20 transition"
                       >
-                        Discuss Architecture &amp; Delivery
+                        {t.discussArchitecture}
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     )}
@@ -159,7 +163,7 @@ export default function SelectedWork({ caseStudies }) {
                   <div>
                     <div className="flex items-center gap-2 text-xs font-mono font-bold text-gray-400 uppercase tracking-wider mb-6 pb-3 border-b border-white/5">
                       <TrendingUp className="w-4 h-4 text-emerald-400" />
-                      Production Metrics & Impact
+                      {t.metricsHeader}
                     </div>
 
                     <div className="space-y-6">
@@ -178,7 +182,7 @@ export default function SelectedWork({ caseStudies }) {
 
                   <div className="pt-4 border-t border-white/5 flex items-center gap-2 text-[11px] font-mono text-emerald-400">
                     <CheckCircle className="w-3.5 h-3.5" />
-                    Verified In Production Deployment
+                    {t.verified}
                   </div>
                 </div>
 
@@ -191,4 +195,3 @@ export default function SelectedWork({ caseStudies }) {
     </section>
   );
 }
-

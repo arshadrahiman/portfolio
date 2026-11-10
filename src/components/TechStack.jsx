@@ -1,7 +1,12 @@
 import React from 'react';
-import { Smartphone, Server, Database, GitBranch, Cpu, ShieldCheck } from 'lucide-react';
+import { Smartphone, Server, Database, GitBranch, Cpu } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function TechStack({ techStack }) {
+  const { lang } = useLanguage();
+  const t = uiTranslations[lang]?.techStack || uiTranslations.en.techStack;
+
   const iconMap = {
     smartphone: Smartphone,
     server: Server,
@@ -17,13 +22,13 @@ export default function TechStack({ techStack }) {
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
             <Cpu className="w-3.5 h-3.5" />
-            Technical Arsenal
+            {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Tools & Technologies I Use Daily
+            {t.title}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-gray-400 leading-relaxed">
-            A battle-tested technology stack curated over 5+ years of shipping enterprise-grade cross-platform applications and resilient backend services.
+            {t.desc}
           </p>
         </div>
 
@@ -45,7 +50,7 @@ export default function TechStack({ techStack }) {
                       {cat.name}
                     </h3>
                     <span className="text-xs text-gray-400 font-mono">
-                      {cat.skills.length} core competencies
+                      {cat.skills.length} {t.competencies}
                     </span>
                   </div>
                 </div>
@@ -75,4 +80,3 @@ export default function TechStack({ techStack }) {
     </section>
   );
 }
-

@@ -1,12 +1,17 @@
 import React from 'react';
 import { Rocket, RefreshCw, Cpu, WifiOff, CheckCircle2, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function WhatITakeCareOf({ services }) {
+  const { lang, isRTL } = useLanguage();
+  const t = uiTranslations[lang]?.services || uiTranslations.en.services;
+
   const iconMap = {
+    'banking-fintech-insurtech': Cpu,
     'zero-to-app-store': Rocket,
+    'mobile-security-hardening': Cpu,
     'legacy-takeovers': RefreshCw,
-    'complex-integrations': Cpu,
-    'offline-first-resilience': WifiOff,
   };
 
   return (
@@ -16,13 +21,13 @@ export default function WhatITakeCareOf({ services }) {
         {/* Section Heading */}
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-4">
-            Specialized Mobile Services
+            {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            What I Take Care Of
+            {t.title}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-gray-400 leading-relaxed">
-            I don't just write UI code. I manage the high-risk, technically demanding areas that separate fragile prototypes from resilient, revenue-generating mobile products.
+            {t.desc}
           </p>
         </div>
 
@@ -50,7 +55,7 @@ export default function WhatITakeCareOf({ services }) {
                   <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition">
                     {service.title}
                   </h3>
-                  <p className="text-xs font-medium text-cyan-400/90 mb-4">
+                  <p className="text-xs font-medium text-cyan-400/90 mb-4 font-mono">
                     {service.tagline}
                   </p>
 
@@ -76,8 +81,8 @@ export default function WhatITakeCareOf({ services }) {
                     href="#contact"
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 transition"
                   >
-                    Discuss this requirement
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    {t.discuss}
+                    <ArrowRight className={`w-3.5 h-3.5 ${isRTL ? 'rotate-180' : ''}`} />
                   </a>
                 </div>
               </div>
@@ -89,4 +94,3 @@ export default function WhatITakeCareOf({ services }) {
     </section>
   );
 }
-

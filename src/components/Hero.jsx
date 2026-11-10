@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Calendar, Copy, Check, ShieldCheck, Sparkles, Smartphone, Terminal, MapPin, Briefcase, ExternalLink } from 'lucide-react';
+import { ArrowRight, Calendar, Copy, Check, ShieldCheck, Sparkles, Smartphone, Terminal, MapPin, Briefcase } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function Hero({ profile }) {
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const { lang, isRTL } = useLanguage();
+  const t = uiTranslations[lang]?.hero || uiTranslations.en.hero;
   
-  // Rotating typing text from README
-  const typingLines = [
+  const typingLines = profile.typingLines || [
     "Crafting secure, high-performance mobile apps 🛡️",
     "Flutter · Kotlin · React Native · Java · Swift",
     "Node.js · TypeScript · Python · PHP · .NET",
@@ -14,6 +17,10 @@ export default function Hero({ profile }) {
     "Available for Full-Time & Contract roles 💼"
   ];
   const [lineIndex, setLineIndex] = useState(0);
+
+  useEffect(() => {
+    setLineIndex(0);
+  }, [lang]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -36,7 +43,7 @@ export default function Hero({ profile }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* Left Column: Headline & Value Proposition */}
+          {/* Main Column: Headline & Value Proposition */}
           <div className="lg:col-span-7 space-y-7">
             
             {/* Status & Location Badges */}
@@ -46,21 +53,21 @@ export default function Hero({ profile }) {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                 </span>
-                <span>OPEN TO WORK</span>
+                <span>{t.openToWork}</span>
               </div>
 
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/10 border border-cyan-500/20 text-cyan-300">
                 <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-                <span>READY TO RELOCATE ANYWHERE 🌍</span>
+                <span>{t.relocationReady}</span>
               </div>
 
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-purple-500/10 border border-purple-500/20 text-purple-300">
                 <Briefcase className="w-3.5 h-3.5 text-purple-400" />
-                <span>FULL-TIME &amp; CONTRACT READY</span>
+                <span>{t.contractReady}</span>
               </div>
 
               <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 border border-blue-500/20 text-blue-300">
-                <span>7+ YEARS EXP</span>
+                <span>{t.expYears}</span>
               </div>
             </div>
 
@@ -70,7 +77,7 @@ export default function Hero({ profile }) {
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl p-[2px] bg-gradient-to-tr from-blue-500 via-cyan-400 to-indigo-500 shadow-xl shadow-blue-500/25">
                   <img
                     src="/profile.jpg"
-                    alt="Abdullah Arshadul Rahman"
+                    alt={profile.fullName}
                     className="w-full h-full object-cover object-[center_20%] rounded-[14px]"
                     onError={(e) => { e.target.src = '/assets/icons/profile_pic.jpg'; }}
                   />
@@ -81,25 +88,21 @@ export default function Hero({ profile }) {
               </div>
               <div>
                 <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-bold block">
-                  Abdullah Arshadul Rahman
+                  {profile.fullName}
                 </span>
-                <span className="text-sm font-semibold text-gray-200">
-                  Senior Mobile Team Lead & Full-Stack Architect
+                <span className="text-sm sm:text-base font-bold text-gray-200">
+                  {profile.role}
                 </span>
                 <p className="text-xs text-gray-400 mt-0.5">
-                  Mobcoder (Tawuniya Insurance) · Formerly Leader IT Riyadh
+                  {profile.lastWorkLocation}
                 </p>
               </div>
             </div>
 
             {/* Main Headline */}
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
-                Crafting secure, high-performance mobile apps that{' '}
-                <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-300 bg-clip-text text-transparent">
-                  hold up
-                </span>{' '}
-                in production.
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.15]">
+                {profile.hero.headline}
               </h1>
             </div>
 
@@ -110,7 +113,7 @@ export default function Hero({ profile }) {
               <span className="transition-opacity duration-300">
                 {typingLines[lineIndex]}
               </span>
-              <span className="w-2 h-4 bg-cyan-400 animate-pulse ml-auto inline-block"></span>
+              <span className={`w-2 h-4 bg-cyan-400 animate-pulse ${isRTL ? 'mr-auto' : 'ml-auto'} inline-block`}></span>
             </div>
 
             {/* Subheadline */}
@@ -124,8 +127,8 @@ export default function Hero({ profile }) {
                 href="#work"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-xl shadow-blue-600/25 transition active:scale-95"
               >
-                Explore Case Studies
-                <ArrowRight className="w-4 h-4" />
+                {t.exploreWork}
+                <ArrowRight className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
               </a>
 
               <a
@@ -135,18 +138,18 @@ export default function Hero({ profile }) {
                 className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl text-sm font-medium text-gray-200 bg-[#12131b] hover:bg-[#181a25] border border-white/10 transition active:scale-95"
               >
                 <Calendar className="w-4 h-4 text-blue-400" />
-                Schedule 1:1 Call
+                {t.scheduleCall}
               </a>
 
               {/* Quick Copy Email Button */}
               <button
                 onClick={handleCopyEmail}
                 className="inline-flex items-center gap-2 px-4 py-3.5 rounded-xl text-xs font-mono text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 transition active:scale-95"
-                title="Copy Direct Email"
+                title={t.copyEmail}
               >
                 {copiedEmail ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
                 <span>{profile.email}</span>
-                {copiedEmail && <span className="text-green-400 font-sans text-[11px]">(Copied!)</span>}
+                {copiedEmail && <span className="text-green-400 font-sans text-[11px]">({t.copied})</span>}
               </button>
             </div>
 
@@ -171,7 +174,7 @@ export default function Hero({ profile }) {
 
           {/* Right Column: Code & Architecture Terminal Card */}
           <div className="lg:col-span-5">
-            <div className="relative glass-panel rounded-2xl p-5 border border-white/10 shadow-2xl glow-blue">
+            <div className="relative glass-panel rounded-2xl p-5 border border-white/10 shadow-2xl glow-blue" dir="ltr">
               
               {/* Terminal Window Header */}
               <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/5">

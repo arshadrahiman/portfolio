@@ -1,7 +1,12 @@
 import React from 'react';
 import { Smartphone, Shield, Server, TestTube, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { uiTranslations } from '../data/uiTranslations';
 
 export default function CorePillars({ pillars }) {
+  const { lang } = useLanguage();
+  const t = uiTranslations[lang]?.pillars || uiTranslations.en.pillars;
+
   const iconMap = {
     smartphone: Smartphone,
     shield: Shield,
@@ -16,13 +21,13 @@ export default function CorePillars({ pillars }) {
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase bg-blue-500/10 text-blue-400 border border-blue-500/20 mb-3">
-            Core Engineering Competencies
+            {t.badge}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Architected for FinTech, Banking & InsurTech
+            {t.title}
           </h2>
           <p className="mt-3 text-sm sm:text-base text-gray-400">
-            Balancing rapid product delivery with military-grade mobile security, enterprise backend integration, and end-to-end test automation.
+            {t.desc}
           </p>
         </div>
 
@@ -52,7 +57,7 @@ export default function CorePillars({ pillars }) {
                 
                 <div className="mt-6 pt-4 border-t border-white/5 flex items-center gap-2 text-[11px] font-mono text-emerald-400">
                   <CheckCircle className="w-3.5 h-3.5" />
-                  <span>Production Tested</span>
+                  <span>{t.tested}</span>
                 </div>
               </div>
             );
@@ -63,4 +68,3 @@ export default function CorePillars({ pillars }) {
     </section>
   );
 }
-
