@@ -13,15 +13,6 @@ export default defineConfig({
   build: {
     target: 'esnext',
     minify: 'esbuild',
-    cssMinify: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom'],
-          'vendor-icons': ['lucide-react'],
-          'vendor-utils': ['qrcode', 'canvas-confetti']
-        }
-      }
-    }
+    cssMinify: true
   }
 })
