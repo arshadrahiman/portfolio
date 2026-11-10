@@ -2,8 +2,8 @@ export const portfolioData = {
   en: {
     profile: {
       fullName: "Abdullah Arshadul Rahman",
-      name: "Arshad Rahman",
-      preferredName: "Arshad Rahman",
+      name: "Abdullah Arshadul Rahman",
+      preferredName: "Abdullah Arshadul Rahman",
       role: "Senior Flutter & Full-Stack Engineer",
       secondaryRole: "Mobile Systems Architect & Technical Lead",
       statusBadge: "OPEN TO WORK · AVAILABLE FOR CONTRACTS & SENIOR ROLES 🌍",
@@ -520,8 +520,8 @@ export const portfolioData = {
   ar: {
     profile: {
       fullName: "عبد الله أرشد الرحمن",
-      name: "أرشد الرحمن",
-      preferredName: "أرشد الرحمن",
+      name: "عبد الله أرشد الرحمن",
+      preferredName: "عبد الله أرشد الرحمن",
       role: "مهندس برمجيات أول ومطور تطبيقات فلاتر وشامل (Full-Stack)",
       secondaryRole: "معمار أنظمة الجوال وقائد تقني",
       statusBadge: "متاح للعمل فوراً · متاح للعقود والمناصب القيادية العليا 🌍",
