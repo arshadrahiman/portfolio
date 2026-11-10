@@ -4,14 +4,9 @@ import Hero from './components/Hero';
 import ScrollProgressBar from './components/ScrollProgressBar';
 import RevealOnScroll from './components/RevealOnScroll';
 import CorePillars from './components/CorePillars';
-import WhatITakeCareOf from './components/WhatITakeCareOf';
-import Experience from './components/Experience';
-import SecuritySection from './components/SecuritySection';
-import Architecture from './components/Architecture';
 import SelectedWork from './components/SelectedWork';
+import Experience from './components/Experience';
 import TechStack from './components/TechStack';
-import DevUtilities from './components/DevUtilities';
-import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { portfolioData } from './data/portfolioData';
@@ -35,20 +30,20 @@ function PortfolioApp() {
 
       {/* Main Content Sections */}
       <main>
-        {/* Hero Section */}
+        {/* 1. Hero Section */}
         <Hero profile={currentProfile} />
 
-        {/* 4 Core Competency Pillars */}
+        {/* 2. Core Engineering Pillars (Mobile, Security, Back-End, Test Automation) */}
         <RevealOnScroll variant="fade-up">
           <CorePillars pillars={data.pillars} />
         </RevealOnScroll>
 
-        {/* What I Take Care Of (Services) */}
+        {/* 3. Featured Production Projects & Case Studies */}
         <RevealOnScroll variant="fade-up">
-          <WhatITakeCareOf services={data.services} />
+          <SelectedWork caseStudies={data.caseStudies} />
         </RevealOnScroll>
 
-        {/* Career Work Experience, MBA/BCA Education & Certifications */}
+        {/* 4. Career Track Record, MBA/BCA Education & Certifications */}
         <RevealOnScroll variant="fade-up">
           <Experience
             experience={data.experience}
@@ -57,37 +52,12 @@ function PortfolioApp() {
           />
         </RevealOnScroll>
 
-        {/* Mobile Security Architecture (OWASP MASVS, Pinning, Biometrics) */}
-        <RevealOnScroll variant="zoom-in">
-          <SecuritySection securityFocus={data.securityFocus} />
-        </RevealOnScroll>
-
-        {/* Clean Architecture Philosophy */}
-        <RevealOnScroll variant="fade-up">
-          <Architecture architecture={data.architecture} />
-        </RevealOnScroll>
-
-        {/* Featured Case Studies */}
-        <RevealOnScroll variant="fade-up">
-          <SelectedWork caseStudies={data.caseStudies} />
-        </RevealOnScroll>
-
-        {/* Tech Arsenal & Tooling */}
+        {/* 5. Tech Arsenal & Tooling Grid */}
         <RevealOnScroll variant="fade-up">
           <TechStack techStack={data.techStack} />
         </RevealOnScroll>
 
-        {/* 5 In-Browser Developer Utilities */}
-        <RevealOnScroll variant="zoom-in">
-          <DevUtilities />
-        </RevealOnScroll>
-
-        {/* Frequently Asked Questions */}
-        <RevealOnScroll variant="fade-up">
-          <FAQ faq={data.faq} />
-        </RevealOnScroll>
-
-        {/* Contact Section */}
+        {/* 6. Contact, 1:1 Calendly Booking & Direct Inquiry */}
         <RevealOnScroll variant="fade-up">
           <Contact contact={data.contact} profile={currentProfile} />
         </RevealOnScroll>

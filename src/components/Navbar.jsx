@@ -19,11 +19,8 @@ export default function Navbar({ profile }) {
 
   const navLinks = [
     { name: t.work, href: '#work' },
-    { name: t.services, href: '#services' },
     { name: t.experience, href: '#experience' },
-    { name: t.architecture, href: '#architecture' },
     { name: t.stack, href: '#stack' },
-    { name: t.utilities, href: '#utilities' },
     { name: t.contact, href: '#contact' },
   ];
 
