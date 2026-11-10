@@ -92,7 +92,7 @@ export default function Navbar({ profile }) {
 
             <div className="hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              {profile.availabilityBadge || 'Relocation & Contract Ready'}
+              {profile.availabilityBadge || (lang === 'ar' ? 'متاح للعقود والمناصب القيادية العليا' : 'Available for Contracts & Senior Roles')}
             </div>
 
             <a

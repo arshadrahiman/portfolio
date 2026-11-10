@@ -13,8 +13,8 @@ export default function Hero({ profile }) {
     "Flutter · Kotlin · React Native · Java · Swift",
     "Node.js · TypeScript · Python · PHP · .NET",
     "Banking · Fintech · Insurance · 7+ Years Experience",
-    "Ready to relocate to any location globally ✈️",
-    "Available for Full-Time & Contract roles 💼"
+    "Available for contracts & senior roles 💼",
+    "Ready to relocate to any location globally ✈️"
   ];
   const [lineIndex, setLineIndex] = useState(0);
 

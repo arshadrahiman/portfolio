@@ -11,14 +11,14 @@ export default function Contact({ contact, profile }) {
   const t = uiTranslations[lang]?.contact || uiTranslations.en.contact;
 
   const projectTypeOptions = lang === 'ar' ? [
-    { value: 'Full-Time Role (Ready to Relocate)', label: 'وظيفة بدوام كامل (قائد تقني / مطور أول - جاهز للانتقال الفوري)' },
-    { value: 'Contract / Freelance Engagement', label: 'عقد عمل / عمل مستقل (مشروع قصير أو طويل المدى)' },
+    { value: 'Senior Role / Tech Lead (Ready to Relocate)', label: 'منصب قيادي / مطور أول (جاهز للانتقال الفوري)' },
+    { value: 'Contract / Freelance Engagement', label: 'عقد عمل / استشارات تقنية (مشروع قصير أو طويل المدى)' },
     { value: 'Zero-to-App Store (Greenfield)', label: 'بناء تطبيق متكامل من الصفر حتى متاجر التطبيقات' },
     { value: 'Legacy App Audit & Takeover', label: 'تدقيق واستلام كود تطبيق قائم (Codebase Takeover)' },
     { value: 'Clean Architecture & Security Consulting', label: 'استشارات معمارية وتأمين تطبيقات الجوال (OWASP)' },
   ] : [
-    { value: 'Full-Time Role (Ready to Relocate)', label: 'Full-Time Role (Senior Mobile / Tech Lead - Relocation Ready)' },
-    { value: 'Contract / Freelance Engagement', label: 'Contract / Freelance Engagement (Short or Long-Term)' },
+    { value: 'Senior Role / Tech Lead (Ready to Relocate)', label: 'Senior Role / Tech Lead (Full-Time - Relocation Ready)' },
+    { value: 'Contract / Freelance Engagement', label: 'Contract Engagement (Short or Long-Term)' },
     { value: 'Zero-to-App Store (Greenfield)', label: 'Zero-to-App Store (Greenfield Build)' },
     { value: 'Legacy App Audit & Takeover', label: 'Legacy App Audit & Codebase Takeover' },
     { value: 'Clean Architecture & Security Consulting', label: 'Architecture & OWASP Security Consulting' },
@@ -53,7 +53,7 @@ export default function Contact({ contact, profile }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    projectType: 'Full-Time Role (Ready to Relocate)',
+    projectType: 'Senior Role / Tech Lead (Ready to Relocate)',
     timeline: 'Immediately (ASAP)',
     budget: 'Competitive Full-Time / Relocation',
     message: ''

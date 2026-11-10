@@ -18,7 +18,7 @@ export const uiTranslations = {
       copied: "Copied!",
       openToWork: "OPEN TO WORK",
       relocationReady: "READY TO RELOCATE ANYWHERE 🌍",
-      contractReady: "FULL-TIME & CONTRACT READY",
+      contractReady: "AVAILABLE FOR CONTRACTS & SENIOR ROLES",
       expYears: "7+ YEARS EXP"
     },
     pillars: {
@@ -141,7 +141,7 @@ export const uiTranslations = {
       copied: "تم النسخ بنجاح!",
       openToWork: "متاح للعمل فوراً",
       relocationReady: "جاهز للانتقال لأي دولة 🌍",
-      contractReady: "جاهز للدوام الكامل والعقود",
+      contractReady: "متاح للعقود والمناصب القيادية العليا",
       expYears: "خبرة +7 سنوات"
     },
     pillars: {
@@ -245,3 +245,4 @@ export const uiTranslations = {
     }
   }
 };
+

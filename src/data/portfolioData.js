@@ -6,13 +6,13 @@ export const portfolioData = {
       preferredName: "Arshad Rahman",
       role: "Senior Flutter & Full-Stack Engineer",
       secondaryRole: "Mobile Systems Architect & Technical Lead",
-      statusBadge: "OPEN TO WORK · READY TO RELOCATE GLOBALLY 🌍",
-      statusDetail: "Immediately Available · Last role completed in Riyadh, KSA · Ready for relocation to any global location (UAE, GCC, Europe, UK, US, Worldwide) or Remote",
-      availabilityBadge: "Full-Time & Contract Ready",
+      statusBadge: "OPEN TO WORK · AVAILABLE FOR CONTRACTS & SENIOR ROLES 🌍",
+      statusDetail: "Immediately Available · Last role completed in Riyadh, KSA · Available for contracts & senior roles worldwide (Ready to Relocate) or remote",
+      availabilityBadge: "Available for Contracts & Senior Roles",
       baseLocation: "Kerala, India",
       lastWorkLocation: "Riyadh, KSA (Previous Role)",
       relocationStatus: "Ready to Relocate Anywhere Worldwide",
-      contractStatus: "Available for Contract & Full-Time",
+      contractStatus: "Available for Contracts & Senior Roles",
       experienceYears: "7+",
       email: "arshadrahman.dev@gmail.com",
       portfolioUrl: "https://arshadrahman.in",
@@ -32,7 +32,7 @@ export const portfolioData = {
           { label: "Industry Tenure", value: "7+ Years", detail: "Software Dev & Mobile Leadership" },
           { label: "Production Apps", value: "20+", detail: "Across iOS & Android stores" },
           { label: "Crash-Free Rate", value: "99.9%", detail: "Sustained production SLA" },
-          { label: "Global Readiness", value: "Anywhere", detail: "Relocation & Contract Ready" }
+          { label: "Availability", value: "Immediate", detail: "Contracts & Senior Roles" }
         ]
       },
       typingLines: [
@@ -40,11 +40,11 @@ export const portfolioData = {
         "Flutter · Kotlin · React Native · Java · Swift",
         "Node.js · TypeScript · Python · PHP · .NET",
         "Banking · Fintech · Insurance · 7+ Years Experience",
-        "Ready to relocate to any location globally ✈️",
-        "Available for Full-Time & Contract roles 💼"
+        "Available for contracts & senior roles 💼",
+        "Ready to relocate to any location globally ✈️"
       ],
       currentFocus: [
-        { label: "Availability", value: "Immediately Available · Ready to relocate anywhere globally & open for contract / full-time" },
+        { label: "Availability", value: "Immediately Available · Available for contracts & senior roles (Relocation Ready)" },
         { label: "Working on", value: "Reusable enterprise Flutter security, biometrics, and architecture kits" },
         { label: "Learning", value: "SwiftUI, advanced Flutter performance profiling, and platform channels" },
         { label: "Ask me about", value: "Flutter, mobile security, Node.js / TypeScript / .NET APIs, test automation" }
@@ -509,8 +509,8 @@ export const portfolioData = {
       directEmail: "arshadrahman.dev@gmail.com",
       calendlyLink: "https://calendly.com/software-engineer-arshadrahman",
       responseTime: "Typically replies within 1–2 hours",
-      availabilityStatus: "Immediately Available · Full-Time & Contract",
-      targetBadge: "Global Relocation & Contract Ready 🌍"
+      availabilityStatus: "Available for Contracts & Senior Roles",
+      targetBadge: "Available for Contracts & Senior Roles 🌍"
     }
   },
 
@@ -524,13 +524,13 @@ export const portfolioData = {
       preferredName: "أرشد الرحمن",
       role: "مهندس برمجيات أول ومطور تطبيقات فلاتر وشامل (Full-Stack)",
       secondaryRole: "معمار أنظمة الجوال وقائد تقني",
-      statusBadge: "متاح للعمل فوراً · جاهز للانتقال دولياً 🌍",
-      statusDetail: "متاح للعمل فوراً · آخر محطة مهنية في الرياض بالمملكة العربية السعودية · مستعد للانتقال للعمل في أي دولة (الإمارات، دول الخليج، أوروبا، بريطانيا، أمريكا، حول العالم) أو عن بُعد",
-      availabilityBadge: "جاهز للعمل بعقود أو دوام كامل",
+      statusBadge: "متاح للعمل فوراً · متاح للعقود والمناصب القيادية العليا 🌍",
+      statusDetail: "متاح للعمل فوراً · آخر محطة مهنية في الرياض بالمملكة العربية السعودية · مستعد لعقود العمل والمناصب القيادية والانتقال لأي دولة حول العالم",
+      availabilityBadge: "متاح للعقود والمناصب القيادية العليا",
       baseLocation: "كيرلا، الهند",
       lastWorkLocation: "الرياض، المملكة العربية السعودية (آخر وظيفة)",
       relocationStatus: "جاهز للانتقال لأي دولة حول العالم",
-      contractStatus: "متاح للعمل بعقود أو بدوام كامل",
+      contractStatus: "متاح للعقود والمناصب القيادية العليا",
       experienceYears: "+7",
       email: "arshadrahman.dev@gmail.com",
       portfolioUrl: "https://arshadrahman.in",
@@ -550,7 +550,7 @@ export const portfolioData = {
           { label: "سنوات الخبرة", value: "+7 سنوات", detail: "تطوير وقيادة فرق برمجية" },
           { label: "تطبيقات في الإنتاج", value: "+20 تطبيق", detail: "على متجري آبل وجوجل بلاي" },
           { label: "معدل خلو الأعطال", value: "99.9%", detail: "معايير استقرار مستدامة" },
-          { label: "الجاهزية للعمل", value: "أي دولة", detail: "مستعد للانتقال وللعقود" }
+          { label: "حالة التوفر", value: "فوري", detail: "عقود ومناصب قيادية عليا" }
         ]
       },
       typingLines: [
@@ -558,11 +558,11 @@ export const portfolioData = {
         "Flutter · Kotlin · React Native · Java · Swift",
         "Node.js · TypeScript · Python · PHP · .NET",
         "قطاع البنوك · التقنية المالية · التأمين · +7 سنوات",
-        "مستعد للانتقال للعمل في أي موقع دولياً ✈️",
-        "متاح لعقود العمل والوظائف بدوام كامل 💼"
+        "متاح لعقود العمل والمناصب القيادية العليا 💼",
+        "مستعد للانتقال للعمل في أي موقع دولياً ✈️"
       ],
       currentFocus: [
-        { label: "حالة التوفر", value: "متاح للعمل فوراً · جاهز للانتقال لأي دولة ومستعد للعقود والدوام الكامل" },
+        { label: "حالة التوفر", value: "متاح فوراً للعمل · متاح لعقود العمل والمناصب القيادية العليا (وجاهز للانتقال)" },
         { label: "أعمل حالياً على", value: "حزم برمجية قابلة لإعادة الاستخدام في أمن فلاتر والمصادقة البيومترية" },
         { label: "أتعلم حالياً", value: "SwiftUI وتحليل الأداء المتقدم وقنوات المنصات الأصلية" },
         { label: "اسألني عن", value: "فلاتر، أمن تطبيقات الجوال، خدمات .NET / Node.js، وأتمتة الاختبارات" }
@@ -1027,8 +1027,8 @@ export const portfolioData = {
       directEmail: "arshadrahman.dev@gmail.com",
       calendlyLink: "https://calendly.com/software-engineer-arshadrahman",
       responseTime: "الرد خلال ١ إلى ٢ ساعة عادة",
-      availabilityStatus: "متاح للعمل فوراً · عقود ودوام كامل",
-      targetBadge: "جاهز للانتقال دولياً ولعقود العمل 🌍"
+      availabilityStatus: "متاح للعقود والمناصب القيادية العليا",
+      targetBadge: "متاح للعقود والمناصب القيادية العليا 🌍"
     }
   }
 };
