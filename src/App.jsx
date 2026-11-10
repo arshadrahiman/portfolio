@@ -1,23 +1,21 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ScrollProgressBar from './components/ScrollProgressBar';
 import RevealOnScroll from './components/RevealOnScroll';
+import CorePillars from './components/CorePillars';
+import WhatITakeCareOf from './components/WhatITakeCareOf';
+import Experience from './components/Experience';
+import SecuritySection from './components/SecuritySection';
+import Architecture from './components/Architecture';
+import SelectedWork from './components/SelectedWork';
+import TechStack from './components/TechStack';
+import DevUtilities from './components/DevUtilities';
+import FAQ from './components/FAQ';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 import { portfolioData } from './data/portfolioData';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
-
-// Below-the-fold components lazy-loaded for maximum initial load performance
-const CorePillars = lazy(() => import('./components/CorePillars'));
-const WhatITakeCareOf = lazy(() => import('./components/WhatITakeCareOf'));
-const Experience = lazy(() => import('./components/Experience'));
-const SecuritySection = lazy(() => import('./components/SecuritySection'));
-const Architecture = lazy(() => import('./components/Architecture'));
-const SelectedWork = lazy(() => import('./components/SelectedWork'));
-const TechStack = lazy(() => import('./components/TechStack'));
-const DevUtilities = lazy(() => import('./components/DevUtilities'));
-const FAQ = lazy(() => import('./components/FAQ'));
-const Contact = lazy(() => import('./components/Contact'));
-const Footer = lazy(() => import('./components/Footer'));
 
 function PortfolioApp() {
   const { lang, isRTL } = useLanguage();
@@ -32,78 +30,71 @@ function PortfolioApp() {
       {/* Top Reading Scroll Progress Indicator */}
       <ScrollProgressBar />
 
-      {/* Main Navigation (Eagerly Loaded) */}
+      {/* Main Navigation */}
       <Navbar profile={currentProfile} />
 
       {/* Main Content Sections */}
       <main>
-        {/* Hero Section (Eagerly Loaded for Immediate First Paint) */}
+        {/* Hero Section */}
         <Hero profile={currentProfile} />
 
-        {/* Below-the-fold sections with Scroll-Triggered Reveal Animations */}
-        <Suspense fallback={<div className="py-20 min-h-[200px] flex items-center justify-center text-gray-600 text-xs font-mono">Loading modules...</div>}>
-          
-          {/* 4 Core Competency Pillars */}
-          <RevealOnScroll variant="fade-up" delay={50}>
-            <CorePillars pillars={data.pillars} />
-          </RevealOnScroll>
+        {/* 4 Core Competency Pillars */}
+        <RevealOnScroll variant="fade-up">
+          <CorePillars pillars={data.pillars} />
+        </RevealOnScroll>
 
-          {/* What I Take Care Of (Services) */}
-          <RevealOnScroll variant="fade-up" delay={50}>
-            <WhatITakeCareOf services={data.services} />
-          </RevealOnScroll>
+        {/* What I Take Care Of (Services) */}
+        <RevealOnScroll variant="fade-up">
+          <WhatITakeCareOf services={data.services} />
+        </RevealOnScroll>
 
-          {/* Career Work Experience, MBA/BCA Education & Certifications */}
-          <RevealOnScroll variant="fade-up" delay={50}>
-            <Experience
-              experience={data.experience}
-              qualifications={data.qualifications}
-              certifications={data.certifications}
-            />
-          </RevealOnScroll>
+        {/* Career Work Experience, MBA/BCA Education & Certifications */}
+        <RevealOnScroll variant="fade-up">
+          <Experience
+            experience={data.experience}
+            qualifications={data.qualifications}
+            certifications={data.certifications}
+          />
+        </RevealOnScroll>
 
-          {/* Mobile Security Architecture (OWASP MASVS, Pinning, Biometrics) */}
-          <RevealOnScroll variant="zoom-in" delay={50}>
-            <SecuritySection securityFocus={data.securityFocus} />
-          </RevealOnScroll>
+        {/* Mobile Security Architecture (OWASP MASVS, Pinning, Biometrics) */}
+        <RevealOnScroll variant="zoom-in">
+          <SecuritySection securityFocus={data.securityFocus} />
+        </RevealOnScroll>
 
-          {/* Clean Architecture Philosophy */}
-          <RevealOnScroll variant="fade-up" delay={50}>
-            <Architecture architecture={data.architecture} />
-          </RevealOnScroll>
+        {/* Clean Architecture Philosophy */}
+        <RevealOnScroll variant="fade-up">
+          <Architecture architecture={data.architecture} />
+        </RevealOnScroll>
 
-          {/* Featured Case Studies */}
-          <RevealOnScroll variant="fade-up" delay={50}>
-            <SelectedWork caseStudies={data.caseStudies} />
-          </RevealOnScroll>
+        {/* Featured Case Studies */}
+        <RevealOnScroll variant="fade-up">
+          <SelectedWork caseStudies={data.caseStudies} />
+        </RevealOnScroll>
 
-          {/* Tech Arsenal & Tooling */}
-          <RevealOnScroll variant="fade-up" delay={50}>
-            <TechStack techStack={data.techStack} />
-          </RevealOnScroll>
+        {/* Tech Arsenal & Tooling */}
+        <RevealOnScroll variant="fade-up">
+          <TechStack techStack={data.techStack} />
+        </RevealOnScroll>
 
-          {/* 5 In-Browser Developer Utilities */}
-          <RevealOnScroll variant="zoom-in" delay={50}>
-            <DevUtilities />
-          </RevealOnScroll>
+        {/* 5 In-Browser Developer Utilities */}
+        <RevealOnScroll variant="zoom-in">
+          <DevUtilities />
+        </RevealOnScroll>
 
-          {/* Frequently Asked Questions */}
-          <RevealOnScroll variant="fade-up" delay={50}>
-            <FAQ faq={data.faq} />
-          </RevealOnScroll>
+        {/* Frequently Asked Questions */}
+        <RevealOnScroll variant="fade-up">
+          <FAQ faq={data.faq} />
+        </RevealOnScroll>
 
-          {/* Contact Section */}
-          <RevealOnScroll variant="fade-up" delay={50}>
-            <Contact contact={data.contact} profile={currentProfile} />
-          </RevealOnScroll>
-
-        </Suspense>
+        {/* Contact Section */}
+        <RevealOnScroll variant="fade-up">
+          <Contact contact={data.contact} profile={currentProfile} />
+        </RevealOnScroll>
       </main>
 
       {/* Footer */}
-      <Suspense fallback={null}>
-        <Footer profile={currentProfile} />
-      </Suspense>
+      <Footer profile={currentProfile} />
     </div>
   );
 }

@@ -5,7 +5,7 @@ export default function RevealOnScroll({
   variant = 'fade-up', // 'fade-up' | 'zoom-in' | 'fade'
   delay = 0, 
   className = '',
-  threshold = 0.1,
+  threshold = 0.05,
   once = true
 }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,7 +30,8 @@ export default function RevealOnScroll({
       });
     }, {
       threshold,
-      rootMargin: '0px 0px -40px 0px'
+      // Generous rootMargin so elements trigger before entering viewport
+      rootMargin: '250px 0px 80px 0px'
     });
 
     const el = domRef.current;
@@ -65,4 +66,3 @@ export default function RevealOnScroll({
     </div>
   );
 }
-
