@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Calendar, Copy, Check, ShieldCheck, Sparkles, Smartphone, Terminal, MapPin, Briefcase } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { uiTranslations } from '../data/uiTranslations';
+import profilePic from '../assets/profile.jpg';
 
 export default function Hero({ profile }) {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -76,7 +77,7 @@ export default function Hero({ profile }) {
               <div className="relative group shrink-0">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl p-[2px] bg-gradient-to-tr from-blue-500 via-cyan-400 to-indigo-500 shadow-xl shadow-blue-500/25">
                   <img
-                    src="/profile.jpg"
+                    src={profilePic}
                     alt={profile.fullName}
                     className="w-full h-full object-cover object-[center_20%] rounded-[14px]"
                     onError={(e) => {

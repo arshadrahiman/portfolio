@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { uiTranslations } from '../data/uiTranslations';
+import profilePic from '../assets/profile.jpg';
 
 export default function Navbar({ profile }) {
   const [scrolled, setScrolled] = useState(false);
@@ -38,7 +39,7 @@ export default function Navbar({ profile }) {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-indigo-600 p-[1.5px] shadow-lg shadow-blue-500/20 group-hover:scale-105 transition">
               <div className="w-full h-full bg-[#08080b] rounded-[10px] overflow-hidden flex items-center justify-center">
                 <img
-                  src="/profile.jpg"
+                  src={profilePic}
                   alt={profile.name}
                   className="w-full h-full object-cover object-[center_20%]"
                   onError={(e) => {
